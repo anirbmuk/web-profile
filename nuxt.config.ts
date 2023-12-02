@@ -6,22 +6,15 @@ export default defineNuxtConfig({
   runtimeConfig: {
     app: {
       head: {
-        meta: [
-          {
-            charset: 'utf-8',
-          },
-          {
-            name: 'viewport',
-            content: 'width=device-width, initial-scale=1',
-          },
-        ],
+        charset: 'utf-8',
+        viewport: 'width=device-width, initial-scale=1',
       },
     },
     public: {
-      baseUrl: 'http://localhost:3000',
+      baseUrl: process.env.BASE_URL,
     },
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/robots', '@nuxtjs/i18n'],
   i18n: {
     strategy: 'prefix',
     detectBrowserLanguage: false,
@@ -30,5 +23,9 @@ export default defineNuxtConfig({
     vueI18n: 'vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
+  },
+  robots: {
+    UserAgent: '*',
+    Disallow: '',
   },
 });
