@@ -1,0 +1,8 @@
+{
+  "global": {
+    "title": "NUXT Course"
+  },
+  "root": {
+    "title": "Mein NUXT Course"
+  }
+}
