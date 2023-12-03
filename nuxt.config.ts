@@ -25,7 +25,11 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
   robots: {
-    UserAgent: '*',
-    Disallow: '',
+    rules: [
+      {
+        UserAgent: '*',
+        Disallow: '',
+      },
+    ],
   },
 });
