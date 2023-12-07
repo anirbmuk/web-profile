@@ -19,13 +19,12 @@
 <script setup lang="ts">
 import type { FooterBlock } from '~/types/features/footer';
 
-const props = defineProps({
+defineProps({
   block: {
     type: Object as PropType<FooterBlock>,
     default: undefined,
   },
 });
-console.log(props.block);
 
 const year = new Date().getFullYear();
 

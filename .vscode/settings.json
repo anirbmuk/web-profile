@@ -1,7 +1,8 @@
 {
-    "prettier.configPath": "./.prettierrc",
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "all",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+  "css.lint.unknownAtRules": "ignore",
+  "prettier.configPath": "./.prettierrc",
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }

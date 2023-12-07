@@ -15,7 +15,34 @@ export default defineNuxtConfig({
     },
     ...datasource,
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/robots', '@nuxtjs/i18n'],
+
+  css: ['@/assets/styles/root.css', '@/assets/styles/main.css'],
+
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/robots',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/i18n',
+  ],
+
+  googleFonts: {
+    display: 'swap',
+    preconnect: true,
+    useStylesheet: true,
+    families: {
+      'Noto Sans': [400, 600, 700],
+    },
+  },
+
+  robots: {
+    rules: [
+      {
+        UserAgent: '*',
+        Disallow: '',
+      },
+    ],
+  },
+
   i18n: {
     strategy: 'prefix',
     detectBrowserLanguage: false,
@@ -24,13 +51,5 @@ export default defineNuxtConfig({
     vueI18n: 'vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
-  },
-  robots: {
-    rules: [
-      {
-        UserAgent: '*',
-        Disallow: '',
-      },
-    ],
   },
 });

@@ -14,7 +14,6 @@ const { $i18n } = useNuxtApp();
 const { get } = useFirebase();
 
 const footer = await get<FooterBlock>(FOOTER);
-console.log('[footer]', footer);
 
 useHead({
   htmlAttrs: {

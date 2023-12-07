@@ -1,7 +1,9 @@
 <template>
   <NuxtLink
     v-if="link.type === 'internal'"
-    active-class="font-bold"
+    active-class="font-semibold"
+    trailing-slash="remove"
+    class="navlink"
     :to="localePath(link.url)"
     :title="link?.title"
     @click="$emit('linkClink', 'internal')">

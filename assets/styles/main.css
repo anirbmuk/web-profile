@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  h1 {
+    @apply text-4xl md:text-6xl;
+  }
+  h2 {
+    @apply text-3xl md:text-5xl;
+  }
+  h3 {
+    @apply text-2xl md:text-4xl;
+  }
+  h4 {
+    @apply text-xl md:text-3xl;
+  }
+  h5 {
+    @apply text md:text-2xl;
+  }
+  h6 {
+    @apply text-md md:text;
+  }
+}
+
+em {
+  @apply not-italic;
+}
+
+.linkedin {
+  color: var(--linkedin);
+}
+
+.twitter {
+  color: var(--twitter);
+}
+
+.gradient-text {
+  background-image: linear-gradient(
+    45deg,
+    rgba(var(--blue-raw), 0.9),
+    rgba(var(--red-raw)) 55%,
+    rgba(var(--blue-raw), 0.9) 75%
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.email-text {
+  background-image: linear-gradient(
+    to right,
+    #4285f4 0 31%,
+    #ea4335 31% 52%,
+    #fbbc05 52% 59%,
+    #4285f4 59% 82%,
+    #34a853 82% 100%
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heading {
+  @apply duration-200 ease-in lg:hover:translate-x-1 lg:hover:tracking-wide lg:hover:ease-out;
+}
+
+a.navlink {
+  @apply relative no-underline;
+}
+
+abbr {
+  @apply cursor-help !no-underline;
+  border-bottom: 1px dashed #adadad;
+}
+
+@media screen and (max-width: 1023px) and (hover: none) {
+  abbr {
+    @apply !no-underline;
+    border-bottom: 1px dashed #adadad;
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+}
+
+@media screen and (min-width: 768px) and (hover: hover) {
+  a.navlink::after {
+    @apply absolute bottom-0 left-0 h-[1px] w-full origin-right scale-x-0 bg-current;
+    content: '';
+    transition: transform 250ms ease-in;
+  }
+
+  a.navlink:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+li[fehover] {
+  @apply z-1 relative m-0.5 cursor-pointer rounded border border-gray-300 p-2;
+}
+
+@media screen and (min-width: 768px) and (hover: hover) {
+  li[fehover]::after {
+    @apply z-minus1 absolute bottom-0 left-0 top-0 w-full origin-right scale-x-0 rounded;
+    content: '';
+    transition: transform 250ms ease-in;
+    background-image: linear-gradient(
+      45deg,
+      rgba(var(--blue-raw), 0.11),
+      rgba(var(--red-raw), 0.09) 55%,
+      rgba(var(--blue-raw), 0.11) 75%
+    );
+  }
+
+  li[fehover]:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-black-dark,
+  .text-gray-500,
+  .text-gray-600,
+  .text-gray-700,
+  .text-gray-900 {
+    @apply text-white;
+  }
+
+  header,
+  footer {
+    @apply border-none;
+  }
+
+  header > *,
+  footer > * {
+    background-color: #121212 !important;
+  }
+
+  [ratingcontainer] {
+    @apply hidden;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-delay {
+  animation: fade-in forwards;
+}
+
+.download-button {
+  @apply min-w-xs text-md text-black-dark md:min-w-base md:text cursor-pointer rounded border border-gray-200 bg-gray-100 px-2 py-2 text-center tracking-tight shadow-lg duration-200 ease-in md:hover:border-gray-300 md:hover:bg-gray-200;
+}
+
+@media (prefers-color-scheme: dark) {
+  .download-button {
+    @apply border border-white bg-transparent text-white shadow-none md:hover:border-white md:hover:bg-transparent;
+  }
+}
