@@ -2,7 +2,10 @@
   "global": {
     "title": "NUXT Course"
   },
-  "root": {
-    "title": "My NUXT Course"
+  "home": {
+    "title": "My NUXT course"
+  },
+  "about": {
+    "title": "About my NUXT course"
   }
 }

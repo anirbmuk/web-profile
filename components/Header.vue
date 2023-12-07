@@ -8,4 +8,8 @@
 
 <script setup lang="ts">
 const { $i18n } = useNuxtApp();
+
+defineOptions({
+  name: 'HeaderComponent',
+});
 </script>

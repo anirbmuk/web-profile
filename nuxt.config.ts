@@ -1,8 +1,8 @@
 import locales from './config/locales';
+import datasource from './config/datasource';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   runtimeConfig: {
     app: {
       head: {
@@ -11,8 +11,9 @@ export default defineNuxtConfig({
       },
     },
     public: {
-      baseUrl: process.env.BASE_URL,
+      baseUrl: '',
     },
+    ...datasource,
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/robots', '@nuxtjs/i18n'],
   i18n: {

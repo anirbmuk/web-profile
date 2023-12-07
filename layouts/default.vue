@@ -3,10 +3,19 @@
   <div class="container mx-auto my-4">
     <slot />
   </div>
+  <Footer v-if="footer?.[0]" :block="footer[0]" />
 </template>
 
 <script setup lang="ts">
+import type { FooterBlock } from '~/types/features/footer';
+import { FOOTER } from '~/constants/url';
+
 const { $i18n } = useNuxtApp();
+const { get } = useFirebase();
+
+const footer = await get<FooterBlock>(FOOTER);
+console.log('[footer]', footer);
+
 useHead({
   htmlAttrs: {
     lang: $i18n.locale,
@@ -15,5 +24,8 @@ useHead({
 });
 useSeoMeta({
   robots: 'index,follow',
+});
+defineOptions({
+  name: 'DefaultLayout',
 });
 </script>

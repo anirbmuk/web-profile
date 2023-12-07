@@ -1,5 +1,5 @@
 <template>
-  <h2>{{ $i18n.t('home.title') }}</h2>
+  <h2>{{ $i18n.t('about.title') }}</h2>
 </template>
 
 <script setup lang="ts">
