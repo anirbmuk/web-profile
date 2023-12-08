@@ -1,8 +1,8 @@
 <template>
   <Header />
-  <div class="container mx-auto my-4">
+  <main class="container mx-auto my-20">
     <slot />
-  </div>
+  </main>
   <Footer v-if="footer?.[0]" :block="footer[0]" />
 </template>
 

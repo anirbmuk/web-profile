@@ -143,10 +143,12 @@ export default {
     },
     container: {
       center: true,
-      padding: '1rem',
+      padding: {
+        DEFAULT: '1rem',
+        xl: '2rem',
+      },
     },
     screens: {
-      xs: '320px',
       sm: '640px',
       md: '768px',
       lg: '1024px',

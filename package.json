@@ -10,6 +10,7 @@
   "scripts": {
     "clean": "rimraf .nuxt && rimraf .output",
     "build": "nuxt build",
+    "start": "nuxt start",
     "dev": "nuxt dev --development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
