@@ -2,16 +2,24 @@ import { fetchCollection } from '~/core/firebase.core';
 
 export const useFirebase = () => {
   const { $firebaseApp } = useNuxtApp();
+  const { loadingState } = useLoader();
 
-  const get = <T>(path: string, limit = 1) =>
-    fetchCollection<T>($firebaseApp.value!, {
+  const fetch = async <T>(path: string, limit?: number | undefined) => {
+    loadingState.value = true;
+    return await fetchCollection<T>($firebaseApp.value!, {
       collections: [path],
       whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
-      ...(limit > 0 && { limit }),
-    });
+      ...((limit ?? -1) > 0 && { limit }),
+    })
+      .catch((e) => {
+        console.error(`Error while fetching data for path '${path}'`, e);
+        return undefined;
+      })
+      .finally(() => (loadingState.value = false));
+  };
 
   return {
-    get,
-    $firebaseApp,
+    fetch,
+    loadingState,
   };
 };

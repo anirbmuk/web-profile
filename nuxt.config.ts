@@ -1,5 +1,6 @@
 import locales from './config/locales';
 import datasource from './config/datasource';
+import { initializeApp } from 'firebase/app';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

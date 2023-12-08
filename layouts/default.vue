@@ -11,9 +11,9 @@ import type { FooterBlock } from '~/types/features/footer';
 import { FOOTER } from '~/constants/url';
 
 const { $i18n } = useNuxtApp();
-const { get } = useFirebase();
+const { fetch } = useFirebase();
 
-const footer = await get<FooterBlock>(FOOTER);
+const footer = await fetch<FooterBlock>(FOOTER);
 
 useHead({
   htmlAttrs: {
