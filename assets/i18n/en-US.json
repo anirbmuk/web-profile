@@ -1,11 +1,9 @@
 {
   "global": {
-    "title": "NUXT Course"
-  },
-  "home": {
-    "title": "My NUXT course"
+    "title": "Anirban Mukherjee (anirbmuk) - Senior Frontend Developer",
+    "description": "I am Anirban Mukherjee, a Senior Frontend Developer at SCAYLE, currently in Hamburg, Germany."
   },
   "about": {
-    "title": "About my NUXT course"
+    "title": "Anirban Mukherjee (anirbmuk) - All About Me"
   }
 }

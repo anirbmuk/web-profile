@@ -19,10 +19,20 @@ useHead({
   htmlAttrs: {
     lang: $i18n.locale,
   },
-  title: $i18n.t('global.title'),
 });
 useSeoMeta({
   robots: 'index,follow',
+  description: $i18n.t('global.description'),
+  colorScheme: 'dark light',
+  ogLocale: $i18n.locale,
+  author: 'Anirban Mukherjee',
+  ogSiteName: 'anirbmuk',
+  ogType: 'website',
+  twitterSite: 'anirbmuk',
+  twitterCreator: '@anirbmuk',
+  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  twitterCard: 'summary_large_image',
+  themeColor: '#f5f5f5',
 });
 defineOptions({
   name: 'DefaultLayout',
