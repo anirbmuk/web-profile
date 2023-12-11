@@ -1,6 +1,9 @@
 <template>
   <Header />
   <main class="container mx-auto my-20">
+    <ClientOnly>
+      <UiBackToTop v-if="scrollState > 100" @scroll-to-top="scrollToTop" />
+    </ClientOnly>
     <slot />
   </main>
   <Footer v-if="footer?.[0]" :block="footer[0]" />
@@ -12,6 +15,7 @@ import { FOOTER } from '~/constants/url';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
+const { scrollState, scrollToTop } = useScroll('scroll');
 
 const footer = await fetch<FooterBlock>(FOOTER);
 
@@ -19,6 +23,12 @@ useHead({
   htmlAttrs: {
     lang: $i18n.locale,
   },
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&display=swap',
+    },
+  ],
 });
 useSeoMeta({
   robots: 'index,follow',
