@@ -52,6 +52,7 @@
 
 <script setup lang="ts">
 import type { Artifact, ProfileBlock } from '~/types/features/profile';
+import { downloadFile } from '~/helpers/file';
 import { PROFILE } from '~/constants/url';
 
 const { $i18n } = useNuxtApp();
@@ -66,7 +67,7 @@ defineOptions({
 const onDownloadResume = (artifacts: Artifact[] | undefined) => {
   if (artifacts) {
     const [resume] = artifacts?.filter((artifact) => artifact.category === 'resume');
-    console.log('[resume]', resume);
+    downloadFile(resume.url);
   }
 };
 </script>

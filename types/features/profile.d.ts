@@ -38,6 +38,6 @@ export type Social = {
 
 export type Artifact = {
   type: 'artifact';
-  category: 'resume';
+  category: 'resume' | 'cover_letter';
   url: string;
 };
