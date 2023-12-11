@@ -4,7 +4,12 @@
     "description": "Ich bin Anirban Mukherjee, Senior Frontend Developer bei SCAYLE, derzeit in Hamburg, Deutschland."
   },
   "main": {
-    "download_resume": "Lebenslauf herunterladen"
+    "profile": {
+      "download_resume": "Lebenslauf herunterladen"
+    },
+    "career": {
+      "title": "Karriereweg"
+    }
   },
   "about": {
     "title": "Anirban Mukherjee (anirbmuk) - alles über mich"

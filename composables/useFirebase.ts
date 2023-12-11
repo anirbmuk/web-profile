@@ -13,7 +13,7 @@ export const useFirebase = () => {
     })
       .catch((e) => {
         console.error(`Error while fetching data for path '${path}'`, e);
-        return undefined;
+        return [] as T[];
       })
       .finally(() => (loadingState.value = false));
   };
