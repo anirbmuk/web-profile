@@ -6,7 +6,7 @@
       {{ $i18n.t('main.career.title') }}
     </h3>
     <div v-if="block">
-      <LazyUiTimeline :timelines="block" />
+      <UiTimeline :timelines="block" />
     </div>
   </section>
 </template>

@@ -174,3 +174,25 @@ li[fehover] {
 .heading {
   @apply duration-200 ease-in lg:hover:translate-x-1 lg:hover:tracking-wide lg:hover:ease-out;
 }
+
+li[fehover] {
+  @apply relative z-1 m-0.5 cursor-pointer rounded border border-gray-300 p-2;
+}
+
+@media screen and (min-width: 768px) and (hover: hover) {
+  li[fehover]::after {
+    @apply absolute bottom-0 left-0 top-0 z-minus1 w-full origin-right scale-x-0 rounded;
+    content: '';
+    transition: transform 250ms ease-in;
+    background-image: linear-gradient(
+      45deg,
+      rgba(var(--blue-raw), 0.11),
+      rgba(var(--red-raw), 0.09) 55%,
+      rgba(var(--blue-raw), 0.11) 75%
+    );
+  }
+
+  li[fehover]:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
