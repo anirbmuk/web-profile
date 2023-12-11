@@ -15,6 +15,12 @@
     <template v-if="techstack">
       <LazyTechstack :block="techstack" />
     </template>
+    <template v-if="github?.length">
+      <LazyGithub :block="github" />
+    </template>
+    <template v-if="education?.length">
+      <LazyEducation :block="education" />
+    </template>
   </div>
 </template>
 
@@ -22,15 +28,19 @@
 import type { ProfileBlock } from '~/types/features/profile';
 import type { CareerBlock } from '~/types/features/career';
 import type { TechstackBlock } from '~/types/components/techstack';
+import type { GithubBlock } from '~/types/features/github';
+import type { EducationBlock } from '~/types/features/education';
 
-import { CAREER, PROFILE, TECHSTACK } from '~/constants/url';
+import { CAREER, PROFILE, TECHSTACK, GITHUB, EDUCATION } from '~/constants/url';
 
 const { fetch } = useFirebase();
 
-const [[profile], career, [techstack]] = await Promise.all([
+const [[profile], career, [techstack], github, education] = await Promise.all([
   fetch<ProfileBlock>(PROFILE),
   fetch<CareerBlock>(CAREER),
   fetch<TechstackBlock>(TECHSTACK),
+  fetch<GithubBlock>(GITHUB),
+  fetch<EducationBlock>(EDUCATION),
 ]);
 
 defineOptions({
