@@ -2,7 +2,7 @@
   <div class="my-24 md:my-40">
     <article v-if="aboutme" class="mx-auto text-justify text-md md:text xl:max-w-1/2">
       <p
-        v-for="content of aboutme"
+        v-for="content in aboutme"
         :key="content.documentid"
         class="px-4 py-4 md:py-5"
         v-html="content.description || ''"></p>

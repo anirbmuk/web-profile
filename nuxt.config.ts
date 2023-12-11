@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts',
+    'nuxt-svgo',
     '@nuxtjs/i18n',
   ],
 
@@ -44,6 +45,12 @@ export default defineNuxtConfig({
         Disallow: '',
       },
     ],
+  },
+
+  svgo: {
+    autoImportPath: './assets/icons',
+    defaultImport: 'component',
+    componentPrefix: 'Icon',
   },
 
   i18n: {

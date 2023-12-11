@@ -3,7 +3,7 @@
     <nav class="p-4 text-md">
       <div class="flex justify-between">
         <div class="flex space-x-4 lg:space-x-8">
-          <template v-for="link of block?.links" :key="link.text">
+          <template v-for="link in block?.links" :key="link.text">
             <UiLink :link="link"></UiLink>
           </template>
         </div>
