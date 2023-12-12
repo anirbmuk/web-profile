@@ -34,14 +34,20 @@ import type { EducationBlock } from '~/types/features/education';
 import { CAREER, PROFILE, TECHSTACK, GITHUB, EDUCATION } from '~/constants/url';
 
 const { fetch } = useFirebase();
+const { loadingState } = useLoader();
 
-const [[profile], career, [techstack], github, education] = await Promise.all([
-  fetch<ProfileBlock>(PROFILE),
-  fetch<CareerBlock>(CAREER),
-  fetch<TechstackBlock>(TECHSTACK),
-  fetch<GithubBlock>(GITHUB),
-  fetch<EducationBlock>(EDUCATION),
-]);
+const loadData = async () => {
+  loadingState.value = true;
+  return await Promise.all([
+    fetch<ProfileBlock>(PROFILE),
+    fetch<CareerBlock>(CAREER),
+    fetch<TechstackBlock>(TECHSTACK),
+    fetch<GithubBlock>(GITHUB),
+    fetch<EducationBlock>(EDUCATION),
+  ]).finally(() => (loadingState.value = false));
+};
+
+const [[profile], career, [techstack], github, education] = await loadData();
 
 defineOptions({
   name: 'MainComponent',

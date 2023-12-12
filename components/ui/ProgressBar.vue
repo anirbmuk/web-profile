@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="width"
+    v-show="width"
     class="progress-bar"
     :style="{ width: `${width}%` }"
     :key="width"></div>

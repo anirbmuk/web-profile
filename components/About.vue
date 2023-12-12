@@ -15,10 +15,16 @@ import { ABOUTME } from '~/constants/url';
 import type { AboutmeBlock } from '~/types/features/about';
 
 const { fetch } = useFirebase();
+const { loadingState } = useLoader();
 
-const aboutme = (await fetch<AboutmeBlock>(ABOUTME))?.sort(
-  (a1, a2) => a1.position - a2.position,
-);
+const loadData = async () => {
+  loadingState.value = true;
+  return (
+    await fetch<AboutmeBlock>(ABOUTME).finally(() => (loadingState.value = false))
+  )?.sort((a1, a2) => a1.position - a2.position);
+};
+
+const aboutme = await loadData();
 defineOptions({
   name: 'AboutComponent',
 });
