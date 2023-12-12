@@ -7,11 +7,7 @@
       <template #content>
         <div class="github-container snaps-inline">
           <template v-for="(repo, index) in block" :key="index">
-            <a
-              v-if="repo.type === 'link' && !!repo?.value"
-              rel="nofollow"
-              target="_blank"
-              :href="String(repo.value)">
+            <UiLinkOrText :href="repo?.value?.toString()">
               <div v-if="repo?.value" class="preview-container">
                 <div class="items-center space-y-1">
                   <div class="flex items-center space-x-2">
@@ -26,7 +22,7 @@
                   <div class="text-md leading-4">{{ repo?.description }}</div>
                 </div>
               </div>
-            </a>
+            </UiLinkOrText>
           </template>
         </div>
       </template>
@@ -81,7 +77,7 @@ defineOptions({
 }
 
 .preview-container {
-  @apply mb-2.5 h-[8rem] cursor-pointer rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5;
+  @apply mb-2.5 h-[8rem] rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5;
 }
 
 @media screen and (min-width: 768px) and (hover: hover) {
