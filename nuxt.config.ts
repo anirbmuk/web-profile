@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts',
     'nuxt-svgo',
+    'nuxt-gtag',
     '@nuxtjs/i18n',
   ],
 
@@ -51,6 +52,11 @@ export default defineNuxtConfig({
     autoImportPath: './assets/icons',
     defaultImport: 'component',
     componentPrefix: 'Icon',
+  },
+
+  gtag: {
+    id: '',
+    initialConsent: true,
   },
 
   i18n: {
