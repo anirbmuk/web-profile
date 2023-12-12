@@ -9,7 +9,7 @@
     <template v-if="profile">
       <Profile :profile="profile" />
     </template>
-    <template v-if="career">
+    <template v-if="career?.length">
       <LazyCareer :block="career" />
     </template>
     <template v-if="techstack">

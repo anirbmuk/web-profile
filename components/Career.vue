@@ -5,7 +5,8 @@
       heading>
       {{ $i18n.t('main.career.title') }}
     </h3>
-    <div v-if="block">
+    <!-- This DIV is important. Do NOT remove. -->
+    <div>
       <UiTimeline :timelines="block" />
     </div>
   </section>
@@ -15,7 +16,7 @@
 import type { CareerBlock } from '~/types/features/career';
 
 defineProps({
-  block: Array as PropType<CareerBlock[] | null>,
+  block: Array as PropType<CareerBlock[]>,
   default: null,
 });
 
