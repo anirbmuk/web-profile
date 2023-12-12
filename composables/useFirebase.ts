@@ -6,7 +6,10 @@ export const useFirebase = () => {
 
   const fetch = async <T>(path: string, limit?: number | undefined) => {
     loadingState.value = true;
-    return await fetchCollection<T>($firebaseApp.value!, {
+    if (!$firebaseApp) {
+      throw new Error('Firestore configuration object is not initialized');
+    }
+    return await fetchCollection<T>($firebaseApp, {
       collections: [path],
       whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
       ...((limit ?? -1) > 0 && { limit }),

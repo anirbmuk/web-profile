@@ -2,9 +2,9 @@ import type { FirebaseApp } from 'firebase/app';
 import type { FirebaseConfig } from '~/core/firebase';
 import { initFirebaseApp } from '~/core/firebase.core';
 
-const firebaseApp = ref<FirebaseApp | undefined>();
+let firebaseApp: FirebaseApp | undefined;
 
-export default defineNuxtPlugin(({ ssrContext }) => {
+export default defineNuxtPlugin(() => {
   const {
     apiKey,
     authDomain,
@@ -14,7 +14,8 @@ export default defineNuxtPlugin(({ ssrContext }) => {
     appId,
     measurementId,
   } = useRuntimeConfig();
-  const state = useState<FirebaseConfig>('firebase', () => ({
+
+  const state = useState<FirebaseConfig | undefined>('firebase', () => ({
     apiKey,
     authDomain,
     projectId,
@@ -24,9 +25,12 @@ export default defineNuxtPlugin(({ ssrContext }) => {
     measurementId,
   }));
 
-  firebaseApp.value = initFirebaseApp(state.value);
-  if (ssrContext) {
-    ssrContext.firebaseApp = firebaseApp.value;
+  if (state.value) {
+    firebaseApp = initFirebaseApp(state.value);
+  }
+
+  if (process.client) {
+    state.value = undefined;
   }
 
   return {
