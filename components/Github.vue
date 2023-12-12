@@ -2,7 +2,7 @@
   <section>
     <UiAccordion :state-key="'github'">
       <template #heading>
-        <h3 class="md:heading gradient-text">Popular Repositories</h3>
+        <h3 class="md:heading gradient-text">{{ $i18n.t('main.github.title') }}</h3>
       </template>
       <template #content>
         <div class="github-container snaps-inline">
@@ -32,6 +32,8 @@
 
 <script setup lang="ts">
 import type { GithubBlock } from '~/types/features/github';
+
+const { $i18n } = useNuxtApp();
 
 defineProps({
   block: {

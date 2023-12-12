@@ -8,10 +8,18 @@
         <div class="py-2">
           <slot name="heading" />
         </div>
-        <div :class="{ hidden: !accordionState }" title="Collapse" role="button">
+        <div
+          :class="{ hidden: !accordionState }"
+          class="-mt-0.5"
+          :title="$i18n.t('components.UiAccordion.collapse')"
+          role="button">
           <span class="text-3xl font-normal" translate="no"> &#8613; </span>
         </div>
-        <div :class="{ hidden: accordionState }" title="Expand" role="button">
+        <div
+          :class="{ hidden: accordionState }"
+          class="-mt-0.5"
+          :title="$i18n.t('components.UiAccordion.expand')"
+          role="button">
           <span class="text-3xl" translate="no"> &#8615; </span>
         </div>
       </div>
@@ -23,13 +31,17 @@
 </template>
 
 <script setup lang="ts">
+const { $i18n } = useNuxtApp();
+
 const props = defineProps({
   stateKey: {
     type: String,
     required: true,
   },
 });
+
 const accordionState = useState(props.stateKey || 'accordion', () => true);
+
 defineOptions({
   name: 'AccordionComponent',
 });

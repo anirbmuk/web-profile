@@ -1,7 +1,7 @@
 <template>
   <UiAccordion :state-key="'techstack'">
     <template #heading>
-      <h3 class="md:heading gradient-text">Technologies</h3>
+      <h3 class="md:heading gradient-text">{{ $i18n.t('main.techstack.title') }}</h3>
     </template>
     <template #content>
       <ul
@@ -41,6 +41,8 @@
 
 <script setup lang="ts">
 import type { TechstackBlock } from '~/types/components/techstack';
+
+const { $i18n } = useNuxtApp();
 
 const props = defineProps({
   block: {

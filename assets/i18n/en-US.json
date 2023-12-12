@@ -9,9 +9,24 @@
     },
     "career": {
       "title": "Career Path"
+    },
+    "techstack": {
+      "title": "Technologies"
+    },
+    "github": {
+      "title": "Popular Repositories"
+    },
+    "education": {
+      "title": "Education"
     }
   },
   "about": {
     "title": "Anirban Mukherjee (anirbmuk) - All About Me"
+  },
+  "components": {
+    "UiAccordion": {
+      "collapse": "Collapse",
+      "expand": "Expand"
+    }
   }
 }

@@ -2,7 +2,7 @@
   <section>
     <UiAccordion :state-key="'education'">
       <template #heading>
-        <h3 class="md:heading gradient-text">Education</h3>
+        <h3 class="md:heading gradient-text">{{ $i18n.t('main.education.title') }}</h3>
       </template>
       <template #content>
         <ul class="md:grid md:grid-cols-2 md:gap-3 2xl:grid-cols-3">
@@ -34,6 +34,8 @@
 
 <script setup lang="ts">
 import type { EducationBlock } from '~/types/features/education';
+
+const { $i18n } = useNuxtApp();
 
 defineProps({
   block: {
