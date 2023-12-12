@@ -9,10 +9,10 @@
           <slot name="heading" />
         </div>
         <div :class="{ hidden: !accordionState }" title="Collapse" role="button">
-          <span class="material-symbols-rounded" translate="no"> remove </span>
+          <span class="text-3xl font-normal" translate="no"> &#8613; </span>
         </div>
         <div :class="{ hidden: accordionState }" title="Expand" role="button">
-          <span class="material-symbols-rounded" translate="no"> add </span>
+          <span class="text-3xl" translate="no"> &#8615; </span>
         </div>
       </div>
     </div>
