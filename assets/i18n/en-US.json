@@ -28,5 +28,12 @@
       "collapse": "Collapse",
       "expand": "Expand"
     }
+  },
+  "error": {
+    "title_not_found": "Oh, it's a 404!",
+    "message_not_found": "Sorry, the page you are looking for isn't available. Would you try the home page?",
+    "title_others": "Oh! Something went wrong here!",
+    "message_others": "Whoa! That's a nasty bug :-( Right now, the best way to fix this is to try once again. Thank you for being so patient!",
+    "back_button": "Back to Home"
   }
 }

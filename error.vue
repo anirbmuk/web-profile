@@ -11,20 +11,22 @@
   <main class="container mx-auto my-20">
     <section class="text-center">
       <h1 class="py-4 text-massive font-bold text-black-dark">
-        {{ error?.statusCode }}
+        !{{ error?.statusCode }}!
       </h1>
       <div v-if="error?.message" class="m-2 text-red">
-        {{ error.message }} at {{ error?.url }}
+        {{ error.message }}
       </div>
-      <p class="text-center">
-        Whoa! You seem to have unearthed a nasty bug. I have made a note, but right now,
-        the best way to fix this is to try once again. Thank you for being so patient!
+      <p class="text-center" v-if="error?.statusCode !== 404">
+        {{ $i18n.t('error.message_others') }}
+      </p>
+      <p v-else>
+        {{ $i18n.t('error.message_not_found') }}
       </p>
       <div class="mb-2 mt-4 flex items-center justify-center">
         <UiButton
           :button-type="{ type: 'button', buttonClass: 'download-button' }"
           @onclick="clearError({ redirect: localePath('/') })"
-          >Back to Home</UiButton
+          >{{ $i18n.t('error.back_button') }}</UiButton
         >
       </div>
     </section>
@@ -32,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   error: {
     type: Object as PropType<{
       url: string;
@@ -46,6 +48,14 @@ defineProps({
 });
 
 const localePath = useLocalePath();
+const { $i18n } = useNuxtApp();
+
+useHead({
+  title:
+    props.error?.statusCode === 404
+      ? $i18n.t('error.title_not_found')
+      : $i18n.t('error.title_others'),
+});
 
 defineOptions({
   name: 'GlobalErrorPage',
