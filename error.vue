@@ -10,7 +10,7 @@
   </header>
   <main class="container mx-auto my-20">
     <section class="text-center">
-      <h1 class="py-4 text-massive font-bold text-black-dark">
+      <h1 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
         !{{ error?.statusCode }}!
       </h1>
       <div v-if="error?.message" class="m-2 text-red">

@@ -13,14 +13,14 @@
           class="-mt-0.5"
           :title="$i18n.t('components.UiAccordion.collapse')"
           role="button">
-          <span class="text-3xl font-normal" translate="no"> &#8613; </span>
+          <span class="text-3xl font-normal" translate="no"> &#8593; </span>
         </div>
         <div
           :class="{ hidden: accordionState }"
           class="-mt-0.5"
           :title="$i18n.t('components.UiAccordion.expand')"
           role="button">
-          <span class="text-3xl" translate="no"> &#8615; </span>
+          <span class="text-3xl" translate="no"> &#8595; </span>
         </div>
       </div>
     </div>
