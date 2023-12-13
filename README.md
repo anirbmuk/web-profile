@@ -1,75 +1,34 @@
-# Nuxt 3 Minimal Starter
+# anirbmuk:profile
+**Anirban Mukherjee (anirbmuk) | Senior Frontend Developer | Professional Bio**
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Key features
+:heavy_check_mark: Search engine optimized (SEO)  
+:heavy_check_mark: SSR enabled  
+:heavy_check_mark: Google analytics  
+:heavy_check_mark: Dark mode support
 
-## Setup
+## Technical mumbo-jumbo
+| What I wanted | What I got            |
+| ------------- | --------------------- |
+| IDE           | MS Visual Studio Code |
+| Front-end     | Vue / Tailwindcss     |
+| SSR & BFF     | Nuxt                  |
+| Database      | Google Firestore      |
+| Analytics     | G4A / GTM             |
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+## Quick Start & Documentation
+Local development server:
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
 yarn dev
-
-# bun
-bun run dev
 ```
+http://localhost:3000
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+Local SSR run:
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+yarn build && yarn start
 ```
+http://localhost:3000
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+## Copyright
+(C) anirbmuk, 2023
