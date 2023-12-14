@@ -27,6 +27,8 @@ useHead({
 useSeoMeta({
   robots: 'index,follow',
   description: $i18n.t('global.description'),
+  ogDescription: $i18n.t('global.description'),
+  ogImage: '~/assets/images/seo.webp',
   colorScheme: 'dark light',
   ogLocale: $i18n.locale,
   author: 'Anirban Mukherjee',
