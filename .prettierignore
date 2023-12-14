@@ -1,1 +1,8 @@
-*.md
+/dist
+/coverage
+/node_modules
+/**/*.md
+/.env
+/.env.template
+/.gcloudignore
+/.gitignore

@@ -1,0 +1,20 @@
+runtime: nodejs20
+
+env_variables:
+  APP_ENV: production
+  DEFAULT_DOMAIN: anirbmuk.appspot.com
+  NUXT_PUBLIC_BASE_URL: https://anirbmuk.appspot.com
+  NUXT_PUBLIC_GTAG_ID: GTM-N9N6VPW
+  NUXT_API_KEY: AIzaSyCRzXjOMtEC-OI6DLOPL9MxD5pOpbANTWs
+  NUXT_AUTH_DOMAIN: anirbmuk.firebaseapp.com
+  NUXT_PROJECT_ID: anirbmuk
+  NUXT_STORAGE_BUCKET: anirbmuk.appspot.com
+  NUXT_MESSAGING_SENDER_ID: 468979340135
+  NUXT_APP_ID: 1:468979340135:web:6a551129b6806274edd5c2
+  NUXT_MEASUREMENT_ID: G-R1DT03T0TL
+
+handlers:
+  - url: /.*
+    script: auto
+    secure: always
+    redirect_http_response_code: 301
