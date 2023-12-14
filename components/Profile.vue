@@ -13,7 +13,11 @@
         </h4>
         <div class="flex items-center justify-center space-x-4">
           <template v-for="social in profile.social" :key="social.icon">
-            <UiIcon :icon="social.type" :url="social.url" :size="10"></UiIcon>
+            <UiIcon
+              :icon="social.type"
+              :url="social.url"
+              :size="10"
+              @icon-click="onLinkClick(social.url)"></UiIcon>
           </template>
         </div>
         <div class="mb-2 mt-4 flex items-center justify-center">
@@ -40,7 +44,8 @@
               :url="blog.url"
               :size="blog.iconSize ?? 10"
               :position="blog.position"
-              loading="lazy">
+              loading="lazy"
+              @icon-click="onLinkClick(blog.url)">
               <span class="text-md md:text">{{ blog.description }}</span>
             </UiIcon>
           </div>
@@ -55,6 +60,7 @@ import type { Artifact, ProfileBlock } from '~/types/features/profile';
 import { downloadFile } from '~/helpers/file';
 
 const { $i18n } = useNuxtApp();
+const { trackExternalClickEvent } = useTracking();
 
 defineProps({
   profile: {
@@ -67,7 +73,19 @@ const onDownloadResume = (artifacts: Artifact[] | undefined) => {
   if (artifacts) {
     const [resume] = artifacts?.filter((artifact) => artifact.category === 'resume');
     downloadFile(resume.url);
+    onLinkClick(resume.url);
   }
+};
+
+const onLinkClick = (event_url: string | undefined) => {
+  trackExternalClickEvent({
+    pageTitle: window.document.title,
+    pageType: 'home',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section: 'profile_section',
+    event_url,
+  });
 };
 
 defineOptions({

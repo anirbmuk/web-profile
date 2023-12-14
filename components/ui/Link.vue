@@ -6,7 +6,7 @@
     class="navlink"
     :to="localePath(link.url)"
     :title="link?.title"
-    @click="$emit('linkClink', 'internal')">
+    @click="$emit('linkClick', 'internal')">
     {{ link?.text }}</NuxtLink
   >
   <a
@@ -15,8 +15,8 @@
     :href="link?.url"
     :title="link?.title"
     rel="nofollow"
-    class="md:border-black-light duration-200 ease-linear lg:hover:border-b"
-    @click="$emit('linkClink', 'external')">
+    class="duration-200 ease-linear md:border-black-light lg:hover:border-b"
+    @click="$emit('linkClick', 'external')">
     {{ link?.text }}
   </a>
 </template>
@@ -32,7 +32,7 @@ defineProps({
 });
 
 defineEmits<{
-  (e: 'linkClink', type: 'internal' | 'external'): void;
+  (e: 'linkClick', type: 'internal' | 'external'): void;
 }>();
 
 const localePath = useLocalePath();

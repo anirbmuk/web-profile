@@ -1,4 +1,10 @@
-import type { BaseEvent, BaseEventParams, ClickEventParams } from '../types/tracking';
+import type {
+  BaseEvent,
+  BaseEventParams,
+  ClickEventParams,
+  ImpressionEventParams,
+  ImpressionItemEventParams,
+} from '../types/tracking';
 
 export const useTracking = () => {
   const { gtag } = useGtag();
@@ -14,25 +20,29 @@ export const useTracking = () => {
     return `${dd}/${mm}/${yyyy} ${hh}:${mi}:${ss}`;
   };
 
-  const track = <T extends BaseEventParams>({ event }: BaseEvent, metadata: T) => {
-    gtag('event', event, {
-      event,
-      ...metadata,
-      clientTimestamp: getClientTimestamp(),
-      locale: window.navigator.language,
-      agent: window.navigator.userAgent,
-      vendor: window.navigator.vendor,
-      platform: window.navigator.platform,
+  const track = async <T extends BaseEventParams>({ event }: BaseEvent, metadata: T) => {
+    await new Promise((resolve) => {
+      resolve(
+        gtag('event', event, {
+          event,
+          ...metadata,
+          clientTimestamp: getClientTimestamp(),
+          locale: metadata.locale || window.navigator.language,
+          agent: window.navigator.userAgent,
+          vendor: window.navigator.vendor,
+          platform: window.navigator.platform,
+        }),
+      );
     });
   };
 
   const trackPageViewEvent = <T extends BaseEventParams>(metadata: T) =>
     track({ event: 'page_view' }, metadata);
 
-  const trackImpressionCollectionEvent = <T extends BaseEventParams>(metadata: T) =>
+  const trackImpressionCollectionEvent = <T extends ImpressionEventParams>(metadata: T) =>
     track({ event: 'view_list' }, metadata);
 
-  const trackImpressionItemEvent = <T extends BaseEventParams>(metadata: T) =>
+  const trackImpressionItemEvent = <T extends ImpressionItemEventParams>(metadata: T) =>
     track({ event: 'view_list_item' }, metadata);
 
   const trackInternalClickEvent = <T extends ClickEventParams>(metadata: T) =>

@@ -14,8 +14,10 @@
 import { ABOUTME } from '~/constants/url';
 import type { AboutmeBlock } from '~/types/features/about';
 
+const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
+const { trackPageViewEvent } = useTracking();
 
 const loadData = async () => {
   loadingState.value = true;
@@ -25,6 +27,16 @@ const loadData = async () => {
 };
 
 const aboutme = await loadData();
+
+onMounted(() =>
+  trackPageViewEvent({
+    pageTitle: window.document.title,
+    pageType: 'home',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+  }),
+);
+
 defineOptions({
   name: 'AboutComponent',
 });

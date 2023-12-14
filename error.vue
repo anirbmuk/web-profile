@@ -25,7 +25,7 @@
       <div class="mb-2 mt-4 flex items-center justify-center">
         <UiButton
           :button-type="{ type: 'button', buttonClass: 'download-button' }"
-          @onclick="clearError({ redirect: localePath('/') })"
+          @onclick="onLinkClick(localePath('/'))"
           >{{ $i18n.t('error.back_button') }}</UiButton
         >
       </div>
@@ -49,13 +49,28 @@ const props = defineProps({
 
 const localePath = useLocalePath();
 const { $i18n } = useNuxtApp();
+const { trackInternalClickEvent } = useTracking();
+
+const title =
+  props.error?.statusCode === 404
+    ? $i18n.t('error.title_not_found')
+    : $i18n.t('error.title_others');
 
 useHead({
-  title:
-    props.error?.statusCode === 404
-      ? $i18n.t('error.title_not_found')
-      : $i18n.t('error.title_others'),
+  title,
 });
+
+const onLinkClick = (event_url: string | undefined) => {
+  clearError({ redirect: event_url });
+  trackInternalClickEvent({
+    pageTitle: window.document.title,
+    pageType: 'footer',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section: 'footer_section',
+    event_url,
+  });
+};
 
 defineOptions({
   name: 'GlobalErrorPage',

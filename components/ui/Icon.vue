@@ -1,14 +1,22 @@
 <template>
   <template v-if="componentType === 'link'">
     <div :class="displayClass">
-      <a target="_blank" :href="url" :aria-label="icon" rel="nofollow"
+      <a
+        target="_blank"
+        :href="url"
+        :aria-label="icon"
+        rel="nofollow"
+        @click="$emit('iconClick', url)"
         ><component :is="iconComponent" :class="iconClass"
       /></a>
     </div>
     <slot :class="displayClass" />
   </template>
   <template v-else>
-    <component :is="iconComponent" :class="iconClass" />
+    <component
+      :is="iconComponent"
+      :class="iconClass"
+      @click="$emit('iconClick', undefined)" />
   </template>
 </template>
 
@@ -66,7 +74,7 @@ const props = defineProps({
 });
 
 defineEmits<{
-  (e: 'iconClick', href: string): void;
+  (e: 'iconClick', href: string | undefined): void;
 }>();
 
 const iconName = computed(() => props.icon.charAt(0).toUpperCase() + props.icon.slice(1));

@@ -8,7 +8,7 @@ export type TrackingEvents =
 
 export type ExternalLink = 'twitter' | 'linkedin' | 'github' | 'blogger' | 'devto';
 export type ImpressionSections = 'education' | 'github' | 'profile' | 'career';
-export type PageType = 'home' | 'about' | 'footer';
+export type PageType = 'home' | 'about' | 'footer' | 'error';
 
 export type BaseEvent = {
   event: TrackingEvents;
@@ -18,6 +18,7 @@ export type BaseEventParams = {
   pageType: PageType;
   pageUrl: string;
   pageTitle: string;
+  locale: string;
 };
 
 export type ImpressionEventParams = BaseEventParams & {

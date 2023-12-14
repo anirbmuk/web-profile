@@ -7,22 +7,29 @@
       <template #content>
         <div class="github-container snaps-inline">
           <template v-for="(repo, index) in block" :key="index">
-            <UiLinkOrText :href="repo?.value?.toString()">
-              <div v-if="repo?.value" class="preview-container">
-                <div class="items-center space-y-1">
-                  <div class="flex items-center space-x-2">
-                    <LazyUiIcon :icon="'github'" :size="7" />
-                    <div class="-mt-1 text md:text-2xl" translate="no">
-                      {{ transformRepo(repo?.value?.toString()) }}
+            <UtilIntersect
+              @tracked="
+                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+              ">
+              <UiLinkOrText
+                :href="repo?.value?.toString()"
+                @link-click="onLinkClick(repo?.value?.toString())">
+                <div v-if="repo?.value" class="preview-container">
+                  <div class="items-center space-y-1">
+                    <div class="flex items-center space-x-2">
+                      <LazyUiIcon :icon="'github'" :size="7" />
+                      <div class="-mt-1 text md:text-2xl" translate="no">
+                        {{ transformRepo(repo?.value?.toString()) }}
+                      </div>
                     </div>
+                    <div class="text-md text-gray-500" translate="no">
+                      {{ transformTechstack(repo?.technologies) }}
+                    </div>
+                    <div class="text-md leading-4">{{ repo?.description }}</div>
                   </div>
-                  <div class="text-md text-gray-500" translate="no">
-                    {{ transformTechstack(repo?.technologies) }}
-                  </div>
-                  <div class="text-md leading-4">{{ repo?.description }}</div>
                 </div>
-              </div>
-            </UiLinkOrText>
+              </UiLinkOrText>
+            </UtilIntersect>
           </template>
         </div>
       </template>
@@ -32,8 +39,10 @@
 
 <script setup lang="ts">
 import type { GithubBlock } from '~/types/features/github';
+import type { ImpressionEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
+const { trackExternalClickEvent, trackImpressionItemEvent } = useTracking();
 
 defineProps({
   block: {
@@ -58,6 +67,27 @@ const transformTechstack = (value: string[] | undefined) => {
   }
   return value?.join(', ') ?? '';
 };
+
+const onLinkClick = (event_url: string | undefined) => {
+  trackExternalClickEvent({
+    pageTitle: window.document.title,
+    pageType: 'home',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section: 'profile_section',
+    event_url,
+  });
+};
+
+const tracker = (event_section: ImpressionEventParams['event_section'], item: string) =>
+  trackImpressionItemEvent({
+    pageTitle: window.document.title,
+    pageType: 'home',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section,
+    item,
+  });
 
 defineOptions({
   name: 'GithubComponent',
