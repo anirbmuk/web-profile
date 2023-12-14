@@ -5,7 +5,8 @@
         v-for="content in aboutme"
         :key="content.documentid"
         class="px-4 py-4 md:py-5"
-        v-html="content.description || ''"></p>
+        v-html="content.description || ''"
+        @click="onLinkClick($event)"></p>
     </article>
   </div>
 </template>
@@ -13,11 +14,14 @@
 <script setup lang="ts">
 import { ABOUTME } from '~/constants/url';
 import type { AboutmeBlock } from '~/types/features/about';
+import type { ClickEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
-const { trackPageViewEvent } = useTracking();
+const { trackPageViewEvent, trackExternalClickEvent } = useTracking();
+
+const trackableTagNames = ['A', 'SPAN'];
 
 const loadData = async () => {
   loadingState.value = true;
@@ -27,6 +31,32 @@ const loadData = async () => {
 };
 
 const aboutme = await loadData();
+
+const onLinkClick = (event: Event) => {
+  const tagName = (event?.target as HTMLElement)?.tagName;
+  const trackable = trackableTagNames.includes(tagName);
+
+  if (trackable) {
+    let url: string;
+    const metadata: ClickEventParams = {
+      pageTitle: window.document.title,
+      pageType: 'about',
+      pageUrl: window.location.href,
+      locale: $i18n.locale.value,
+      event_section: 'aboutme_section',
+      event_url: undefined,
+    };
+    if (tagName === 'A') {
+      url = (event?.target as HTMLAnchorElement)?.href;
+      metadata.event_url = url;
+    } else if (tagName === 'SPAN') {
+      url = ((event?.target as HTMLSpanElement)?.parentElement as HTMLAnchorElement)
+        ?.href;
+      metadata.event_url = url;
+    }
+    trackExternalClickEvent(metadata);
+  }
+};
 
 onMounted(() =>
   trackPageViewEvent({
