@@ -2,10 +2,15 @@
   "name": "web-profile",
   "version": "0.0.1",
   "private": true,
+  "description": "Anirban Mukherjee (anirbmuk) | Senior Frontend Developer | Professional Bio",
   "author": {
     "name": "anirbmuk",
     "email": "anirbmuk@live.in",
     "url": "https://anirbmuk.appspot.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/anirbmuk/web-profile.git"
   },
   "scripts": {
     "clean": "rimraf .nuxt && rimraf .output",
