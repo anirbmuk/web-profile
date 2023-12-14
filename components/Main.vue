@@ -89,7 +89,7 @@ defineOptions({
 
 <style scoped>
 .profile-image {
-  background: url('~/assets/images/seo.webp') no-repeat center;
+  background: url('/seo.webp') no-repeat center;
   @apply mb-2 h-[420px] rounded-sm bg-cover md:h-[600px] lg:h-[420px];
 }
 </style>
