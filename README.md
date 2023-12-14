@@ -5,7 +5,10 @@
 :heavy_check_mark: Search engine optimized (SEO)  
 :heavy_check_mark: SSR enabled  
 :heavy_check_mark: Google analytics  
-:heavy_check_mark: Dark mode support
+:heavy_check_mark: Dark mode support  
+
+## Lighthouse report  
+![preview](external/lighthouse.png)  
 
 ## Technical mumbo-jumbo
 | What I wanted | What I got            |
@@ -20,14 +23,20 @@
 Local development server:
 ```
 yarn dev
-```
 http://localhost:3000
+```
 
 Local SSR run:
 ```
-yarn build && yarn start
-```
+yarn build && yarn start:dev
 http://localhost:3000
+```
+
+Production build and deployment:  
+```
+yarn deploy  
+https://anirbmuk.appspot.com  
+```
 
 ---
 ## Copyright
