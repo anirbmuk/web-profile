@@ -16,10 +16,7 @@ export const useFirebase = () => {
       collections: [path],
       whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
       ...((limit ?? -1) > 0 && { limit }),
-    }).catch((e) => {
-      console.error(e);
-      return [] as T[];
-    });
+    }).catch(() => [] as T[]);
 
     if (!data.length) {
       throw createError({
