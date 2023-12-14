@@ -12,6 +12,7 @@
     "type": "github",
     "url": "https://github.com/anirbmuk/web-profile.git"
   },
+  "license": "MIT",
   "scripts": {
     "clean": "rimraf .nuxt && rimraf .output",
     "build": "nuxt build",
