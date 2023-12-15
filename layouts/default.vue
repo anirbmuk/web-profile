@@ -14,6 +14,9 @@ import type { FooterBlock } from '~/types/features/footer';
 import { FOOTER } from '~/constants/url';
 
 const { $i18n } = useNuxtApp();
+const {
+  public: { googleSiteVerification },
+} = useRuntimeConfig();
 const { fetch } = useFirebase();
 const { scrollState, scrollToTop } = useScroll('scroll');
 
@@ -39,6 +42,7 @@ useSeoMeta({
   keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
+  ...(googleSiteVerification && { googleSiteVerification }),
 });
 defineOptions({
   name: 'DefaultLayout',

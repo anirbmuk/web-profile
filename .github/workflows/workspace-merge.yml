@@ -62,6 +62,7 @@ jobs:
           APP_ENV: ${{ secrets.APP_ENV }}
           DEFAULT_DOMAIN: ${{ secrets.DEFAULT_DOMAIN }}
           NUXT_PUBLIC_BASE_URL: ${{ secrets.NUXT_PUBLIC_BASE_URL }}
+          NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
           NUXT_PUBLIC_GTAG_ID: ${{ secrets.NUXT_PUBLIC_GTAG_ID }}
           NUXT_API_KEY: ${{ secrets.NUXT_API_KEY }}
           NUXT_AUTH_DOMAIN: ${{ secrets.NUXT_AUTH_DOMAIN }}
