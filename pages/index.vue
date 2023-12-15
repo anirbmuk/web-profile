@@ -9,7 +9,7 @@ const {
 } = useRuntimeConfig();
 const { fullPath } = useRoute();
 useHead({
-  title: $i18n.t('global.title'),
+  title: $i18n.t('main.title'),
   link: [
     {
       rel: 'canonical',

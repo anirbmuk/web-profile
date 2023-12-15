@@ -1,9 +1,10 @@
 {
   "global": {
-    "title": "Anirban Mukherjee (anirbmuk) - Senior Frontend Developer",
+    "title": "Anirban Mukherjee (anirbmuk)",
     "description": "I am Anirban Mukherjee, a Senior Frontend Developer at SCAYLE, currently in Hamburg, Germany."
   },
   "main": {
+    "title": "Senior Frontend Developer",
     "profile": {
       "download_resume": "Download Resume"
     },
@@ -21,7 +22,7 @@
     }
   },
   "about": {
-    "title": "Anirban Mukherjee (anirbmuk) - All About Me"
+    "title": "All About Me"
   },
   "components": {
     "UiAccordion": {

@@ -24,7 +24,17 @@ const footer = await fetch<FooterBlock>(FOOTER);
 
 useHead({
   htmlAttrs: {
-    lang: $i18n.locale,
+    lang: $i18n.locale.value,
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
+    },
+  ],
+  titleTemplate(title) {
+    return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
   },
 });
 useSeoMeta({
@@ -33,7 +43,7 @@ useSeoMeta({
   ogDescription: $i18n.t('global.description'),
   ogImage: '/seo.webp',
   colorScheme: 'dark light',
-  ogLocale: $i18n.locale,
+  ogLocale: $i18n.locale.value,
   author: 'Anirban Mukherjee',
   ogSiteName: 'anirbmuk',
   ogType: 'website',
