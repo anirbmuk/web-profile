@@ -1,6 +1,8 @@
 <template>
   <div class="my-24 md:my-40">
-    <article v-if="aboutme" class="mx-auto text-justify text-md md:text xl:max-w-1/2">
+    <article
+      v-if="aboutme"
+      class="wrapper mx-auto whitespace-break-spaces text-left text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
@@ -71,3 +73,9 @@ defineOptions({
   name: 'AboutComponent',
 });
 </script>
+
+<style scoped>
+.wrapper {
+  text-wrap: pretty;
+}
+</style>

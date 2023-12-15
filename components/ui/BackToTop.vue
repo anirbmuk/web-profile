@@ -14,7 +14,7 @@ defineOptions({
 
 <style scoped>
 button {
-  @apply fixed bottom-16 right-4 z-10 cursor-pointer rounded-full bg-black-light px-4 pb-2 pt-1 opacity-70;
+  @apply fixed bottom-16 right-4 z-10 cursor-pointer rounded-full bg-black-light px-4 pb-2 pt-1 opacity-70 hover:bg-black;
 }
 
 @media (hover: hover) {
