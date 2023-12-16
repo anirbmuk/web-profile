@@ -2,9 +2,10 @@
   <template v-if="componentType === 'link'">
     <div :class="displayClass">
       <a
-        target="_blank"
+        :target="target"
         :href="url"
-        :aria-label="icon"
+        :aria-label="label || icon"
+        :title="title"
         rel="nofollow"
         @click="$emit('iconClick', url)"
         ><component :is="iconComponent" :class="iconClass"
@@ -12,12 +13,12 @@
     </div>
     <slot :class="displayClass" />
   </template>
-  <template v-else>
+  <div v-else :title="title" :aria-label="label || icon">
     <component
       :is="iconComponent"
       :class="iconClass"
       @click="$emit('iconClick', undefined)" />
-  </template>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -70,6 +71,21 @@ const props = defineProps({
     validator(value: IconLoadingType) {
       return ['eager', 'lazy'].includes(value);
     },
+  },
+  target: {
+    type: String as PropType<'_blank' | '_self'>,
+    default: '_blank',
+    validator(value: '_blank' | '_self') {
+      return ['_blank', '_self'].includes(value);
+    },
+  },
+  title: {
+    type: String,
+    default: undefined,
+  },
+  label: {
+    type: String,
+    default: undefined,
   },
 });
 
