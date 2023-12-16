@@ -24,7 +24,7 @@
             :size="6"
             target="_self"></UiIcon>
         </div>
-        <span
+        <span translate="no"
           >&copy; {{ block?.copyright }},
           <time :date-time="block?.publishdate" publish-date>{{ year }}</time></span
         >

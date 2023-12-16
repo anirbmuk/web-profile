@@ -19,8 +19,9 @@ const {
 } = useRuntimeConfig();
 const { fetch } = useFirebase();
 const { scrollState, scrollToTop } = useScroll('scroll');
+const { getSlug } = useSlug();
 
-const footer = await fetch<FooterBlock>(FOOTER);
+const footer = await fetch<FooterBlock>(getSlug(FOOTER));
 
 useHead({
   htmlAttrs: {
