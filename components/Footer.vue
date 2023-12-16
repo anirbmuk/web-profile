@@ -28,8 +28,10 @@
             @icon-click="onIconClick(getSwitcherUrl('de'))"></UiIcon>
         </div>
         <div translate="no" class="hidden justify-end md:col-span-5 md:flex">
-          {{ '&copy; ' + block?.copyright + ', ' }}
-          <time :date-time="block?.publishdate" publish-date>{{ year }}</time>
+          <span>{{ '&copy; ' + block?.copyright + ',' }}</span>
+          <time class="ml-[3px]" :date-time="block?.publishdate" publish-date>{{
+            year
+          }}</time>
         </div>
       </div>
     </nav>
