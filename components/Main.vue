@@ -56,7 +56,7 @@ const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
     fetch<ProfileBlock>(getLocalizedSlug(PROFILE)),
-    fetch<CareerBlock>(CAREER),
+    fetch<CareerBlock>(getLocalizedSlug(CAREER)),
     fetch<TechstackBlock>(TECHSTACK),
     fetch<GithubBlock>(GITHUB),
     fetch<EducationBlock>(getLocalizedSlug(EDUCATION)),

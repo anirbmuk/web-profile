@@ -9,7 +9,8 @@
         <template v-if="timeline.alignment === 'left'">
           <div class="relative -right-1/6 block space-y-1 md:-right-1/5">
             <div class="text-sm font-semibold text-gray-700">
-              {{ timeline.start }} - {{ timeline.end || 'present' }}
+              {{ timeline.start }} -
+              {{ timeline.end || $i18n.t('main.techstack.present') }}
             </div>
             <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
               <span translate="no"
@@ -77,6 +78,8 @@ const props = defineProps({
   timelines: Array as PropType<T[]>,
   default: [],
 });
+
+const { $i18n } = useNuxtApp();
 
 const getCurrentTimeline = () => {
   const date = new Date();

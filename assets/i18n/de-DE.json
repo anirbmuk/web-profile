@@ -22,7 +22,8 @@
       "title": "Karriereweg"
     },
     "techstack": {
-      "title": "Technologien"
+      "title": "Technologien",
+      "present": "heute"
     },
     "github": {
       "title": "Beliebte Repositories"
