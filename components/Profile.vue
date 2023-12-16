@@ -31,7 +31,7 @@
     </div>
     <article class="mx-auto !mt-8 drop-shadow-md md:max-w-3/4 2xl:max-w-3/5">
       <UiBlock block-style="inverted">
-        <div class="space-y-4 text-md md:space-y-2 md:text">
+        <div class="space-y-4 text-md md:text">
           <template v-for="(bio, index) in profile.bio" :key="index">
             <div v-html="bio"></div>
           </template>

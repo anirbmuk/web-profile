@@ -49,16 +49,17 @@ import type { ImpressionEventParams } from '~/types/tracking';
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
+const { getLocalizedSlug } = useSlug();
 const { trackPageViewEvent, trackImpressionCollectionEvent } = useTracking();
 
 const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
-    fetch<ProfileBlock>(PROFILE),
+    fetch<ProfileBlock>(getLocalizedSlug(PROFILE)),
     fetch<CareerBlock>(CAREER),
     fetch<TechstackBlock>(TECHSTACK),
     fetch<GithubBlock>(GITHUB),
-    fetch<EducationBlock>(EDUCATION),
+    fetch<EducationBlock>(getLocalizedSlug(EDUCATION)),
   ]).finally(() => (loadingState.value = false));
 };
 

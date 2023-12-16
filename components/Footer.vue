@@ -1,8 +1,8 @@
 <template>
-  <footer class="fixed bottom-0 w-full border-t border-gray-100 bg-gray-50">
+  <footer class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
     <nav class="p-4 text-md">
       <div class="flex justify-between">
-        <div class="flex space-x-4 lg:space-x-8">
+        <div class="flex space-x-3 lg:space-x-6">
           <template v-for="link in block?.links" :key="link.text">
             <UiLink :link="link" @link-click="onLinkClick(localePath(link.url))"></UiLink>
           </template>
