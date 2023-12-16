@@ -45,6 +45,8 @@
     "message_not_found": "Leider ist die von Ihnen gesuchte Seite nicht verfügbar. Würden Sie die Homepage ausprobieren?",
     "title_others": "Oh! Hier ist etwas schief gelaufen!",
     "message_others": "Wow! Das ist ein böser Fehler. Im Moment lässt sich das Problem am besten beheben, indem man es noch einmal versucht. Vielen Dank, dass Sie so geduldig sind!",
-    "back_button": "Weiter zur Startseite"
+    "back_button": "Weiter zur Startseite",
+    "firebase_config": "Das Firestore-Konfigurationsobjekt ist nicht initialisiert",
+    "no_data_found": "Beim Abrufen für '{path}' wurden keine Daten empfangen"
   }
 }

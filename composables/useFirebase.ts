@@ -2,13 +2,14 @@ import { fetchCollection } from '~/core/firebase.core';
 
 export const useFirebase = () => {
   const { $firebaseApp } = useNuxtApp();
+  const { $i18n } = useNuxtApp();
 
   const fetch = async <T>(path: string, limit?: number | undefined) => {
     if (!$firebaseApp) {
       throw createError({
-        message: 'Firestore configuration object is not initialized',
+        message: $i18n.t('error.firebase_config'),
         statusCode: 500,
-        statusMessage: 'Firestore configuration object is not initialized',
+        statusMessage: $i18n.t('error.firebase_config'),
         fatal: true,
       });
     }
@@ -20,9 +21,9 @@ export const useFirebase = () => {
 
     if (!data.length) {
       throw createError({
-        message: `No data received while fetching for path '${path}'`,
+        message: $i18n.t('error.no_data_found', { path }),
         statusCode: 400,
-        statusMessage: `Error at path '${path}'`,
+        statusMessage: $i18n.t('error.no_data_found', { path }),
         fatal: true,
       });
     }
