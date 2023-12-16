@@ -1,13 +1,14 @@
 <template>
   <footer class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
     <nav class="p-4 text-md">
-      <div class="flex justify-between">
-        <div class="flex space-x-2 lg:space-x-6">
+      <div class="grid grid-cols-12">
+        <div class="col-span-6 flex space-x-2 md:col-span-5 lg:space-x-6">
           <template v-for="link in block?.links" :key="link.text">
             <UiLink :link="link" @link-click="onLinkClick(localePath(link.url))"></UiLink>
           </template>
         </div>
-        <div class="flex items-center gap-1.5 lg:gap-2.5">
+        <div
+          class="col-span-6 flex items-center justify-end gap-1.5 md:col-span-2 md:justify-center lg:gap-2.5">
           <UiIcon
             :icon="'en'"
             :url="getSwitcherUrl('en')"
@@ -26,10 +27,10 @@
             target="_self"
             @icon-click="onIconClick(getSwitcherUrl('de'))"></UiIcon>
         </div>
-        <span translate="no"
-          >&copy; {{ block?.copyright }},
-          <time :date-time="block?.publishdate" publish-date>{{ year }}</time></span
-        >
+        <div translate="no" class="hidden justify-end md:col-span-5 md:flex">
+          {{ '&copy; ' + block?.copyright + ', ' }}
+          <time :date-time="block?.publishdate" publish-date>{{ year }}</time>
+        </div>
       </div>
     </nav>
   </footer>
