@@ -20,7 +20,7 @@
             <div class="text-sm text-gray-600">{{ timeline.location }}</div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:block md:w-[32em]">
+              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
               {{ timeline.description }}
             </div>
           </div>
@@ -52,7 +52,7 @@
             <div class="text-sm text-gray-600">{{ timeline.location }}</div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:block md:w-[32em]">
+              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
               {{ timeline.description }}
             </div>
           </div>
