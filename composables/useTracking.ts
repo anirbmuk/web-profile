@@ -51,11 +51,15 @@ export const useTracking = () => {
   const trackExternalClickEvent = <T extends ClickEventParams>(metadata: T) =>
     track({ event: 'external_click' }, metadata);
 
+  const trackCountrySwitchEvent = <T extends ClickEventParams>(metadata: T) =>
+    track({ event: 'country_switch' }, metadata);
+
   return {
     trackPageViewEvent,
     trackImpressionCollectionEvent,
     trackImpressionItemEvent,
     trackInternalClickEvent,
     trackExternalClickEvent,
+    trackCountrySwitchEvent,
   };
 };

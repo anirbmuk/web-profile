@@ -7,22 +7,24 @@
             <UiLink :link="link" @link-click="onLinkClick(localePath(link.url))"></UiLink>
           </template>
         </div>
-        <div class="flex space-x-1.5 lg:space-x-2.5">
+        <div class="flex items-center gap-1.5 lg:gap-2.5">
           <UiIcon
             :icon="'en'"
             :url="getSwitcherUrl('en')"
             :title="getTitle('en')"
             :label="getTitle('en')"
             :size="6"
-            target="_self"></UiIcon>
-          <span>{{ '|' }}</span>
+            target="_self"
+            @icon-click="onIconClick(getSwitcherUrl('en'))"></UiIcon>
+          <div class="-mt-0.5 text">|</div>
           <UiIcon
             :icon="'de'"
             :url="getSwitcherUrl('de')"
             :title="getTitle('de')"
             :label="getTitle('de')"
             :size="6"
-            target="_self"></UiIcon>
+            target="_self"
+            @icon-click="onIconClick(getSwitcherUrl('de'))"></UiIcon>
         </div>
         <span translate="no"
           >&copy; {{ block?.copyright }},
@@ -41,7 +43,7 @@ const localePath = useLocalePath();
 const {
   public: { baseUrl },
 } = useRuntimeConfig();
-const { trackInternalClickEvent } = useTracking();
+const { trackInternalClickEvent, trackCountrySwitchEvent } = useTracking();
 
 defineProps({
   block: {
@@ -55,10 +57,21 @@ const year = new Date().getFullYear();
 const onLinkClick = (event_url: string | undefined) => {
   trackInternalClickEvent({
     pageTitle: window.document.title,
-    pageType: 'error',
+    pageType: 'footer',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
-    event_section: 'error_page',
+    event_section: 'footer_section',
+    event_url,
+  });
+};
+
+const onIconClick = (event_url: string | undefined) => {
+  trackCountrySwitchEvent({
+    pageTitle: window.document.title,
+    pageType: 'footer',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section: 'footer_section',
     event_url,
   });
 };

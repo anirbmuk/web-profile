@@ -4,7 +4,8 @@ export type TrackingEvents =
   | 'internal_click'
   | 'external_click'
   | 'view_list'
-  | 'view_list_item';
+  | 'view_list_item'
+  | 'country_switch';
 
 export type ExternalLink = 'twitter' | 'linkedin' | 'github' | 'blogger' | 'devto';
 export type ImpressionSections = 'education' | 'github' | 'profile' | 'career';
@@ -23,6 +24,7 @@ export type BaseEventParams = {
 
 export type ImpressionEventParams = BaseEventParams & {
   event_section:
+    | 'header_section'
     | 'footer_section'
     | 'profile_section'
     | 'profile_image_section'
