@@ -9,7 +9,6 @@ export const useFirebase = () => {
       throw createError({
         message: $i18n.t('error.firebase_config'),
         statusCode: 500,
-        statusMessage: $i18n.t('error.firebase_config'),
         fatal: true,
       });
     }
@@ -23,7 +22,6 @@ export const useFirebase = () => {
       throw createError({
         message: $i18n.t('error.no_data_found', { path }),
         statusCode: 400,
-        statusMessage: $i18n.t('error.no_data_found', { path }),
         fatal: true,
       });
     }
