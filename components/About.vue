@@ -21,6 +21,7 @@ import type { ClickEventParams } from '~/types/tracking';
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
+const { getLocalizedSlug } = useSlug();
 const { trackPageViewEvent, trackExternalClickEvent } = useTracking();
 
 const trackableTagNames = ['A', 'SPAN'];
@@ -28,7 +29,9 @@ const trackableTagNames = ['A', 'SPAN'];
 const loadData = async () => {
   loadingState.value = true;
   return (
-    await fetch<AboutmeBlock>(ABOUTME).finally(() => (loadingState.value = false))
+    await fetch<AboutmeBlock>(getLocalizedSlug(ABOUTME)).finally(
+      () => (loadingState.value = false),
+    )
   )?.sort((a1, a2) => a1.position - a2.position);
 };
 
