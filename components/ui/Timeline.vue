@@ -10,7 +10,10 @@
           <div class="relative -right-1/6 block space-y-1 md:-right-1/5">
             <div class="text-sm font-semibold text-gray-700">
               {{ timeline.start }} -
-              {{ timeline.end || $i18n.t('main.techstack.present') }}
+              {{ timeline.end || $i18n.t('components.UiTimeline.present') }}
+            </div>
+            <div class="!-mt-[3px] text-sm text-gray-600">
+              {{ getDurationText(timeline) }}
             </div>
             <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
               <span translate="no"
@@ -43,6 +46,9 @@
           <div class="relative -left-1/6 block space-y-1 md:-left-1/5">
             <div class="text-sm font-semibold text-gray-700">
               {{ timeline.start }} - {{ timeline.end }}
+            </div>
+            <div class="!-mt-[3px] text-sm text-gray-600">
+              {{ getDurationText(timeline) }}
             </div>
             <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
               <span translate="no"
@@ -111,6 +117,36 @@ const mappedTimelines = computed(() =>
       };
     }),
 );
+
+const getDateFromString = (str: string) => {
+  const [mm, yyyy] = str.split('/');
+  return new Date([mm, '01', yyyy].join('/'));
+};
+
+const getDurationText = (timeline: Timeline) => {
+  if (!timeline.end) {
+    return '';
+  }
+
+  const startDate = getDateFromString(timeline.start);
+  const endDate = getDateFromString(timeline.end);
+
+  const totalNumberOfMonths =
+    endDate.getMonth() -
+    startDate.getMonth() +
+    12 * (endDate.getFullYear() - startDate.getFullYear());
+
+  const numberOfYears = Math.floor(totalNumberOfMonths / 12);
+  const numberOfMonths = totalNumberOfMonths - numberOfYears * 12;
+
+  const monthText = numberOfMonths
+    ? $i18n.t('components.UiTimeline.month', { count: numberOfMonths })
+    : '';
+  const yearText = numberOfYears
+    ? $i18n.t('components.UiTimeline.year', { count: numberOfYears })
+    : '';
+  return [yearText, monthText].filter(Boolean).join(' ');
+};
 
 defineOptions({
   name: 'TimelineComponent',

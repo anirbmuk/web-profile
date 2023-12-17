@@ -22,8 +22,7 @@
       "title": "Career Path"
     },
     "techstack": {
-      "title": "Technologies",
-      "present": "today"
+      "title": "Technologies"
     },
     "github": {
       "title": "Popular Repositories"
@@ -39,6 +38,11 @@
     "UiAccordion": {
       "collapse": "Collapse",
       "expand": "Expand"
+    },
+    "UiTimeline": {
+      "present": "today",
+      "month": "0 months | {count} month | {count} months",
+      "year": "0 years | {count} year | {count} years"
     }
   },
   "error": {
