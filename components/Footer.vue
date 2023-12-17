@@ -15,8 +15,7 @@
             :title="getTitle('en')"
             :label="getTitle('en')"
             :size="6"
-            target="_self"
-            @icon-click="onIconClick(getSwitcherUrl('en'))"></UiIcon>
+            target="_self"></UiIcon>
           <div class="-mt-0.5 text">|</div>
           <UiIcon
             :icon="'de'"
@@ -24,8 +23,7 @@
             :title="getTitle('de')"
             :label="getTitle('de')"
             :size="6"
-            target="_self"
-            @icon-click="onIconClick(getSwitcherUrl('de'))"></UiIcon>
+            target="_self"></UiIcon>
         </div>
         <div translate="no" class="hidden justify-end md:col-span-5 md:flex">
           <span>{{ '&copy; ' + block?.copyright + ',' }}</span>
@@ -46,7 +44,8 @@ const localePath = useLocalePath();
 const {
   public: { baseUrl },
 } = useRuntimeConfig();
-const { trackInternalClickEvent, trackCountrySwitchEvent } = useTracking();
+const route = useRoute();
+const { trackInternalClickEvent } = useTracking();
 
 defineProps({
   block: {
@@ -68,21 +67,16 @@ const onLinkClick = (event_url: string | undefined) => {
   });
 };
 
-const onIconClick = (event_url: string | undefined) => {
-  trackCountrySwitchEvent({
-    pageTitle: window.document.title,
-    pageType: 'footer',
-    pageUrl: window.location.href,
-    locale: $i18n.locale.value,
-    event_section: 'footer_section',
-    event_url,
-  });
-};
-
 const isCurrentlyOnLocale = (locale: string) => locale === $i18n.locale.value;
 
-const getSwitcherUrl = (locale: string) =>
-  isCurrentlyOnLocale(locale) ? '' : `${baseUrl}/${locale}`;
+const getSwitcherUrl = (locale: string) => {
+  const { fullPath } = route;
+  if (!isCurrentlyOnLocale(locale)) {
+    const [, path] = fullPath?.split('/').filter(Boolean) || [];
+    return path ? `${baseUrl}/${locale}/${path}` : `${baseUrl}/${locale}`;
+  }
+  return '';
+};
 
 const getTitle = (locale: string) =>
   isCurrentlyOnLocale(locale)
