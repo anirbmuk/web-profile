@@ -13,8 +13,8 @@ export default defineNuxtConfig({
       },
     },
     public: {
-      baseUrl: '',
-      googleSiteVerification: '',
+      baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
+      googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     },
     ...datasource,
   },
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: '',
+    id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
     initialConsent: true,
   },
 
