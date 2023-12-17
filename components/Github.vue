@@ -25,7 +25,9 @@
                     <div class="text-md text-gray-500" translate="no">
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
-                    <div class="text-md leading-4">{{ repo?.description }}</div>
+                    <div class="text-md leading-4" translate="no">
+                      {{ repo?.description }}
+                    </div>
                   </div>
                 </div>
               </UiLinkOrText>
