@@ -4,16 +4,13 @@
     :key="`${timeline.provider}_${timeline.start}`">
     <div class="grid grid-cols-5 gap-3 md:gap-0">
       <div
-        class="col-span-2 flex items-start justify-end pt-2 text-right duration-300 ease-in lg:hover:-translate-x-2"
+        class="col-span-2 flex items-start justify-end pt-2 text-right"
         :class="timeline.size ?? 'h-24'">
         <template v-if="timeline.alignment === 'left'">
           <div class="relative -right-1/6 block space-y-1 md:-right-1/5">
             <div class="text-sm font-semibold text-gray-700">
               {{ timeline.start }} -
               {{ timeline.end || $i18n.t('components.UiTimeline.present') }}
-            </div>
-            <div class="!-mt-[3px] text-sm text-gray-600">
-              {{ getDurationText(timeline) }}
             </div>
             <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
               <span translate="no"
@@ -30,7 +27,7 @@
         </template>
       </div>
       <div
-        class="mx-auto flex w-4 cursor-pointer items-center justify-center border-2 border-gray-400 bg-gray-400 duration-300 ease-in lg:hover:border-black-alt lg:hover:bg-black-alt"
+        class="mx-auto flex w-4 cursor-pointer items-center justify-center border-2 border-gray-400 bg-gray-400 duration-200 ease-in lg:hover:border-black-alt lg:hover:bg-black-alt"
         :class="[
           timeline.size ?? 'h-24',
           {
@@ -40,15 +37,12 @@
         ]"
         :title="timeline.provider"></div>
       <div
-        class="col-span-2 flex items-start justify-start pt-1 duration-300 ease-in lg:hover:translate-x-2"
+        class="col-span-2 flex items-start justify-start pt-1"
         :class="timeline.size ?? 'h-24'">
         <template v-if="timeline.alignment === 'right'">
           <div class="relative -left-1/6 block space-y-1 md:-left-1/5">
             <div class="text-sm font-semibold text-gray-700">
               {{ timeline.start }} - {{ timeline.end }}
-            </div>
-            <div class="!-mt-[3px] text-sm text-gray-600">
-              {{ getDurationText(timeline) }}
             </div>
             <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
               <span translate="no"
@@ -86,24 +80,12 @@ const props = defineProps({
 });
 
 const { $i18n } = useNuxtApp();
-
-const getCurrentTimeline = () => {
-  const date = new Date();
-  const mm = `${date.getMonth() + 1}`.padStart(2, '0');
-  const yyyy = date.getFullYear();
-  return `${mm}/${yyyy}`;
-};
+const { getCurrentTimeline, sortFn } = useDate();
 
 const getHeight = (start: string, end = getCurrentTimeline()) => {
   const [, endYear] = end.split('/', 2);
   const [, startYear] = start.split('/', 2);
   return heights[+endYear - +startYear || 1] || heights[1];
-};
-
-const sortFn = (start: string, end = getCurrentTimeline()) => {
-  const [endMonth, endYear] = end.split('/', 2);
-  const [startMonth, startYear] = start.split('/', 2);
-  return +endYear - +startYear || +endMonth - +startMonth;
 };
 
 const mappedTimelines = computed(() =>
@@ -117,36 +99,6 @@ const mappedTimelines = computed(() =>
       };
     }),
 );
-
-const getDateFromString = (str: string) => {
-  const [mm, yyyy] = str.split('/');
-  return new Date([mm, '01', yyyy].join('/'));
-};
-
-const getDurationText = (timeline: Timeline) => {
-  if (!timeline.end) {
-    return '';
-  }
-
-  const startDate = getDateFromString(timeline.start);
-  const endDate = getDateFromString(timeline.end);
-
-  const totalNumberOfMonths =
-    endDate.getMonth() -
-    startDate.getMonth() +
-    12 * (endDate.getFullYear() - startDate.getFullYear());
-
-  const numberOfYears = Math.floor(totalNumberOfMonths / 12);
-  const numberOfMonths = totalNumberOfMonths - numberOfYears * 12;
-
-  const monthText = numberOfMonths
-    ? $i18n.t('components.UiTimeline.month', { count: numberOfMonths })
-    : '';
-  const yearText = numberOfYears
-    ? $i18n.t('components.UiTimeline.year', { count: numberOfYears })
-    : '';
-  return [yearText, monthText].filter(Boolean).join(' ');
-};
 
 defineOptions({
   name: 'TimelineComponent',
