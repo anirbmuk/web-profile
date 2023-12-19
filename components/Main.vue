@@ -58,7 +58,7 @@ const loadData = async () => {
     fetch<ProfileBlock>(getLocalizedSlug(PROFILE)),
     fetch<CareerBlock>(getLocalizedSlug(CAREER)),
     fetch<TechstackBlock>(TECHSTACK),
-    fetch<GithubBlock>(GITHUB).then((github) =>
+    fetch<GithubBlock>(getLocalizedSlug(GITHUB)).then((github) =>
       github.sort((g1, g2) => g1.position - g2.position),
     ),
     fetch<EducationBlock>(getLocalizedSlug(EDUCATION)).then((education) =>

@@ -15,17 +15,23 @@
                 :href="repo?.value?.toString()"
                 @link-click="onLinkClick(repo?.value?.toString())">
                 <div v-if="repo?.value" class="preview-container">
-                  <div class="items-center space-y-1">
+                  <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
                       <LazyUiIcon :icon="'github'" :size="7" />
                       <div class="-mt-1 text md:text-2xl" translate="no">
                         {{ transformRepo(repo?.value?.toString()) }}
                       </div>
                     </div>
-                    <div class="text-md text-gray-500" translate="no">
+                    <div class="text-md text-gray-500 lg:hidden" translate="no">
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
-                    <div class="text-md leading-4" translate="no">
+                    <div class="hidden space-x-2 lg:flex">
+                      <UiChip
+                        v-for="technology in repo?.technologies"
+                        :key="technology"
+                        :text="technology" />
+                    </div>
+                    <div class="text-md leading-4">
                       {{ repo?.description }}
                     </div>
                   </div>
@@ -111,7 +117,7 @@ defineOptions({
 }
 
 .preview-container {
-  @apply mb-2.5 h-[8rem] rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5;
+  @apply mb-2.5 flex h-[8rem] items-center rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5 lg:h-[9rem];
 }
 
 @media screen and (min-width: 768px) and (hover: hover) {
