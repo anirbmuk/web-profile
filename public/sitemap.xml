@@ -2,24 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://anirbmuk.appspot.com/en</loc>
-    <lastmod>2023-12-18</lastmod>
+    <lastmod>2023-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="de" href="https://anirbmuk.appspot.com/de"/>
   </url>
   <url>
     <loc>https://anirbmuk.appspot.com/de</loc>
-    <lastmod>2023-12-18</lastmod>
+    <lastmod>2023-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="en" href="https://anirbmuk.appspot.com/en"/>
   </url>
   <url>
     <loc>https://anirbmuk.appspot.com/en/about</loc>
-    <lastmod>2023-12-18</lastmod>
+    <lastmod>2023-12-19</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://anirbmuk.appspot.com/de/about"/>
   </url>
   <url>
     <loc>https://anirbmuk.appspot.com/de/about</loc>
-    <lastmod>2023-12-18</lastmod>
+    <lastmod>2023-12-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://anirbmuk.appspot.com/en/about"/>
   </url>
 </urlset>
