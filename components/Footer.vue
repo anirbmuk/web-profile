@@ -2,13 +2,13 @@
   <footer class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
     <nav class="p-4 text-md">
       <div class="grid grid-cols-12">
-        <div class="col-span-6 flex space-x-2 md:col-span-5 lg:space-x-6">
+        <div class="col-span-6 flex space-x-3 md:col-span-5 lg:space-x-6">
           <template v-for="link in block?.links" :key="link.text">
             <UiLink :link="link" @link-click="onLinkClick(localePath(link.url))"></UiLink>
           </template>
         </div>
         <div
-          class="col-span-6 flex items-center justify-end gap-1.5 md:col-span-2 md:justify-center lg:gap-2.5">
+          class="col-span-6 flex items-center justify-end gap-2 md:col-span-2 md:justify-center lg:gap-3">
           <UiIcon
             :icon="'en'"
             :url="getSwitcherUrl('en')"

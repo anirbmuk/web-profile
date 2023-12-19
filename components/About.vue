@@ -1,5 +1,5 @@
 <template>
-  <div class="my-24 md:my-40">
+  <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
       class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
