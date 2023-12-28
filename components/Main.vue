@@ -1,10 +1,7 @@
 <template>
   <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
-    <UtilIntersect @tracked="tracker('profile_image_section')"
-      ><div
-        role="img"
-        class="profile-image mx-auto md:max-w-3/4 2xl:max-w-3/5"
-        aria-label="profile image"></div>
+    <UtilIntersect @tracked="tracker('profile_image_section')">
+      <div role="img" class="profile-image mx-auto md:max-w-3/4 2xl:max-w-3/5" aria-label="profile image"></div>
     </UtilIntersect>
   </section>
   <div class="mx-auto space-y-16 xl:max-w-3/4 2xl:max-w-4/5">
@@ -43,7 +40,6 @@ import type { TechstackBlock } from '~/types/components/techstack';
 import type { GithubBlock } from '~/types/features/github';
 import type { EducationBlock } from '~/types/features/education';
 
-import { CAREER, PROFILE, TECHSTACK, GITHUB, EDUCATION } from '~/constants/url';
 import type { ImpressionEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
@@ -55,13 +51,13 @@ const { trackPageViewEvent, trackImpressionCollectionEvent } = useTracking();
 const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
-    fetch<ProfileBlock>(getLocalizedSlug(PROFILE)),
-    fetch<CareerBlock>(getLocalizedSlug(CAREER)),
-    fetch<TechstackBlock>(TECHSTACK),
-    fetch<GithubBlock>(getLocalizedSlug(GITHUB)).then((github) =>
+    fetch<ProfileBlock>('profile'),
+    fetch<CareerBlock>('career'),
+    fetch<TechstackBlock>('techstack', false),
+    fetch<GithubBlock>('github').then((github) =>
       github.sort((g1, g2) => g1.position - g2.position),
     ),
-    fetch<EducationBlock>(getLocalizedSlug(EDUCATION)).then((education) =>
+    fetch<EducationBlock>('education').then((education) =>
       education.sort((e1, e2) => e1.position - e2.position),
     ),
   ]).finally(() => (loadingState.value = false));

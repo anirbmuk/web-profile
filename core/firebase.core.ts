@@ -38,8 +38,23 @@ export interface FirestoreQuery {
   endAt?: string | number | Date | undefined;
 }
 
+let offlineData: any | undefined;
+
 export function initFirebaseApp(firebaseConfig: FirebaseConfig) {
   return initializeApp(firebaseConfig);
+}
+
+export async function fetchOfflineCollection<T>(path: string) {
+  if (!offlineData) {
+    offlineData = (await import('./../constants/offline')).default;
+  }
+  const [collection, locale] = path.split('_');
+  return new Promise<T[]>((resolve) => {
+    resolve(
+      ((locale ? offlineData?.[collection]?.[locale] : offlineData?.[collection]) ||
+        []) as T[],
+    );
+  });
 }
 
 export async function fetchCollection<T>(

@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     },
     public: {
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
-      googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
     },
     ...datasource,
   },
@@ -56,7 +57,7 @@ export default defineNuxtConfig({
 
   gtag: {
     id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
-    initialConsent: true,
+    initialConsent: process.env.APP_ENV === 'production',
   },
 
   i18n: {

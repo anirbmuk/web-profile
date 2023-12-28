@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import type { FooterBlock } from '~/types/features/footer';
-import { FOOTER } from '~/constants/url';
 
 const { $i18n } = useNuxtApp();
 const {
@@ -21,7 +20,7 @@ const { fetch } = useFirebase();
 const { scrollState, scrollToTop } = useScroll('scroll');
 const { getLocalizedSlug } = useSlug();
 
-const footer = await fetch<FooterBlock>(getLocalizedSlug(FOOTER));
+const footer = await fetch<FooterBlock>('footer');
 
 useHead({
   htmlAttrs: {

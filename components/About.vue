@@ -1,27 +1,20 @@
 <template>
   <div class="my-24 md:my-32">
-    <article
-      v-if="aboutme"
-      class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
-      <p
-        v-for="content in aboutme"
-        :key="content.documentid"
-        class="px-4 py-4 md:py-5"
-        v-html="content.description || ''"
+    <article v-if="aboutme" class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
+      <p v-for="content in aboutme" :key="content.documentid" class="px-4 py-4 md:py-5" v-html="content.description || ''"
         @click="onLinkClick($event)"></p>
     </article>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ABOUTME } from '~/constants/url';
 import type { AboutmeBlock } from '~/types/features/about';
 import type { ClickEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
-const { getLocalizedSlug } = useSlug();
+
 const { trackPageViewEvent, trackExternalClickEvent } = useTracking();
 
 const trackableTagNames = ['A', 'SPAN'];
@@ -29,7 +22,7 @@ const trackableTagNames = ['A', 'SPAN'];
 const loadData = async () => {
   loadingState.value = true;
   return (
-    await fetch<AboutmeBlock>(getLocalizedSlug(ABOUTME)).finally(
+    await fetch<AboutmeBlock>('aboutme').finally(
       () => (loadingState.value = false),
     )
   )?.sort((a1, a2) => a1.position - a2.position);
