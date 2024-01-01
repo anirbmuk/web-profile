@@ -51,13 +51,13 @@ const { trackPageViewEvent, trackImpressionCollectionEvent } = useTracking();
 const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
-    fetch<ProfileBlock>('profile'),
+    fetch<ProfileBlock>('profile', true, 1),
     fetch<CareerBlock>('career'),
-    fetch<TechstackBlock>('techstack', false),
+    fetch<TechstackBlock>('techstack', false, 1),
     fetch<GithubBlock>('github').then((github) =>
       github.sort((g1, g2) => g1.position - g2.position),
     ),
-    fetch<EducationBlock>('education').then((education) =>
+    fetch<EducationBlock>('education', true, 1).then((education) =>
       education.sort((e1, e2) => e1.position - e2.position),
     ),
   ]).finally(() => (loadingState.value = false));

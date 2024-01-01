@@ -29,7 +29,7 @@ export interface FirestoreOrderBy {
 }
 
 export interface FirestoreQuery {
-  collections: string[];
+  collections: [string];
   keys: string[];
   whereClause?: FirestoreWhere[];
   orderByClause?: FirestoreOrderBy[];
@@ -61,12 +61,11 @@ export async function fetchCollection<T>(
   app: FirebaseApp,
   query: Partial<FirestoreQuery>,
 ): Promise<T[]> {
-  const { collections, keys, whereClause, orderByClause, limit, startAt, endAt } = query;
+  const { collections, whereClause, orderByClause, limit, startAt, endAt } = query;
 
   const fetchData = await _getCollectionDataFromFireStore(
     app,
     collections,
-    keys,
     whereClause,
     orderByClause,
     limit,
@@ -80,8 +79,7 @@ export async function fetchCollection<T>(
 
 function _getCollectionDataFromFireStore(
   app: FirebaseApp,
-  collections: string[] | undefined,
-  keys: string[] | undefined,
+  collections: [string] | undefined,
   whereClause?: FirestoreWhere[],
   orderByClause?: FirestoreOrderBy[],
   limitValue?: number,
