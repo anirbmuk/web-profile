@@ -23,21 +23,21 @@
 Local development server:
 ```
 yarn dev
-http://localhost:3000
+http://localhost:3000/en
 ```
 
 Local SSR run:
 ```
 yarn build && yarn start:dev
-http://localhost:3000
+http://localhost:3000/en
 ```
 
 Production build and deployment:  
 ```
 yarn deploy  
-https://anirbmuk.appspot.com  
+https://anirbmuk.appspot.com/en  
 ```
 
 ---
 ## Copyright
-(C) anirbmuk, 2023
+(C) anirbmuk, 2024  
