@@ -4,10 +4,11 @@
       'bg-black-dark': blockStyle === 'normal',
       'border border-gray-300 bg-gray-200': blockStyle === 'inverted',
     }"
-    class="flex space-x-2 rounded-t p-4">
-    <span class="circle bg-red"></span>
-    <span class="circle bg-yellow"></span>
-    <span class="circle bg-fluorescent-green"></span>
+    class="flex space-x-2 rounded-t p-4"
+  >
+    <span class="circle bg-red" />
+    <span class="circle bg-yellow" />
+    <span class="circle bg-fluorescent-green" />
   </div>
   <div
     :class="{
@@ -15,7 +16,8 @@
       'border border-gray-300 bg-gray-100': blockStyle === 'inverted',
     }"
     class="-mt-0.5 rounded-b p-5"
-    previewbody>
+    previewbody
+  >
     <slot />
   </div>
 </template>

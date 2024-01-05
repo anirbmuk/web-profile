@@ -2,8 +2,9 @@
   <div>
     <div
       class="cursor-pointer pb-0.5 md:pb-1"
+      role="button"
       @click="accordionState = !accordionState"
-      role="button">
+    >
       <div class="flex items-center justify-between">
         <div class="py-2">
           <slot name="heading" />
@@ -12,14 +13,16 @@
           :class="{ hidden: !accordionState }"
           class="-mt-0.5"
           :title="$i18n.t('components.UiAccordion.collapse')"
-          role="button">
+          role="button"
+        >
           <UiIcon :icon="'collapse'" :size="6" />
         </div>
         <div
           :class="{ hidden: accordionState }"
           class="-mt-0.5"
           :title="$i18n.t('components.UiAccordion.expand')"
-          role="button">
+          role="button"
+        >
           <UiIcon :icon="'expand'" :size="6" />
         </div>
       </div>

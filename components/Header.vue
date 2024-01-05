@@ -3,7 +3,8 @@
     <div class="py-4">
       <h1
         class="text-shadow items-center text-center text-3xl font-bold uppercase tracking-wide md:text-4xl md:tracking-wider lg:text-6xl"
-        translate="no">
+        translate="no"
+      >
         Anirban Mukherjee
       </h1>
     </div>

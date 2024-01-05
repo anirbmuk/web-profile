@@ -40,11 +40,11 @@ export interface FirestoreQuery {
 
 let offlineData: any | undefined;
 
-export function initFirebaseApp(firebaseConfig: FirebaseConfig) {
+export function initFirebaseApp (firebaseConfig: FirebaseConfig) {
   return initializeApp(firebaseConfig);
 }
 
-export async function fetchOfflineCollection<T>(path: string) {
+export async function fetchOfflineCollection<T> (path: string) {
   if (!offlineData) {
     offlineData = (await import('./../constants/offline')).default;
   }
@@ -57,7 +57,7 @@ export async function fetchOfflineCollection<T>(path: string) {
   });
 }
 
-export async function fetchCollection<T>(
+export async function fetchCollection<T> (
   app: FirebaseApp,
   query: Partial<FirestoreQuery>,
 ): Promise<T[]> {
@@ -73,11 +73,11 @@ export async function fetchCollection<T>(
     endAt,
   );
   const data: T[] = [];
-  fetchData.forEach((each) => data.push(each.data() as T));
+  fetchData.forEach(each => data.push(each.data() as T));
   return data;
 }
 
-function _getCollectionDataFromFireStore(
+function _getCollectionDataFromFireStore (
   app: FirebaseApp,
   collections: [string] | undefined,
   whereClause?: FirestoreWhere[],
@@ -88,20 +88,20 @@ function _getCollectionDataFromFireStore(
 ) {
   const db = _getFirestoreDb(app);
   if (!collections || !collections?.[0]) {
-    return Promise.reject('Collection cannot be empty');
+    return Promise.reject(new Error('Collection cannot be empty'));
   }
   if (collections.length === 1) {
     const collectionRootRef = collection(db, collections?.[0]);
     let collectionRootQuery = query(collectionRootRef);
     if (whereClause) {
-      let clauses: QueryFieldFilterConstraint[] = [];
+      const clauses: QueryFieldFilterConstraint[] = [];
       whereClause.forEach((clause: FirestoreWhere) =>
         clauses.push(where(clause.column, clause.operator, clause.condition)),
       );
       collectionRootQuery = query(collectionRootRef, ...clauses);
     }
     if (orderByClause) {
-      let clauses: QueryOrderByConstraint[] = [];
+      const clauses: QueryOrderByConstraint[] = [];
       orderByClause.forEach((clause: FirestoreOrderBy) =>
         clauses.push(orderBy(clause.attr, clause.dir)),
       );
@@ -121,9 +121,9 @@ function _getCollectionDataFromFireStore(
     }
     return getDocs(collectionRootQuery);
   }
-  return Promise.reject('Incorrect data set for firestore query');
+  return Promise.reject(new Error('Incorrect data set for firestore query'));
 }
 
-function _getFirestoreDb(app: FirebaseApp): Firestore {
+function _getFirestoreDb (app: FirebaseApp): Firestore {
   return getFirestore(app);
 }

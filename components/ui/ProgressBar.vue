@@ -1,9 +1,10 @@
 <template>
   <div
     v-show="width"
+    :key="width"
     class="progress-bar"
     :style="{ width: `${width}%` }"
-    :key="width"></div>
+  />
 </template>
 
 <script setup lang="ts">

@@ -3,7 +3,8 @@
     <div class="py-4">
       <h1
         class="text-shadow items-center text-center text-3xl font-bold uppercase tracking-wide md:text-4xl md:tracking-wider lg:text-6xl"
-        translate="no">
+        translate="no"
+      >
         Anirban Mukherjee
       </h1>
     </div>
@@ -16,7 +17,7 @@
       <div v-if="error?.message" class="m-2 text-red">
         {{ error.message }}
       </div>
-      <p class="text-center" v-if="error?.statusCode !== 404">
+      <p v-if="error?.statusCode !== 404" class="text-center">
         {{ $i18n.t('error.message_others') }}
       </p>
       <p v-else>
@@ -26,8 +27,9 @@
         <UiButton
           :button-type="{ type: 'button', buttonClass: 'download-button' }"
           @onclick="onLinkClick(localePath('/'))"
-          >{{ $i18n.t('error.back_button') }}</UiButton
         >
+          {{ $i18n.t('error.back_button') }}
+        </UiButton>
       </div>
     </section>
   </main>
@@ -44,6 +46,7 @@ const props = defineProps({
       description: string;
       data: any;
     }>,
+    default: null,
   },
 });
 
