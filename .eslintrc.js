@@ -4,7 +4,12 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['@nuxtjs/eslint-config-typescript'],
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:nuxt/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'prettier',
+  ],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     semi: ['error', 'always'],
@@ -12,5 +17,7 @@ module.exports = {
     'vue/no-v-html': 'off',
     'vue/no-multiple-template-root': 'off',
     camelcase: 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
   },
 };
