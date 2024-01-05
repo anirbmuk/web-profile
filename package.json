@@ -26,7 +26,11 @@
     "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore . --fix",
     "setenv:gae": "gcloud config set project anirbmuk",
     "deploy:gae": "gcloud app deploy --quiet",
-    "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean"
+    "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,vue}": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ."
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
@@ -39,6 +43,8 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "nuxt": "^3.8.2",
     "nuxt-gtag": "^1.1.1",
     "nuxt-svgo": "^3.7.0",
