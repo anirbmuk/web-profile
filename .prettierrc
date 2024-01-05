@@ -5,7 +5,7 @@
   "useTabs": false,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "singleAttributePerLine": false,
+  "singleAttributePerLine": true,
   "printWidth": 90,
   "plugins": ["prettier-plugin-tailwindcss"],
   "bracketSameLine": true

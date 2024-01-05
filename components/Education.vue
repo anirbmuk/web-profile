@@ -2,7 +2,9 @@
   <section>
     <UiAccordion :state-key="'education'">
       <template #heading>
-        <h3 class="md:heading gradient-text">{{ $i18n.t('main.education.title') }}</h3>
+        <h3 class="md:heading gradient-text">
+          {{ $i18n.t('main.education.title') }}
+        </h3>
       </template>
       <template #content>
         <ul class="md:grid md:grid-cols-2 md:gap-3 2xl:grid-cols-3">
@@ -11,7 +13,9 @@
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
                   <div>
-                    <div class="text md:text-xl">{{ education.school }}</div>
+                    <div class="text md:text-xl">
+                      {{ education.school }}
+                    </div>
                     <div class="text-md text-gray-500">
                       {{ education.location }}
                     </div>

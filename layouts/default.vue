@@ -32,7 +32,7 @@ useHead({
       href: '/favicon.ico',
     },
   ],
-  titleTemplate(title) {
+  titleTemplate (title) {
     return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
   },
 });

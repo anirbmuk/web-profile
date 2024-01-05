@@ -3,6 +3,12 @@
   "prettier.configPath": "./.prettierrc",
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "prettier.singleAttributePerLine": true,
+  "eslint.run": "onSave",
+  "eslint.validate": ["vue", "vue-html", "html", "javascript", "typescript"],
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

@@ -2,7 +2,9 @@
   <section>
     <UiAccordion :state-key="'github'">
       <template #heading>
-        <h3 class="md:heading gradient-text">{{ $i18n.t('main.github.title') }}</h3>
+        <h3 class="md:heading gradient-text">
+          {{ $i18n.t('main.github.title') }}
+        </h3>
       </template>
       <template #content>
         <div class="github-container snaps-inline">
@@ -10,10 +12,12 @@
             <UtilIntersect
               @tracked="
                 tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
-              ">
+              "
+            >
               <UiLinkOrText
                 :href="repo?.value?.toString()"
-                @link-click="onLinkClick(repo?.value?.toString())">
+                @link-click="onLinkClick(repo?.value?.toString())"
+              >
                 <div v-if="repo?.value" class="preview-container">
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
@@ -29,7 +33,8 @@
                       <UiChip
                         v-for="technology in repo?.technologies"
                         :key="technology"
-                        :text="technology" />
+                        :text="technology"
+                      />
                     </div>
                     <div class="text-md leading-4">
                       {{ repo?.description }}
@@ -71,7 +76,7 @@ const transformRepo = (value: string | undefined) => {
 
 const transformTechstack = (value: string[] | undefined) => {
   if (!value) {
-    ('');
+    return '';
   }
   return value?.join(', ') ?? '';
 };

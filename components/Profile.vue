@@ -17,15 +17,17 @@
               :icon="social.type"
               :url="social.url"
               :size="10"
-              @icon-click="onLinkClick(social.url)"></UiIcon>
+              @icon-click="onLinkClick(social.url)"
+            />
           </template>
         </div>
         <div class="mb-2 mt-4 flex items-center justify-center">
           <UiButton
             :button-type="{ type: 'button', buttonClass: 'download-button' }"
             @onclick="onDownloadResume(profile.artifact)"
-            >{{ $i18n.t('main.profile.download_resume') }}</UiButton
           >
+            {{ $i18n.t('main.profile.download_resume') }}
+          </UiButton>
         </div>
       </div>
     </div>
@@ -33,7 +35,7 @@
       <UiBlock block-style="inverted">
         <div class="space-y-4 text-md md:text">
           <template v-for="(bio, index) in profile.bio" :key="index">
-            <div v-html="bio"></div>
+            <div v-html="bio" />
           </template>
         </div>
         <div class="mx-auto mt-4 flex items-center justify-between">
@@ -45,7 +47,8 @@
               :size="blog.iconSize ?? 10"
               :position="blog.position"
               loading="lazy"
-              @icon-click="onLinkClick(blog.url)">
+              @icon-click="onLinkClick(blog.url)"
+            >
               <span class="text-md md:text">{{ blog.description }}</span>
             </UiIcon>
           </div>
@@ -71,7 +74,7 @@ defineProps({
 
 const onDownloadResume = (artifacts: Artifact[] | undefined) => {
   if (artifacts) {
-    const [resume] = artifacts?.filter((artifact) => artifact.category === 'resume');
+    const [resume] = artifacts?.filter(artifact => artifact.category === 'resume');
     downloadFile(resume.url);
     onLinkClick(resume.url);
   }

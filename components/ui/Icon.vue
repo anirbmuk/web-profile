@@ -8,7 +8,9 @@
         :title="title"
         rel="nofollow"
         @click="$emit('iconClick', url)"
-        ><component :is="iconComponent" :class="iconClass"
+      ><component
+        :is="iconComponent"
+        :class="iconClass"
       /></a>
     </div>
     <slot :class="displayClass" />
@@ -17,7 +19,8 @@
     <component
       :is="iconComponent"
       :class="iconClass"
-      @click="$emit('iconClick', undefined)" />
+      @click="$emit('iconClick', undefined)"
+    />
   </div>
 </template>
 
@@ -61,21 +64,21 @@ const props = defineProps({
   position: {
     type: String as PropType<IconPosition>,
     default: 'start',
-    validator(value: IconPosition) {
+    validator (value: IconPosition) {
       return ['start', 'middle', 'end'].includes(value);
     },
   },
   loading: {
     type: String as PropType<IconLoadingType>,
     default: 'eager',
-    validator(value: IconLoadingType) {
+    validator (value: IconLoadingType) {
       return ['eager', 'lazy'].includes(value);
     },
   },
   target: {
     type: String as PropType<'_blank' | '_self'>,
     default: '_blank',
-    validator(value: '_blank' | '_self') {
+    validator (value: '_blank' | '_self') {
       return ['_blank', '_self'].includes(value);
     },
   },
@@ -89,9 +92,7 @@ const props = defineProps({
   },
 });
 
-defineEmits<{
-  (e: 'iconClick', href: string | undefined): void;
-}>();
+defineEmits<{(e: 'iconClick', href: string | undefined): void;}>();
 
 const iconName = computed(() => props.icon.charAt(0).toUpperCase() + props.icon.slice(1));
 

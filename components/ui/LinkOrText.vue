@@ -1,8 +1,7 @@
 <template>
   <template v-if="Boolean(href)">
     <a rel="nofollow" target="_blank" :href="href" @click="$emit('linkClick', href)">
-      <slot
-    /></a>
+      <slot /></a>
   </template>
   <template v-else>
     <slot />
@@ -16,9 +15,7 @@ defineProps({
     default: undefined,
   },
 });
-defineEmits<{
-  (e: 'linkClick', href: string | undefined): void;
-}>();
+defineEmits<{(e: 'linkClick', href: string | undefined): void;}>();
 defineOptions({
   name: 'LinkOrTextComponent',
 });

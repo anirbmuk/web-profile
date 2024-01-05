@@ -26,10 +26,10 @@ export const useFirebase = () => {
     const data = offlineMode
       ? await fetchOfflineCollection<T>(slug)
       : await fetchCollection<T>($firebaseApp, {
-          collections: [slug],
-          whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
-          ...((limit ?? -1) > 0 && { limit }),
-        }).catch(() => [] as T[]);
+        collections: [slug],
+        whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
+        ...((limit ?? -1) > 0 && { limit }),
+      }).catch(() => [] as T[]);
 
     if (!data?.length) {
       throw createError({

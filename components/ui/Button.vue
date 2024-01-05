@@ -1,9 +1,10 @@
 <template>
   <button
-    @click="$emit('onclick')"
     :type="buttonType.type"
     :class="buttonType.buttonClass"
-    :aria-label="buttonType.ariaLabel">
+    :aria-label="buttonType.ariaLabel"
+    @click="$emit('onclick')"
+  >
     <slot />
   </button>
 </template>
@@ -14,9 +15,9 @@ import type { Button } from '~/types/components/button';
 defineProps({
   buttonType: {
     type: Object as PropType<Button>,
-    default: {
+    default: () => ({
       type: 'button',
-    },
+    }),
   },
 });
 defineEmits(['onclick']);
