@@ -38,6 +38,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-build-web-profile-node-modules-${{ hashFiles('yarn.lock') }}
 
+      - name: Lint web-profile project
+        run: yarn lint
+      
       - name: Build web-profile project
         run: yarn build
 
