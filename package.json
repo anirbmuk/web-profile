@@ -30,7 +30,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,ts,vue}": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ."
+    "**/*.{js,ts,vue}": "eslint"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
