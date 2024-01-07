@@ -8,6 +8,7 @@ module.exports = {
     '@nuxtjs/eslint-config-typescript',
     'plugin:nuxt/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:sonarjs/recommended',
     'prettier',
   ],
   rules: {
@@ -19,5 +20,6 @@ module.exports = {
     camelcase: 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'sonarjs/cognitive-complexity': ['warn'],
   },
 };

@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import type { SupportedSlug } from '~/types/url';
 
 export default {
