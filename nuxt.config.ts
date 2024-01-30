@@ -57,7 +57,6 @@ export default defineNuxtConfig({
 
   gtag: {
     id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
-    initialConsent: process.env.APP_ENV === 'production',
   },
 
   i18n: {
