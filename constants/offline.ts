@@ -47,7 +47,7 @@ export default {
         designation: 'Senior Frontend Developer',
         social: [
           {
-            type: 'twitter',
+            type: 'x',
             url: 'https://twitter.com/anirbmuk',
           },
           {
