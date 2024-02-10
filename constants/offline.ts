@@ -51,12 +51,12 @@ export default {
             url: 'https://www.linkedin.com/in/anirbmuk',
           },
           {
-            type: 'x',
-            url: 'https://twitter.com/anirbmuk',
-          },
-          {
             type: 'github',
             url: 'https://github.com/anirbmuk',
+          },
+          {
+            type: 'x',
+            url: 'https://twitter.com/anirbmuk',
           },
         ],
         blog: [

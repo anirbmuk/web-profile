@@ -10,20 +10,12 @@
           <slot name="heading" />
         </div>
         <div
-          :class="{ hidden: !accordionState }"
-          class="-mt-0.5"
-          :title="$i18n.t('components.UiAccordion.collapse')"
+          :class="{ 'rotate-180': accordionState }"
+          class="-mt-0.5 ease-in-out duration-300"
+          :title="accordionState ? $i18n.t('components.UiAccordion.collapse'): $i18n.t('components.UiAccordion.expand')"
           role="button"
         >
           <UiIcon :icon="'collapse'" :size="6" />
-        </div>
-        <div
-          :class="{ hidden: accordionState }"
-          class="-mt-0.5"
-          :title="$i18n.t('components.UiAccordion.expand')"
-          role="button"
-        >
-          <UiIcon :icon="'expand'" :size="6" />
         </div>
       </div>
     </div>

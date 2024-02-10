@@ -154,8 +154,9 @@ export default {
       lg: '1024px',
       xl: '1280px',
       '2xl': '1440px',
-      '3xl': '1680px',
-      '4xl': '1920px',
+      '3xl': '1536px',
+      '4xl': '1680px',
+      '5xl': '1920px',
     },
     fontSize: {
       xs: ['0.625rem', '1rem'],
