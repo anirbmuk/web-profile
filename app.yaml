@@ -18,9 +18,12 @@ env_variables:
   NUXT_PUBLIC_OFFLINE_MODE: $NUXT_PUBLIC_OFFLINE_MODE
 
 handlers:
+  - url: /_nuxt
+    static_dir: .nuxt/dist/client
+    secure: always
+    http_headers:
+      X-Author: "anirbmuk (github.com/anirbmuk)"
   - url: /.*
     script: auto
     secure: always
     redirect_http_response_code: 301
-    http_headers:
-      X-Author: "anirbmuk (github.com/anirbmuk)"
