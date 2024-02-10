@@ -1,5 +1,7 @@
 runtime: nodejs20
 
+default_expiration: "1d"
+
 env_variables:
   APP_ENV: $APP_ENV
   DEFAULT_DOMAIN: $DEFAULT_DOMAIN
@@ -20,3 +22,5 @@ handlers:
     script: auto
     secure: always
     redirect_http_response_code: 301
+    http_headers:
+      X-Author: anirbmuk
