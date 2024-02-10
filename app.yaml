@@ -1,6 +1,6 @@
 runtime: nodejs20
 
-default_expiration: "1d"
+default_expiration: "2d"
 
 env_variables:
   APP_ENV: $APP_ENV
@@ -18,11 +18,6 @@ env_variables:
   NUXT_PUBLIC_OFFLINE_MODE: $NUXT_PUBLIC_OFFLINE_MODE
 
 handlers:
-  - url: /_nuxt
-    static_dir: .nuxt/dist/client
-    secure: always
-    http_headers:
-      X-Author: "anirbmuk (github.com/anirbmuk)"
   - url: /.*
     script: auto
     secure: always
