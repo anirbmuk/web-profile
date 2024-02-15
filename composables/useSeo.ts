@@ -13,11 +13,15 @@ export const useSeo = () => {
     };
 
     const stripDefaultLocale = (path: string) => {
-        const [base] = path.split(`${defaultLocale}`);
-        if (base.endsWith('/')) {
-            return base.slice(0, -1);
+        let sanitizedBase = path;
+        if (sanitizedBase.endsWith('/')) {
+            sanitizedBase = sanitizedBase.slice(0, -1);
         }
-        return base;
+        if (sanitizedBase.endsWith(`/${defaultLocale}`)) {
+            const [base] = sanitizedBase.split(`/${defaultLocale}`);
+            return base;
+        }
+        return sanitizedBase;
     };
 
     const getCanonical = (path = fullPath) => stripDefaultLocale(stripUrlParams(`${baseUrl}${path}`));
