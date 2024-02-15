@@ -4,16 +4,13 @@
 
 <script setup lang="ts">
 const { $i18n } = useNuxtApp();
-const {
-  public: { baseUrl },
-} = useRuntimeConfig();
-const { fullPath } = useRoute();
+const { getCanonical } = useSeo();
 useHead({
   title: $i18n.t('about.title'),
   link: [
     {
       rel: 'canonical',
-      href: `${baseUrl}${fullPath}`,
+      href: getCanonical(),
     },
   ],
 });
