@@ -18,6 +18,10 @@ env_variables:
   NUXT_PUBLIC_OFFLINE_MODE: $NUXT_PUBLIC_OFFLINE_MODE
 
 handlers:
+  - url: /favicon.ico
+    expiration: "7d"
+  - url: /seo.webp
+    expiration: "7d"
   - url: /.*
     script: auto
     secure: always
