@@ -19,8 +19,12 @@ env_variables:
 
 handlers:
   - url: /favicon.ico
+    static_files: public/favicon.ico
+    upload: public/favicon.ico
     expiration: "7d"
   - url: /seo.webp
+    static_files: public/seo.webp
+    upload: public/seo.webp
     expiration: "7d"
   - url: /.*
     script: auto
