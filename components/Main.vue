@@ -61,8 +61,14 @@ const loadData = async () => {
   ]).finally(() => (loadingState.value = false));
 };
 
-const [profile] = await fetch<ProfileBlock>('profile', true, 1);
-const [career, [techstack], github, education] = await loadData();
+const { data: profiles } = useAsyncData('profile', () => fetch<ProfileBlock>('profile', true, 1));
+const profile = computed(() => profiles.value?.[0]);
+
+const { data: others } = useLazyAsyncData('others', () => loadData());
+const career = computed(() => others.value?.[0]);
+const techstack = computed(() => others.value?.[1]?.[0]);
+const github = computed(() => others.value?.[2]);
+const education = computed(() => others.value?.[3]);
 
 const tracker = (event_section: ImpressionEventParams['event_section']) =>
   trackImpressionCollectionEvent({

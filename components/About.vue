@@ -33,7 +33,8 @@ const loadData = async () => {
   )?.sort((a1, a2) => a1.position - a2.position);
 };
 
-const aboutme = await loadData();
+const { data } = useAsyncData('about', () => loadData());
+const aboutme = computed(() => data.value);
 
 const onLinkClick = (event: Event) => {
   const tagName = (event?.target as HTMLElement)?.tagName;
