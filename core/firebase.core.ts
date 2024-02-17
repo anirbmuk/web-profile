@@ -39,9 +39,13 @@ export interface FirestoreQuery {
 }
 
 let offlineData: any | undefined;
+let firebaseApp: FirebaseApp | undefined;
 
 export function initFirebaseApp (firebaseConfig: FirebaseConfig) {
-  return initializeApp(firebaseConfig);
+  if (!firebaseApp) {
+    firebaseApp = initializeApp(firebaseConfig);
+  }
+  return firebaseApp;
 }
 
 export async function fetchOfflineCollection<T> (path: string) {
@@ -58,13 +62,14 @@ export async function fetchOfflineCollection<T> (path: string) {
 }
 
 export async function fetchCollection<T> (
-  app: FirebaseApp,
   query: Partial<FirestoreQuery>,
 ): Promise<T[]> {
   const { collections, whereClause, orderByClause, limit, startAt, endAt } = query;
-
+  if (!firebaseApp) {
+    throw new Error('Firebase config is not defined');
+  }
   const fetchData = await _getCollectionDataFromFireStore(
-    app,
+    firebaseApp,
     collections,
     whereClause,
     orderByClause,
