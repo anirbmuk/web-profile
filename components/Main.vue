@@ -10,24 +10,24 @@
         <Profile :profile="profile" />
       </UtilIntersect>
     </template>
-    <template v-if="career?.length">
+    <template v-if="data?.career?.length">
       <UtilIntersect :threshold="[0.7]" @tracked="tracker('career_section')">
-        <LazyCareer :block="career" />
+        <LazyCareer :block="data.career" />
       </UtilIntersect>
     </template>
-    <template v-if="techstack">
+    <template v-if="data?.techstack">
       <UtilIntersect @tracked="tracker('techstack_section')">
-        <LazyTechstack :block="techstack" />
+        <LazyTechstack :block="data.techstack" />
       </UtilIntersect>
     </template>
-    <template v-if="github?.length">
+    <template v-if="data?.github?.length">
       <UtilIntersect @tracked="tracker('github_section')">
-        <LazyGithub :block="github" />
+        <LazyGithub :block="data.github" />
       </UtilIntersect>
     </template>
-    <template v-if="education?.length">
+    <template v-if="data?.education?.length">
       <UtilIntersect @tracked="tracker('education_section')">
-        <LazyEducation :block="education" />
+        <LazyEducation :block="data.education" />
       </UtilIntersect>
     </template>
   </div>
@@ -61,14 +61,20 @@ const loadData = async () => {
   ]).finally(() => (loadingState.value = false));
 };
 
-const { data: profiles } = useAsyncData('profile', () => fetch<ProfileBlock>('profile', true, 1));
-const profile = computed(() => profiles.value?.[0]);
+const { data: profile } = useAsyncData('profile', async () => {
+  const [profile] = await fetch<ProfileBlock>('profile', true, 1);
+  return profile;
+});
 
-const { data: others } = useLazyAsyncData('others', () => loadData());
-const career = computed(() => others.value?.[0]);
-const techstack = computed(() => others.value?.[1]?.[0]);
-const github = computed(() => others.value?.[2]);
-const education = computed(() => others.value?.[3]);
+const { data } = useLazyAsyncData('others', async () => {
+  const [career, [techstack], github, education] = await loadData();
+  return {
+    career,
+    techstack,
+    github,
+    education,
+  };
+});
 
 const tracker = (event_section: ImpressionEventParams['event_section']) =>
   trackImpressionCollectionEvent({
