@@ -37,7 +37,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-build-web-profile-node-modules-${{ hashFiles('yarn.lock') }}
-      
+
       - name: Build web-profile project
         run: yarn build
 
@@ -62,7 +62,7 @@ jobs:
           path: .output
       - uses: golang-enthusiast/app-yaml-env-compiler@v1.0
         env:
-          APP_ENV: ${{ secrets.APP_ENV }}
+          NUXT_PUBLIC_APP_ENV: ${{ secrets.NUXT_PUBLIC_APP_ENV }}
           DEFAULT_DOMAIN: ${{ secrets.DEFAULT_DOMAIN }}
           NUXT_PUBLIC_BASE_URL: ${{ secrets.NUXT_PUBLIC_BASE_URL }}
           NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
@@ -75,6 +75,7 @@ jobs:
           NUXT_APP_ID: ${{ secrets.NUXT_APP_ID }}
           NUXT_MEASUREMENT_ID: ${{ secrets.NUXT_MEASUREMENT_ID }}
           NUXT_PUBLIC_OFFLINE_MODE: ${{ secrets.NUXT_PUBLIC_OFFLINE_MODE }}
+          NUXT_PUBLIC_API_BASE_PATH: ${{ secrets.NUXT_PUBLIC_API_BASE_PATH }}
 
       - id: 'auth'
         uses: google-github-actions/auth@v2

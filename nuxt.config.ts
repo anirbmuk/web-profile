@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       },
     },
     public: {
+      appEnv: '', // Override by setting NUXT_PUBLIC_APP_ENV
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
       googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
