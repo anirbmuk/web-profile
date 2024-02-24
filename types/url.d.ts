@@ -7,3 +7,7 @@ export type SupportedSlug =
   | 'github'
   | 'profile'
   | 'techstack';
+
+export type SupportedParams = 'limit';
+
+export type SupportedQueryParams = Record<SupportedParams, string>;

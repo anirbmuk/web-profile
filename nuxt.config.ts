@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
       googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
+      apiBasePath: '', // Override by setting NUXT_PUBLIC_API_BASE_PATH
     },
     ...datasource,
   },

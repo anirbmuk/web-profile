@@ -1,3 +1,5 @@
+import { type FirebaseApp, initializeApp } from 'firebase/app';
+
 export type FirebaseConfig = {
   apiKey: string;
   authDomain: string;
@@ -8,3 +10,5 @@ export type FirebaseConfig = {
   measurementId: string;
   databaseURL?: string;
 };
+
+export type FirebaseApp = FirebaseApp;

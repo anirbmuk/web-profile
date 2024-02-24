@@ -6,7 +6,7 @@
     </ClientOnly>
     <slot />
   </main>
-  <Footer v-if="footer?.[0]" :block="footer[0]" />
+  <Footer v-if="footer" :block="footer" />
 </template>
 
 <script setup lang="ts">
@@ -19,7 +19,10 @@ const {
 const { fetch } = useFirebase();
 const { scrollState, scrollToTop } = useScroll('scroll');
 
-const footer = await fetch<FooterBlock>('footer', true, 1);
+const { data: footer } = useAsyncData('footer', async () => {
+  const [footer] = await fetch<FooterBlock>('footer', true, 1);
+  return footer;
+});
 
 useHead({
   htmlAttrs: {
@@ -32,7 +35,7 @@ useHead({
       href: '/favicon.ico',
     },
   ],
-  titleTemplate (title) {
+  titleTemplate(title) {
     return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
   },
 });

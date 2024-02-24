@@ -1,10 +1,8 @@
-import { type FirebaseApp, initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import {
   Firestore,
-  type OrderByDirection,
   QueryFieldFilterConstraint,
   QueryOrderByConstraint,
-  type WhereFilterOp,
   collection,
   endAt,
   getDocs,
@@ -15,40 +13,20 @@ import {
   startAt,
   where,
 } from 'firebase/firestore';
-import type { FirebaseConfig } from './firebase';
-
-export interface FirestoreWhere {
-  column: string;
-  operator: WhereFilterOp;
-  condition: unknown;
-}
-
-export interface FirestoreOrderBy {
-  attr: string;
-  dir: OrderByDirection;
-}
-
-export interface FirestoreQuery {
-  collections: [string];
-  keys: string[];
-  whereClause?: FirestoreWhere[];
-  orderByClause?: FirestoreOrderBy[];
-  limit?: number;
-  startAt?: string | number | Date | undefined;
-  endAt?: string | number | Date | undefined;
-}
+import type { FirebaseApp, FirebaseConfig } from '~/types/core/firebase';
+import type {
+  FirestoreOrderBy,
+  FirestoreQuery,
+  FirestoreWhere,
+} from '~/types/core/query';
 
 let offlineData: any | undefined;
-let firebaseApp: FirebaseApp | undefined;
 
-export function initFirebaseApp (firebaseConfig: FirebaseConfig) {
-  if (!firebaseApp) {
-    firebaseApp = initializeApp(firebaseConfig);
-  }
-  return firebaseApp;
+export function initFirebaseApp(firebaseConfig: FirebaseConfig) {
+  return initializeApp(firebaseConfig);
 }
 
-export async function fetchOfflineCollection<T> (path: string) {
+export async function fetchOfflineCollection<T>(path: string) {
   if (!offlineData) {
     offlineData = (await import('./../constants/offline')).default;
   }
@@ -61,7 +39,8 @@ export async function fetchOfflineCollection<T> (path: string) {
   });
 }
 
-export async function fetchCollection<T> (
+export async function fetchCollection<T>(
+  firebaseApp: FirebaseApp,
   query: Partial<FirestoreQuery>,
 ): Promise<T[]> {
   const { collections, whereClause, orderByClause, limit, startAt, endAt } = query;
@@ -78,11 +57,11 @@ export async function fetchCollection<T> (
     endAt,
   );
   const data: T[] = [];
-  fetchData.forEach(each => data.push(each.data() as T));
+  fetchData.forEach((each) => data.push(each.data() as T));
   return data;
 }
 
-function _getCollectionDataFromFireStore (
+function _getCollectionDataFromFireStore(
   app: FirebaseApp,
   collections: [string] | undefined,
   whereClause?: FirestoreWhere[],
@@ -129,6 +108,6 @@ function _getCollectionDataFromFireStore (
   return Promise.reject(new Error('Incorrect data set for firestore query'));
 }
 
-function _getFirestoreDb (app: FirebaseApp): Firestore {
+function _getFirestoreDb(app: FirebaseApp): Firestore {
   return getFirestore(app);
 }
