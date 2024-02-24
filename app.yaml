@@ -1,6 +1,6 @@
 runtime: nodejs20
 
-default_expiration: "2d"
+default_expiration: '2d'
 
 env_variables:
   APP_ENV: $APP_ENV
@@ -16,16 +16,17 @@ env_variables:
   NUXT_APP_ID: $NUXT_APP_ID
   NUXT_MEASUREMENT_ID: $NUXT_MEASUREMENT_ID
   NUXT_PUBLIC_OFFLINE_MODE: $NUXT_PUBLIC_OFFLINE_MODE
+  NUXT_PUBLIC_API_BASE_PATH: $NUXT_PUBLIC_API_BASE_PATH
 
 handlers:
   - url: /favicon.ico
     static_files: public/favicon.ico
     upload: public/favicon.ico
-    expiration: "365d"
+    expiration: '365d'
   - url: /seo.webp
     static_files: public/seo.webp
     upload: public/seo.webp
-    expiration: "365d"
+    expiration: '365d'
   - url: /.*
     script: auto
     secure: always
