@@ -76,6 +76,7 @@ jobs:
           NUXT_MEASUREMENT_ID: ${{ secrets.NUXT_MEASUREMENT_ID }}
           NUXT_PUBLIC_OFFLINE_MODE: ${{ secrets.NUXT_PUBLIC_OFFLINE_MODE }}
           NUXT_PUBLIC_API_BASE_PATH: ${{ secrets.NUXT_PUBLIC_API_BASE_PATH }}
+          NUXT_SITEMAP_SOURCE_URL: ${{ secrets.NUXT_SITEMAP_SOURCE_URL }}
 
       - id: 'auth'
         uses: google-github-actions/auth@v2
