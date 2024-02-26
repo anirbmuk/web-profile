@@ -6,5 +6,5 @@ export default defineEventHandler((event) => {
   } = useRuntimeConfig();
 
   setHeader(event, 'Content-Type', 'xhtml+xml');
-  return `${generateSitemap(sourceUrl)}`;
+  return generateSitemap(sourceUrl);
 });
