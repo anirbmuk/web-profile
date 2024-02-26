@@ -70,4 +70,10 @@ export default defineNuxtConfig({
     locales,
     defaultLocale: 'en',
   },
+
+  sitemap: {
+    sourceUrl: '',
+  },
+
+  _modules: ['~/modules/sitemap/src/module'],
 });

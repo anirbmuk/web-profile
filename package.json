@@ -33,6 +33,7 @@
     "**/*.{js,ts,vue}": "eslint"
   },
   "devDependencies": {
+    "@nuxt/kit": "^3.10.3",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/google-fonts": "^3.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.6",
