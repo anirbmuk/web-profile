@@ -6,9 +6,7 @@
       </h3>
     </template>
     <template #content>
-      <ul
-        class="grid grid-cols-2 gap-0 md:grid-cols-3 md:gap-2 2xl:grid-cols-4 3xl:grid-cols-5"
-      >
+      <ul class="grid grid-cols-2 gap-0 md:grid-cols-3 md:gap-2 2xl:grid-cols-4 3xl:grid-cols-5">
         <li v-for="tech in technologies" :key="tech.icon" fehover>
           <UiLinkOrText :href="tech.url">
             <div class="space-y-4">

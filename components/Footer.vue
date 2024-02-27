@@ -7,28 +7,14 @@
             <UiLink :link="link" @link-click="onLinkClick(localePath(link.url))" />
           </template>
         </div>
-        <div
-          class="col-span-6 flex items-center justify-end gap-2 md:col-span-2 md:justify-center lg:gap-3"
-        >
-          <UiIcon
-            :icon="'en'"
-            :url="getSwitcherUrl('en')"
-            :title="getTitle('en')"
-            :label="getTitle('en')"
-            :size="6"
-            target="_self"
-          />
+        <div class="col-span-6 flex items-center justify-end gap-2 md:col-span-2 md:justify-center lg:gap-3">
+          <UiIcon :icon="'en'" :url="getSwitcherUrl('en')" :title="getTitle('en')" :label="getTitle('en')" :size="6"
+            target="_self" />
           <div class="-mt-0.5 text">
             |
           </div>
-          <UiIcon
-            :icon="'de'"
-            :url="getSwitcherUrl('de')"
-            :title="getTitle('de')"
-            :label="getTitle('de')"
-            :size="6"
-            target="_self"
-          />
+          <UiIcon :icon="'de'" :url="getSwitcherUrl('de')" :title="getTitle('de')" :label="getTitle('de')" :size="6"
+            target="_self" />
         </div>
         <div translate="no" class="hidden justify-end md:col-span-5 md:flex">
           <span>{{ '&copy; ' + block?.copyright + ',' }}</span>

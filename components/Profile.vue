@@ -13,19 +13,12 @@
         </h4>
         <div class="flex items-center justify-center space-x-4">
           <template v-for="social in profile.social" :key="social.icon">
-            <UiIcon
-              :icon="social.type"
-              :url="social.url"
-              :size="10"
-              @icon-click="onLinkClick(social.url)"
-            />
+            <UiIcon :icon="social.type" :url="social.url" :size="10" @icon-click="onLinkClick(social.url)" />
           </template>
         </div>
         <div class="mb-2 mt-4 flex items-center justify-center">
-          <UiButton
-            :button-type="{ type: 'button', buttonClass: 'download-button' }"
-            @onclick="onDownloadResume(profile.artifact)"
-          >
+          <UiButton :button-type="{ type: 'button', buttonClass: 'download-button' }"
+            @onclick="onDownloadResume(profile.artifact)">
             {{ $i18n.t('main.profile.download_resume') }}
           </UiButton>
         </div>
@@ -40,15 +33,8 @@
         </div>
         <div class="mx-auto mt-4 flex items-center justify-between">
           <div v-for="blog in profile.blog" :key="blog.url">
-            <UiIcon
-              v-if="blog.icon"
-              :icon="blog.icon"
-              :url="blog.url"
-              :size="blog.iconSize ?? 10"
-              :position="blog.position"
-              loading="lazy"
-              @icon-click="onLinkClick(blog.url)"
-            >
+            <UiIcon v-if="blog.icon" :icon="blog.icon" :url="blog.url" :size="blog.iconSize ?? 10"
+              :position="blog.position" loading="lazy" @icon-click="onLinkClick(blog.url)">
               <span class="text-md md:text">{{ blog.description }}</span>
             </UiIcon>
           </div>

@@ -9,15 +9,10 @@
       <template #content>
         <div class="github-container snaps-inline">
           <template v-for="(repo, index) in block" :key="index">
-            <UtilIntersect
-              @tracked="
-                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
-              "
-            >
-              <UiLinkOrText
-                :href="repo?.value?.toString()"
-                @link-click="onLinkClick(repo?.value?.toString())"
-              >
+            <UtilIntersect @tracked="
+              tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+              ">
+              <UiLinkOrText :href="repo?.value?.toString()" @link-click="onLinkClick(repo?.value?.toString())">
                 <div v-if="repo?.value" class="preview-container">
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
@@ -30,11 +25,7 @@
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
                     <div class="hidden space-x-2 lg:flex">
-                      <UiChip
-                        v-for="technology in repo?.technologies"
-                        :key="technology"
-                        :text="technology"
-                      />
+                      <UiChip v-for="technology in repo?.technologies" :key="technology" :text="technology" />
                     </div>
                     <div class="text-md leading-4">
                       {{ repo?.description }}
@@ -147,7 +138,7 @@ defineOptions({
   scroll-snap-type: inline mandatory;
 }
 
-.snaps-inline > * {
+.snaps-inline>* {
   scroll-snap-align: start;
 }
 </style>

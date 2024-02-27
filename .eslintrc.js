@@ -21,5 +21,6 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'sonarjs/cognitive-complexity': ['warn'],
+    'vue/first-attribute-linebreak': 'off',
   },
 };

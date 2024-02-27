@@ -8,5 +8,6 @@
   "singleAttributePerLine": true,
   "printWidth": 90,
   "plugins": ["prettier-plugin-tailwindcss"],
-  "bracketSameLine": true
+  "bracketSameLine": true,
+  "tabWidth": 2
 }
