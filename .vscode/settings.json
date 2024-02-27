@@ -3,12 +3,11 @@
   "prettier.configPath": "./.prettierrc",
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.singleAttributePerLine": true,
   "eslint.run": "onSave",
   "eslint.validate": ["vue", "vue-html", "html", "javascript", "typescript"],
   "eslint.format.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  }
+  "prettier.tabWidth": 2,
+  "editor.formatOnSave": true
 }
