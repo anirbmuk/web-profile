@@ -34,13 +34,16 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
-
+    // eslint-disable-next-line no-console
+    console.log('[DEBUG]', '[firebase]::options', options);
     nuxt.options.runtimeConfig.firebase = { ...options };
 
     const runtimeDir = resolve('./runtime');
     nuxt.options.build.transpile.push(runtimeDir);
 
     for (const path of options.apiPaths) {
+      // eslint-disable-next-line no-console
+      console.log('[DEBUG]', '[firebase]::add-path', `${options.apiBasePath}/${path}`);
       addServerHandler({
         route: `${options.apiBasePath}/${path}`,
         handler: resolve(runtimeDir, 'handler'),
