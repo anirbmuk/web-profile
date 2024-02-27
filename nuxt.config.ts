@@ -1,5 +1,5 @@
 import locales from './config/locales';
-import datasource from './config/datasource';
+import { API_PATHS } from './constants/paths';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -19,7 +19,6 @@ export default defineNuxtConfig({
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
       apiBasePath: '', // Override by setting NUXT_PUBLIC_API_BASE_PATH
     },
-    ...datasource,
   },
 
   css: ['@/assets/styles/root.css', '@/assets/styles/main.css'],
@@ -31,6 +30,8 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     'nuxt-gtag',
     '@nuxtjs/i18n',
+    '~/modules/sitemap/src',
+    '~/modules/firebase/src',
   ],
 
   googleFonts: {
@@ -57,6 +58,18 @@ export default defineNuxtConfig({
     componentPrefix: 'Icon',
   },
 
+  firebase: {
+    apiKey: '', // Override by setting NUXT_FIREBASE_API_KEY
+    authDomain: '', // Override by setting NUXT_FIREBASE_AUTH_DOMAIN
+    projectId: '', // Override by setting NUXT_FIREBASE_PROJECT_ID
+    storageBucket: '', // Override by setting NUXT_FIREBASE_STORAGE_BUCKET
+    messagingSenderId: '', // Override by setting NUXT_FIREBASE_MESSAGING_SENDER_ID
+    appId: '', // Override by setting NUXT_FIREBASE_APP_ID
+    measurementId: '', // Override by setting NUXT_FIREBASE_MEASUREMENT_ID
+    apiBasePath: process.env.NUXT_PUBLIC_API_BASE_PATH, // Override by setting NUXT_FIREBASE_API_BASE_PATH
+    apiPaths: API_PATHS, // Override by setting NUXT_FIREBASE_API_PATHS
+  },
+
   gtag: {
     id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
   },
@@ -74,6 +87,4 @@ export default defineNuxtConfig({
   sitemap: {
     sourceUrl: '',
   },
-
-  _modules: ['~/modules/sitemap/src/module'],
 });

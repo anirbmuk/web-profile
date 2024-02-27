@@ -1,7 +1,6 @@
 import { existsSync } from 'fs';
 import { addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit';
 import type { ModuleOptions } from './types';
-import { SITEMAP_FILENAME, SITEMAP_MODULENAME } from './constants';
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
@@ -17,26 +16,24 @@ declare module '@nuxt/schema' {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: SITEMAP_MODULENAME,
+    name: 'sitemap',
     configkey: 'sitemap',
     compatibility: {
       nuxt: '^3.8.2',
     },
   },
   defaults: {
-    sourceUrl: 'https://anirbmuk.appspot.com',
+    sourceUrl: '',
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const staticFilePath = resolve(
       nuxt.options.srcDir,
       nuxt.options.dir.public,
-      SITEMAP_FILENAME,
+      'sitemap.xml',
     );
     if (existsSync(staticFilePath)) {
-      console.error(
-        `To use '${SITEMAP_MODULENAME}', please remove public/${SITEMAP_FILENAME}`,
-      );
+      console.error(`To use 'sitemap' module, please remove public/sitemap.xml`);
       return;
     }
 
@@ -46,7 +43,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir);
 
     addServerHandler({
-      route: `/${SITEMAP_FILENAME}`,
+      route: '/sitemap.xml',
       handler: resolve(runtimeDir, 'handler'),
       method: 'get',
     });

@@ -1,10 +1,10 @@
-import { fetchOfflineCollection } from '~/core/firebase.core';
+import { fetchOfflineCollection } from '~/modules/firebase/src/core/firebase.core';
 import type { SupportedSlug } from '~/types/url';
 
 export const useFirebase = () => {
   const { $i18n } = useNuxtApp();
   const {
-    public: { offlineMode, apiBasePath = '' },
+    public: { offlineMode, apiBasePath = '/api' },
   } = useRuntimeConfig();
   const { getLocalizedSlug } = useSlug();
 
@@ -14,11 +14,14 @@ export const useFirebase = () => {
     limit?: number | undefined,
   ) => {
     const slug = localize ? getLocalizedSlug(path) : path;
-    const limitParam = (limit ?? -1) > 0 ? `?limit=${limit}` : '';
+    const langParam = [localize ? `lang=${$i18n.locale.value}` : ''];
+    const limitParam = [(limit ?? -1) > 0 ? `limit=${limit}` : ''];
+    const allParams = [...langParam, ...limitParam].filter(Boolean).join('&');
+    const params = allParams ? `?${allParams}` : '';
 
     const data = offlineMode
       ? await fetchOfflineCollection<T>(slug)
-      : await $fetch<T[]>(`${apiBasePath}/${slug}${limitParam}`);
+      : await $fetch<T[]>(`${apiBasePath}/${path}${params}`);
 
     if (!data?.length) {
       throw createError({

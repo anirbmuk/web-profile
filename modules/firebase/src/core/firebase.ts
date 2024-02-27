@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
+import type { FirebaseApp, FirebaseConfig } from './../types';
 import { fetchCollection } from './firebase.core';
-import type { FirebaseApp, FirebaseConfig } from '~/types/core/firebase';
 
 export class FirebaseController {
   private static instance: any | undefined;

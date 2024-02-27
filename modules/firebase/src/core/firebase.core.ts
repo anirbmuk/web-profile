@@ -13,12 +13,13 @@ import {
   startAt,
   where,
 } from 'firebase/firestore';
-import type { FirebaseApp, FirebaseConfig } from '~/types/core/firebase';
 import type {
+  FirebaseApp,
+  FirebaseConfig,
   FirestoreOrderBy,
   FirestoreQuery,
   FirestoreWhere,
-} from '~/types/core/query';
+} from './../types';
 
 let offlineData: any | undefined;
 
@@ -28,7 +29,7 @@ export function initFirebaseApp(firebaseConfig: FirebaseConfig) {
 
 export async function fetchOfflineCollection<T>(path: string) {
   if (!offlineData) {
-    offlineData = (await import('./../constants/offline')).default;
+    offlineData = (await import('./../offline')).default;
   }
   const [collection, locale] = path.split('_');
   return new Promise<T[]>((resolve) => {
