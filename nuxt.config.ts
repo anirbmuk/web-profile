@@ -2,6 +2,8 @@ import datasource from './config/datasource';
 import locales from './config/locales';
 import apiPaths from './config/paths';
 
+const apiBasePath = '/api';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
@@ -18,7 +20,7 @@ export default defineNuxtConfig({
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
       googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
-      apiBasePath: '', // Override by setting NUXT_PUBLIC_API_BASE_PATH
+      apiBasePath, // Override by setting NUXT_PUBLIC_API_BASE_PATH
     },
   },
 
@@ -61,7 +63,7 @@ export default defineNuxtConfig({
 
   firebase: {
     ...datasource,
-    apiBasePath: process.env.NUXT_PUBLIC_API_BASE_PATH, // Override by setting NUXT_FIREBASE_API_BASE_PATH
+    apiBasePath, // Override by setting NUXT_FIREBASE_API_BASE_PATH
     apiPaths, // Override by setting NUXT_FIREBASE_API_PATHS
   },
 
