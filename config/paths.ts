@@ -1,4 +1,4 @@
-export const API_PATHS = [
+export default [
   'aboutme',
   'blog',
   'career',
