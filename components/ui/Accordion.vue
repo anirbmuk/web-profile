@@ -11,11 +11,13 @@
         </div>
         <div
           :class="{ 'rotate-180': accordionState }"
-          class="-mt-0.5 ease-in-out duration-300"
+          class="-mt-0.5 duration-300 ease-in-out"
           :title="accordionState ? $i18n.t('components.UiAccordion.collapse'): $i18n.t('components.UiAccordion.expand')"
           role="button"
         >
-          <UiIcon :icon="'collapse'" :size="6" />
+          <UiIcon :icon="'collapse'"
+                  :size="6"
+          />
         </div>
       </div>
     </div>

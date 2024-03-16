@@ -44,7 +44,9 @@ export async function fetchCollection<T>(
   firebaseApp: FirebaseApp,
   query: Partial<FirestoreQuery>,
 ): Promise<T[]> {
-  const { collections, whereClause, orderByClause, limit, startAt, endAt } = query;
+  const {
+    collections, whereClause, orderByClause, limit, startAt, endAt, 
+  } = query;
   if (!firebaseApp) {
     throw new Error('Firebase config is not defined');
   }

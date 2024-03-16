@@ -1,5 +1,7 @@
-import { type FirebaseApp, initializeApp } from 'firebase/app';
-import type { OrderByDirection, WhereFilterOp } from 'firebase/firestore';
+import { type FirebaseApp } from 'firebase/app';
+import type {
+  OrderByDirection, WhereFilterOp, 
+} from 'firebase/firestore';
 
 export type FirebaseConfig = {
   apiKey: string;

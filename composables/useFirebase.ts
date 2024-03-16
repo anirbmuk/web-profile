@@ -4,7 +4,9 @@ import type { SupportedSlug } from '~/types/url';
 export const useFirebase = () => {
   const { $i18n } = useNuxtApp();
   const {
-    public: { offlineMode, apiBasePath = '/api' },
+    public: {
+      offlineMode, apiBasePath = '/api', 
+    }, 
   } = useRuntimeConfig();
   const { getLocalizedSlug } = useSlug();
 
@@ -25,7 +27,9 @@ export const useFirebase = () => {
 
     if (!data?.length) {
       throw createError({
-        message: $i18n.t('error.no_data_found', { path }),
+        message: $i18n.t('error.no_data_found', {
+          path, 
+        }),
         statusCode: 400,
         fatal: true,
       });

@@ -6,7 +6,9 @@ const apiBasePath = '/api';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: {
+    enabled: false, 
+  },
 
   runtimeConfig: {
     app: {
@@ -50,7 +52,15 @@ export default defineNuxtConfig({
     rules: [
       {
         UserAgent: '*',
-        Disallow: '',
+      },
+      {
+        Disallow: '/api/*',
+      },
+      {
+        Disallow: '/_nuxt/*',
+      },
+      {
+        Sitemap: process.env.NUXT_PUBLIC_BASE_URL + '' + '/sitemap.xml',
       },
     ],
   },

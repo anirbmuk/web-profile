@@ -1,6 +1,10 @@
 <template>
-  <button type="button" @click="$emit('scrollToTop')">
-    <div class="flex items-center text-3xl text-white" translate="no">
+  <button type="button"
+          @click="$emit('scrollToTop')"
+  >
+    <div class="flex items-center text-3xl text-white"
+         translate="no"
+    >
       &#8593;
     </div>
   </button>

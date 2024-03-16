@@ -27,7 +27,9 @@ watch(
       width.value = 0;
     }
   },
-  { immediate: true },
+  {
+    immediate: true, 
+  },
 );
 
 defineOptions({

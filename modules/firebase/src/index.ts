@@ -1,4 +1,6 @@
-import { addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit';
+import {
+  addServerHandler, createResolver, defineNuxtModule, 
+} from '@nuxt/kit';
 import type { ModuleOptions } from './types';
 
 declare module '@nuxt/schema' {
@@ -34,7 +36,9 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    nuxt.options.runtimeConfig.firebase = { ...options };
+    nuxt.options.runtimeConfig.firebase = {
+      ...options, 
+    };
 
     const runtimeDir = resolve('./runtime');
     nuxt.options.build.transpile.push(runtimeDir);

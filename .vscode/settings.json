@@ -1,13 +1,10 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "prettier.configPath": "./.prettierrc",
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.singleAttributePerLine": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "eslint.run": "onSave",
   "eslint.validate": ["vue", "vue-html", "html", "javascript", "typescript"],
   "eslint.format.enable": true,
-  "prettier.tabWidth": 2,
-  "editor.formatOnSave": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  }
 }

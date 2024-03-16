@@ -88,7 +88,9 @@ const props = defineProps({
 });
 
 const { $i18n } = useNuxtApp();
-const { getCurrentTimeline, sortFn } = useDate();
+const {
+  getCurrentTimeline, sortFn, 
+} = useDate();
 
 const getHeight = (start: string, end = getCurrentTimeline()) => {
   const [, endYear] = end.split('/', 2);

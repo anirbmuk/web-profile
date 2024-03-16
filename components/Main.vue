@@ -1,7 +1,10 @@
 <template>
   <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
     <UtilIntersect @tracked="tracker('profile_image_section')">
-      <div role="img" class="profile-image" aria-label="profile image" />
+      <div role="img"
+           class="profile-image"
+           aria-label="profile image"
+      />
     </UtilIntersect>
   </section>
   <div class="mx-auto space-y-16 xl:max-w-3/4 2xl:max-w-4/5">
@@ -11,7 +14,9 @@
       </UtilIntersect>
     </template>
     <template v-if="data?.career?.length">
-      <UtilIntersect :threshold="[0.7]" @tracked="tracker('career_section')">
+      <UtilIntersect :threshold="[0.7]"
+                     @tracked="tracker('career_section')"
+      >
         <LazyCareer :block="data.career" />
       </UtilIntersect>
     </template>
@@ -45,17 +50,19 @@ import type { ImpressionEventParams } from '~/types/tracking';
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
-const { trackPageViewEvent, trackImpressionCollectionEvent } = useTracking();
+const {
+  trackPageViewEvent, trackImpressionCollectionEvent, 
+} = useTracking();
 
 const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
     fetch<CareerBlock>('career'),
     fetch<TechstackBlock>('techstack', false, 1),
-    fetch<GithubBlock>('github').then(github =>
+    fetch<GithubBlock>('github').then((github) =>
       github.sort((g1, g2) => g1.position - g2.position),
     ),
-    fetch<EducationBlock>('education', true, 1).then(education =>
+    fetch<EducationBlock>('education', true, 1).then((education) =>
       education.sort((e1, e2) => e1.position - e2.position),
     ),
   ]).finally(() => (loadingState.value = false));

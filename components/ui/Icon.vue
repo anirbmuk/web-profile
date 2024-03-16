@@ -15,7 +15,10 @@
     </div>
     <slot :class="displayClass" />
   </template>
-  <div v-else :title="title" :aria-label="label || icon">
+  <div v-else
+       :title="title"
+       :aria-label="label || icon"
+  >
     <component
       :is="iconComponent"
       :class="iconClass"
@@ -25,7 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import type { IconLoadingType, IconPosition } from '~/types/components/icon';
+import type {
+  IconLoadingType, IconPosition, 
+} from '~/types/components/icon';
 
 const sizeMappers: Record<number, string> = {
   2: 'h-1 md:h-2 w-1 md:w-2',

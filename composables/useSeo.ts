@@ -1,8 +1,6 @@
 export const useSeo = () => {
   const { fullPath } = useRoute();
-  const {
-    public: { baseUrl },
-  } = useRuntimeConfig();
+  const { public: { baseUrl } } = useRuntimeConfig();
 
   const stripUrlParams = (path: string) => {
     const [root] = path.split('?');

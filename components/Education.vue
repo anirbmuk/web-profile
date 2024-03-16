@@ -8,7 +8,9 @@
       </template>
       <template #content>
         <ul class="md:grid md:grid-cols-2 md:gap-3 2xl:grid-cols-3">
-          <li v-for="(education, index) in block" :key="index">
+          <li v-for="(education, index) in block"
+              :key="index"
+          >
             <UiLinkOrText>
               <div class="space-y-2">
                 <div class="flex items-center justify-between">

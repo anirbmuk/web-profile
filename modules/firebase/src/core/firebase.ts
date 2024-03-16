@@ -1,5 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import type { FirebaseApp, FirebaseConfig } from './../types';
+import type {
+  FirebaseApp, FirebaseConfig, 
+} from './../types';
 import { fetchCollection } from './firebase.core';
 
 export class FirebaseController {
@@ -21,8 +23,12 @@ export class FirebaseController {
     try {
       return await fetchCollection<T>(this.app!, {
         collections: [path],
-        whereClause: [{ column: 'visibility', operator: '==', condition: 'public' }],
-        ...((limit ?? -1) > 0 && { limit }),
+        whereClause: [{
+          column: 'visibility', operator: '==', condition: 'public', 
+        }],
+        ...((limit ?? -1) > 0 && {
+          limit, 
+        }),
       });
     } catch {
       return [] as T[];

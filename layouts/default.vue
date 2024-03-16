@@ -2,22 +2,26 @@
   <Header />
   <main class="container mx-auto my-20">
     <ClientOnly>
-      <UiBackToTop v-show="scrollState > 200" @scroll-to-top="scrollToTop" />
+      <UiBackToTop v-show="scrollState > 200"
+                   @scroll-to-top="scrollToTop"
+      />
     </ClientOnly>
     <slot />
   </main>
-  <Footer v-if="footer" :block="footer" />
+  <Footer v-if="footer"
+          :block="footer"
+  />
 </template>
 
 <script setup lang="ts">
 import type { FooterBlock } from '~/types/features/footer';
 
 const { $i18n } = useNuxtApp();
-const {
-  public: { googleSiteVerification },
-} = useRuntimeConfig();
+const { public: { googleSiteVerification } } = useRuntimeConfig();
 const { fetch } = useFirebase();
-const { scrollState, scrollToTop } = useScroll('scroll');
+const {
+  scrollState, scrollToTop, 
+} = useScroll('scroll');
 
 const { data: footer } = useAsyncData('footer', async () => {
   const [footer] = await fetch<FooterBlock>('footer', true, 1);
@@ -54,7 +58,9 @@ useSeoMeta({
   keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
-  ...(googleSiteVerification && { googleSiteVerification }),
+  ...(googleSiteVerification && {
+    googleSiteVerification, 
+  }),
 });
 defineOptions({
   name: 'DefaultLayout',

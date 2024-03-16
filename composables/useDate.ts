@@ -36,10 +36,14 @@ export const useDate = () => {
     const numberOfMonths = totalNumberOfMonths - numberOfYears * 12;
 
     const monthText = numberOfMonths
-      ? $i18n.t('components.UiTimeline.month', { count: numberOfMonths })
+      ? $i18n.t('components.UiTimeline.month', {
+        count: numberOfMonths, 
+      })
       : '';
     const yearText = numberOfYears
-      ? $i18n.t('components.UiTimeline.year', { count: numberOfYears })
+      ? $i18n.t('components.UiTimeline.year', {
+        count: numberOfYears, 
+      })
       : '';
     return [yearText, monthText].filter(Boolean).join(' ');
   };
