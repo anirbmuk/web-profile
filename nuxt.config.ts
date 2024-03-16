@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         Disallow: '/_nuxt/*',
       },
       {
-        Sitemap: process.env.NUXT_PUBLIC_BASE_URL + '' + '/sitemap.xml',
+        Sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
       },
     ],
   },
