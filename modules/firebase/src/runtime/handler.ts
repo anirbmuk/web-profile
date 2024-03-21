@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
   const query = getQuery<SupportedQueryParams>(event);
 
   const limit = isNaN(+query.limit) ? undefined : +query.limit;
-  const lang = query.lang;
+  const { lang } = query;
 
   const slug = lang ? `${path}_${lang}` : path;
 

@@ -24,7 +24,9 @@ export class FirebaseController {
       return await fetchCollection<T>(this.app!, {
         collections: [path],
         whereClause: [{
-          column: 'visibility', operator: '==', condition: 'public', 
+          column: 'visibility',
+          operator: '==',
+          condition: 'public', 
         }],
         ...((limit ?? -1) > 0 && {
           limit, 

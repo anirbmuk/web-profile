@@ -50,15 +50,20 @@ module.exports = {
     'object-curly-newline': ['error', {
       ObjectExpression: 'always',
       ObjectPattern: {
-        multiline: true, minProperties: 2,
+        multiline: true,
+        minProperties: 2,
       },
       ImportDeclaration: {
-        multiline: true, minProperties: 2,
+        multiline: true,
+        minProperties: 2,
       },
       ExportDeclaration: {
-        multiline: true, minProperties: 2,
+        multiline: true,
+        minProperties: 2,
       },
     }],
+    'object-property-newline': ['error'],
+    'prefer-destructuring': ['error'],
     'tailwindcss/no-custom-classname': 'off',
   },
 };
