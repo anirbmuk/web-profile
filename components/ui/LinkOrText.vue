@@ -1,9 +1,10 @@
 <template>
   <template v-if="Boolean(href)">
-    <a rel="nofollow"
-       target="_blank"
-       :href="href"
-       @click="$emit('linkClick', href)"
+    <a
+      rel="nofollow"
+      target="_blank"
+      :href="href"
+      @click="$emit('linkClick', href)"
     >
       <slot /></a>
   </template>

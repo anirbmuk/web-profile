@@ -14,13 +14,15 @@
       <h1 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
         !{{ error?.statusCode }}!
       </h1>
-      <div v-if="error?.message"
-           class="m-2 text-red"
+      <div
+        v-if="error?.message"
+        class="m-2 text-red"
       >
         {{ error.message }}
       </div>
-      <p v-if="error?.statusCode !== 404"
-         class="text-center"
+      <p
+        v-if="error?.statusCode !== 404"
+        class="text-center"
       >
         {{ $i18n.t('error.message_others') }}
       </p>

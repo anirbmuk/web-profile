@@ -15,8 +15,9 @@
           :title="accordionState ? $i18n.t('components.UiAccordion.collapse'): $i18n.t('components.UiAccordion.expand')"
           role="button"
         >
-          <UiIcon :icon="'collapse'"
-                  :size="6"
+          <UiIcon
+            :icon="'collapse'"
+            :size="6"
           />
         </div>
       </div>

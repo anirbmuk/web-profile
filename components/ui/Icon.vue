@@ -15,9 +15,10 @@
     </div>
     <slot :class="displayClass" />
   </template>
-  <div v-else
-       :title="title"
-       :aria-label="label || icon"
+  <div
+    v-else
+    :title="title"
+    :aria-label="label || icon"
   >
     <component
       :is="iconComponent"

@@ -1,9 +1,10 @@
 <template>
   <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
     <UtilIntersect @tracked="tracker('profile_image_section')">
-      <div role="img"
-           class="profile-image"
-           aria-label="profile image"
+      <div
+        role="img"
+        class="profile-image"
+        aria-label="profile image"
       />
     </UtilIntersect>
   </section>
@@ -14,8 +15,9 @@
       </UtilIntersect>
     </template>
     <template v-if="data?.career?.length">
-      <UtilIntersect :threshold="[0.7]"
-                     @tracked="tracker('career_section')"
+      <UtilIntersect
+        :threshold="[0.7]"
+        @tracked="tracker('career_section')"
       >
         <LazyCareer :block="data.career" />
       </UtilIntersect>

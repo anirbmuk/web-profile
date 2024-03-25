@@ -35,7 +35,7 @@ export default defineNuxtModule<ModuleOptions>({
       'sitemap.xml',
     );
     if (existsSync(staticFilePath)) {
-      console.error(`To use 'sitemap' module, please remove public/sitemap.xml`);
+      console.error('To use \'sitemap\' module, please remove public/sitemap.xml');
       return;
     }
 

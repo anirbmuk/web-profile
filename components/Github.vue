@@ -8,39 +8,47 @@
       </template>
       <template #content>
         <div class="github-container snaps-inline">
-          <template v-for="(repo, index) in block"
-                    :key="index"
+          <template
+            v-for="(repo, index) in block"
+            :key="index"
           >
-            <UtilIntersect @tracked="
-              tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
-            "
+            <UtilIntersect
+              @tracked="
+                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+              "
             >
-              <UiLinkOrText :href="repo?.value?.toString()"
-                            @link-click="onLinkClick(repo?.value?.toString())"
+              <UiLinkOrText
+                :href="repo?.value?.toString()"
+                @link-click="onLinkClick(repo?.value?.toString())"
               >
-                <div v-if="repo?.value"
-                     class="preview-container"
+                <div
+                  v-if="repo?.value"
+                  class="preview-container"
                 >
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
-                      <LazyUiIcon :icon="'github'"
-                                  :size="7"
+                      <LazyUiIcon
+                        :icon="'github'"
+                        :size="7"
                       />
-                      <div class="-mt-1 text md:text-2xl"
-                           translate="no"
+                      <div
+                        class="-mt-1 text md:text-2xl"
+                        translate="no"
                       >
                         {{ transformRepo(repo?.value?.toString()) }}
                       </div>
                     </div>
-                    <div class="text-md text-gray-500 lg:hidden"
-                         translate="no"
+                    <div
+                      class="text-md text-gray-500 lg:hidden"
+                      translate="no"
                     >
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
                     <div class="hidden space-x-2 lg:flex">
-                      <UiChip v-for="technology in repo?.technologies"
-                              :key="technology"
-                              :text="technology"
+                      <UiChip
+                        v-for="technology in repo?.technologies"
+                        :key="technology"
+                        :text="technology"
                       />
                     </div>
                     <div class="text-md leading-4">

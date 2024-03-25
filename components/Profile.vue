@@ -5,8 +5,9 @@
         <h2 class="mb-1.5 text-xl md:mb-2 md:text-3xl lg:text-4xl">
           {{ profile.designation }}
         </h2>
-        <h3 class="mb-1.5 text md:mb-2 md:text-2xl lg:text-3xl"
-            translate="no"
+        <h3
+          class="mb-1.5 text md:mb-2 md:text-2xl lg:text-3xl"
+          translate="no"
         >
           {{ profile.currentjob }}
         </h3>
@@ -14,19 +15,22 @@
           {{ profile.location }}
         </h4>
         <div class="flex items-center justify-center space-x-4">
-          <template v-for="social in profile.social"
-                    :key="social.icon"
+          <template
+            v-for="social in profile.social"
+            :key="social.icon"
           >
-            <UiIcon :icon="social.type"
-                    :url="social.url"
-                    :size="10"
-                    @icon-click="onLinkClick(social.url)"
+            <UiIcon
+              :icon="social.type"
+              :url="social.url"
+              :size="10"
+              @icon-click="onLinkClick(social.url)"
             />
           </template>
         </div>
         <div class="mb-2 mt-4 flex items-center justify-center">
-          <UiButton :button-type="{ type: 'button', buttonClass: 'download-button' }"
-                    @onclick="onDownloadResume(profile.artifact)"
+          <UiButton
+            :button-type="{ type: 'button', buttonClass: 'download-button' }"
+            @onclick="onDownloadResume(profile.artifact)"
           >
             {{ $i18n.t('main.profile.download_resume') }}
           </UiButton>
@@ -36,23 +40,26 @@
     <article class="mx-auto !mt-8 drop-shadow-md md:max-w-3/4 2xl:max-w-3/5">
       <UiBlock block-style="inverted">
         <div class="space-y-4 text-md md:text">
-          <template v-for="(bio, index) in profile.bio"
-                    :key="index"
+          <template
+            v-for="(bio, index) in profile.bio"
+            :key="index"
           >
             <div v-html="bio" />
           </template>
         </div>
         <div class="mx-auto mt-4 flex items-center justify-between">
-          <div v-for="blog in profile.blog"
-               :key="blog.url"
+          <div
+            v-for="blog in profile.blog"
+            :key="blog.url"
           >
-            <UiIcon v-if="blog.icon"
-                    :icon="blog.icon"
-                    :url="blog.url"
-                    :size="blog.iconSize ?? 10"
-                    :position="blog.position"
-                    loading="lazy"
-                    @icon-click="onLinkClick(blog.url)"
+            <UiIcon
+              v-if="blog.icon"
+              :icon="blog.icon"
+              :url="blog.url"
+              :size="blog.iconSize ?? 10"
+              :position="blog.position"
+              loading="lazy"
+              @icon-click="onLinkClick(blog.url)"
             >
               <span class="text-md md:text">{{ blog.description }}</span>
             </UiIcon>

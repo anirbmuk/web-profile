@@ -23,8 +23,9 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'sonarjs/cognitive-complexity': ['warn'],
-    'vue/first-attribute-linebreak': 'off',
+    'sonarjs/no-duplicate-string': ['warn'],
     indent: ['error', 2],
+    quotes: ['error', 'single'],
     'computed-property-spacing': ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],
@@ -32,6 +33,10 @@ module.exports = {
     'space-before-function-paren': 'off',
     'arrow-parens': ['error', 'always'],
     'vue/multi-word-component-names': 'off',
+    'vue/first-attribute-linebreak': ['error', {
+      'singleline': 'ignore',
+      'multiline': 'below',
+    }],
     'vue/max-attributes-per-line': [
       'error',
       {
