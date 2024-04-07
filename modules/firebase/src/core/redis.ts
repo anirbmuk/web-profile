@@ -46,22 +46,22 @@ export class RedisController {
   }
 
   async getCache(key: string) {
-    if (!key) {
+    if (!key || !this._client) {
       return;
     }
-    const fromCache = await this._client?.get(this.getKey(key)) as
+    const fromCache = await this._client.get(this.getKey(key)) as
     | string
-    | null;
-    if (fromCache === null) {
-      return null;
+    | undefined;
+    if (!fromCache) {
+      return;
     }
     return await decompress(fromCache);
   }
 
   async setCache<T>(key: string, data: T) {
-    if (key) {
+    if (key && this._client) {
       const value = await compress(JSON.stringify(data));
-      await this._client?.set(this.getKey(key), value, {
+      await this._client.set(this.getKey(key), value, {
         EX: 24 * 60 * 60, // 1 day (seconds)
       });
     }
