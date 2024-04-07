@@ -14,12 +14,12 @@
 | What I wanted | What I got            |
 | ------------- | --------------------- |
 | IDE           | MS Visual Studio Code |
-| Front-end     | Vue / Tailwindcss     |
+| Front-end     | Nuxt/Vue/Tailwindcss  |
 | SSR & BFF     | Nuxt                  |
 | Database      | Google Firestore      |
 | Analytics     | G4A / GTM             |
 
-## Quick Start & Documentation
+## Quick Start  
 Local development server:
 ```
 yarn dev
