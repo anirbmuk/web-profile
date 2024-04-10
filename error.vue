@@ -58,6 +58,7 @@ const props = defineProps({
 
 const localePath = useLocalePath();
 const { $i18n } = useNuxtApp();
+const { public: { googleSiteVerification } } = useRuntimeConfig();
 const { trackInternalClickEvent } = useTracking();
 
 const title =
@@ -67,6 +68,24 @@ const title =
 
 useHead({
   title,
+});
+useSeoMeta({
+  robots: 'noindex,nofollow',
+  description: `${title} - ${props.error?.message || ''}`,
+  ogImage: '/seo.webp',
+  colorScheme: 'dark light',
+  ogLocale: $i18n.locale.value,
+  author: 'Anirban Mukherjee',
+  ogSiteName: 'anirbmuk',
+  ogType: 'website',
+  twitterSite: 'anirbmuk',
+  twitterCreator: '@anirbmuk',
+  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  twitterCard: 'summary_large_image',
+  themeColor: '#f5f5f5',
+  ...(googleSiteVerification && {
+    googleSiteVerification, 
+  }),
 });
 
 const onLinkClick = (event_url: string | undefined) => {
@@ -94,12 +113,6 @@ defineOptions({
 }
 
 .header-background {
-  @apply border-b border-gray-100 bg-gray-50;
-}
-
-@media (prefers-color-scheme: dark) {
-  .header-background {
-    @apply border-b border-transparent bg-transparent;
-  }
+  @apply border-b border-gray-100 bg-gray-50 dark:border-transparent;
 }
 </style>
