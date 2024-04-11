@@ -1,6 +1,6 @@
 {
   "name": "web-profile",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "Anirban Mukherjee (anirbmuk) | Senior Frontend Developer | Professional Bio",
   "author": {
@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "firebase": "^10.7.0",
+    "redis": "^4.6.13",
     "lodash": "^4.17.21"
   }
 }

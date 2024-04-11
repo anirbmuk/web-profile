@@ -1,5 +1,7 @@
 import {
-  addServerHandler, createResolver, defineNuxtModule, 
+  addServerHandler,
+  createResolver,
+  defineNuxtModule, 
 } from '@nuxt/kit';
 import type { ModuleOptions } from './types';
 

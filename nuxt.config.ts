@@ -24,6 +24,11 @@ export default defineNuxtConfig({
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
       apiBasePath, // Override by setting NUXT_PUBLIC_API_BASE_PATH
     },
+    redis: {
+      host: '', // Override by setting NUXT_REDIS_HOST
+      port: 0, // Override by setting NUXT_REDIS_PORT
+      prefix: '', // Override by setting NUXT_REDIS_PREFIX
+    },
   },
 
   css: ['@/assets/styles/root.css', '@/assets/styles/main.css'],
