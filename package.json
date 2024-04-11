@@ -39,6 +39,7 @@
     "@nuxtjs/i18n": "^8.0.0-rc.6",
     "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@types/lodash": "^4.17.0",
     "@types/node": "^20.11.24",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "eslint": "^8.57.0",
@@ -58,6 +59,7 @@
   },
   "dependencies": {
     "firebase": "^10.7.0",
-    "redis": "^4.6.13"
+    "redis": "^4.6.13",
+    "lodash": "^4.17.21"
   }
 }
