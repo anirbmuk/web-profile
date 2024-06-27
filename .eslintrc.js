@@ -12,6 +12,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
   ],
   rules: {
+    'vue/comment-directive': ['off'],
     'comma-dangle': ['error', 'always-multiline'],
     semi: ['error', 'always'],
     'no-console': ['error', {
@@ -33,10 +34,13 @@ module.exports = {
     'space-before-function-paren': 'off',
     'arrow-parens': ['error', 'always'],
     'vue/multi-word-component-names': 'off',
-    'vue/first-attribute-linebreak': ['error', {
-      'singleline': 'ignore',
-      'multiline': 'below',
-    }],
+    'vue/first-attribute-linebreak': [
+      'error',
+      {
+        singleline: 'beside',
+        multiline: 'below',
+      },
+    ],
     'vue/max-attributes-per-line': [
       'error',
       {
@@ -50,7 +54,7 @@ module.exports = {
     ],
     'vue/html-closing-bracket-newline': ['error', {
       singleline: 'never',
-      multiline: 'always',
+      multiline: 'never',
     }],
     'object-curly-newline': ['error', {
       ObjectExpression: 'always',
@@ -70,5 +74,6 @@ module.exports = {
     'object-property-newline': ['error'],
     'prefer-destructuring': ['error'],
     'tailwindcss/no-custom-classname': 'off',
+    'vue/html-indent': ['error'],
   },
 };

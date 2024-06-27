@@ -7,24 +7,20 @@
         :aria-label="label || icon"
         :title="title"
         rel="nofollow"
-        @click="$emit('iconClick', url)"
-      ><component
-        :is="iconComponent"
-        :class="iconClass"
-      /></a>
+        @click="$emit('iconClick', url)"><component
+          :is="iconComponent"
+          :class="iconClass" /></a>
     </div>
     <slot :class="displayClass" />
   </template>
   <div
     v-else
     :title="title"
-    :aria-label="label || icon"
-  >
+    :aria-label="label || icon">
     <component
       :is="iconComponent"
       :class="iconClass"
-      @click="$emit('iconClick', undefined)"
-    />
+      @click="$emit('iconClick', undefined)" />
   </div>
 </template>
 

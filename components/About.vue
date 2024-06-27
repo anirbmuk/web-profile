@@ -2,15 +2,13 @@
   <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
-      class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2"
-    >
+      class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
         class="p-4 md:py-5"
         @click="onLinkClick($event)"
-        v-html="content.description || ''"
-      />
+        v-html="content.description || ''" />
     </article>
   </div>
 </template>

@@ -7,8 +7,7 @@
         </h2>
         <h3
           class="mb-1.5 text md:mb-2 md:text-2xl lg:text-3xl"
-          translate="no"
-        >
+          translate="no">
           {{ profile.currentjob }}
         </h3>
         <h4 class="mb-2 text-md md:mb-2.5 md:text lg:text-xl">
@@ -17,21 +16,18 @@
         <div class="flex items-center justify-center space-x-4">
           <template
             v-for="social in profile.social"
-            :key="social.icon"
-          >
+            :key="social.icon">
             <UiIcon
               :icon="social.type"
               :url="social.url"
               :size="10"
-              @icon-click="onLinkClick(social.url)"
-            />
+              @icon-click="onLinkClick(social.url)" />
           </template>
         </div>
         <div class="mb-2 mt-4 flex items-center justify-center">
           <UiButton
             :button-type="{ type: 'button', buttonClass: 'download-button' }"
-            @onclick="onDownloadResume(profile.artifact)"
-          >
+            @onclick="onDownloadResume(profile.artifact)">
             {{ $i18n.t('main.profile.download_resume') }}
           </UiButton>
         </div>
@@ -42,16 +38,14 @@
         <div class="space-y-4 text-md md:text">
           <template
             v-for="(bio, index) in profile.bio"
-            :key="index"
-          >
+            :key="index">
             <div v-html="bio" />
           </template>
         </div>
         <div class="mx-auto mt-4 flex items-center justify-between">
           <div
             v-for="blog in profile.blog"
-            :key="blog.url"
-          >
+            :key="blog.url">
             <UiIcon
               v-if="blog.icon"
               :icon="blog.icon"
@@ -59,8 +53,7 @@
               :size="blog.iconSize ?? 10"
               :position="blog.position"
               loading="lazy"
-              @icon-click="onLinkClick(blog.url)"
-            >
+              @icon-click="onLinkClick(blog.url)">
               <span class="text-md md:text">{{ blog.description }}</span>
             </UiIcon>
           </div>

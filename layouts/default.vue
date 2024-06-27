@@ -4,15 +4,13 @@
     <ClientOnly>
       <UiBackToTop
         v-show="scrollState > 200"
-        @scroll-to-top="scrollToTop"
-      />
+        @scroll-to-top="scrollToTop" />
     </ClientOnly>
     <slot />
   </main>
   <Footer
     v-if="footer"
-    :block="footer"
-  />
+    :block="footer" />
 </template>
 
 <script setup lang="ts">

@@ -5,12 +5,10 @@
         <div class="col-span-6 flex space-x-3 md:col-span-5 lg:space-x-6">
           <template
             v-for="link in block?.links"
-            :key="link.text"
-          >
+            :key="link.text">
             <UiLink
               :link="link"
-              @link-click="onLinkClick(localePath(link.url))"
-            />
+              @link-click="onLinkClick(localePath(link.url))" />
           </template>
         </div>
         <div class="col-span-6 flex items-center justify-end gap-2 md:col-span-2 md:justify-center lg:gap-3">
@@ -20,8 +18,7 @@
             :title="getTitle('en')"
             :label="getTitle('en')"
             :size="6"
-            target="_self"
-          />
+            target="_self" />
           <div class="-mt-0.5 text">
             |
           </div>
@@ -31,21 +28,18 @@
             :title="getTitle('de')"
             :label="getTitle('de')"
             :size="6"
-            target="_self"
-          />
+            target="_self" />
         </div>
         <div
           translate="no"
-          class="hidden justify-end md:col-span-5 md:flex"
-        >
+          class="hidden justify-end md:col-span-5 md:flex">
           <span>{{ '&copy; ' + block?.copyright + ',' }}</span>
           <time
             class="ml-[3px]"
             :date-time="block?.publishdate"
-            publish-date
-          >{{
-            year
-          }}</time>
+            publish-date>{{
+              year
+            }}</time>
         </div>
       </div>
     </nav>

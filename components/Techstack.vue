@@ -10,20 +10,17 @@
         <li
           v-for="tech in technologies"
           :key="tech.icon"
-          fehover
-        >
+          fehover>
           <UiLinkOrText :href="tech.url">
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <LazyUiIcon
                   v-if="tech.icon"
                   :icon="tech.icon"
-                  :size="8"
-                />
+                  :size="8" />
                 <div
                   class="text-md md:text"
-                  translate="no"
-                >
+                  translate="no">
                   {{ tech.name }}
                 </div>
               </div>
@@ -36,16 +33,14 @@
         <li
           v-for="db in databases"
           :key="db.icon"
-          fehover
-        >
+          fehover>
           <UiLinkOrText :href="db.url">
             <div class="space-y-4">
               <div class="flex items-center justify-between">
                 <LazyUiIcon
                   v-if="db.icon"
                   :icon="db.icon"
-                  :size="8"
-                />
+                  :size="8" />
                 <div class="text-md md:text">
                   {{ db.name }}
                 </div>

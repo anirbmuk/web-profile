@@ -3,8 +3,7 @@
     v-show="width"
     :key="width"
     class="progress-bar"
-    :style="{ width: `${width}%` }"
-  />
+    :style="{ width: `${width}%` }" />
 </template>
 
 <script setup lang="ts">

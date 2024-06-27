@@ -6,8 +6,7 @@
     class="navlink"
     :to="localePath(link.url)"
     :title="link?.title"
-    @click="$emit('linkClick', 'internal')"
-  >
+    @click="$emit('linkClick', 'internal')">
     {{ link?.text }}
   </NuxtLink>
   <a
@@ -17,8 +16,7 @@
     :title="link?.title"
     rel="nofollow"
     class="duration-200 ease-linear md:border-black-light lg:hover:border-b"
-    @click="$emit('linkClick', 'external')"
-  >
+    @click="$emit('linkClick', 'external')">
     {{ link?.text }}
   </a>
 </template>
