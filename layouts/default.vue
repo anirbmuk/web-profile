@@ -20,7 +20,8 @@ const { $i18n } = useNuxtApp();
 const { public: { googleSiteVerification } } = useRuntimeConfig();
 const { fetch } = useFirebase();
 const {
-  scrollState, scrollToTop, 
+  scrollState,
+  scrollToTop,
 } = useScroll('scroll');
 
 const { data: footer } = useAsyncData('footer', async () => {

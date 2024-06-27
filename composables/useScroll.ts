@@ -1,9 +1,9 @@
-import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 
 export const useScroll = (key = 'scroll') => {
   const scrollState = useState<number>(key, () => 0);
 
-  const callback = throttle(() => (scrollState.value = window.scrollY), 300);
+  const callback = debounce(() => (scrollState.value = window.scrollY), 200);
 
   useEventListener('scroll', callback);
 
@@ -12,6 +12,8 @@ export const useScroll = (key = 'scroll') => {
     top: 0,
     behavior: 'smooth', 
   });
+
+  onMounted(() => scrollState.value = window.scrollY);
 
   return {
     scrollState,
