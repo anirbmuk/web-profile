@@ -52,7 +52,7 @@
     "nuxt-gtag": "^1.1.1",
     "nuxt-svgo": "^3.7.0",
     "radash": "^12.1.0",
-    "rimraf": "^5.0.9",
+    "rimraf": "^6.0.0",
     "typescript": "~5.4.0",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
