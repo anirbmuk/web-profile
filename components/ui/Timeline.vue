@@ -83,7 +83,8 @@ const props = defineProps({
 
 const { $i18n } = useNuxtApp();
 const {
-  getCurrentTimeline, sortFn, 
+  getCurrentTimeline,
+  sortFn,
 } = useDate();
 
 const getHeight = (start: string, end = getCurrentTimeline()) => {

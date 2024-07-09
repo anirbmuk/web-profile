@@ -38,32 +38,32 @@ export const useTracking = () => {
 
   const trackPageViewEvent = <T extends BaseEventParams>(metadata: T) =>
     track({
-      event: 'page_view', 
+      event: 'page_view',
     }, metadata);
 
   const trackImpressionCollectionEvent = <T extends ImpressionEventParams>(metadata: T) =>
     track({
-      event: 'view_list', 
+      event: 'view_list',
     }, metadata);
 
   const trackImpressionItemEvent = <T extends ImpressionItemEventParams>(metadata: T) =>
     track({
-      event: 'view_list_item', 
+      event: 'view_list_item',
     }, metadata);
 
   const trackInternalClickEvent = <T extends ClickEventParams>(metadata: T) =>
     track({
-      event: 'internal_click', 
+      event: 'internal_click',
     }, metadata);
 
   const trackExternalClickEvent = <T extends ClickEventParams>(metadata: T) =>
     track({
-      event: 'external_click', 
+      event: 'external_click',
     }, metadata);
 
   const trackCountrySwitchEvent = <T extends ClickEventParams>(metadata: T) =>
     track({
-      event: 'country_switch', 
+      event: 'country_switch',
     }, metadata);
 
   return {

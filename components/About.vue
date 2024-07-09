@@ -22,7 +22,8 @@ const { fetch } = useFirebase();
 const { loadingState } = useLoader();
 
 const {
-  trackPageViewEvent, trackExternalClickEvent, 
+  trackPageViewEvent,
+  trackExternalClickEvent,
 } = useTracking();
 
 const trackableTagNames = ['A', 'SPAN'];

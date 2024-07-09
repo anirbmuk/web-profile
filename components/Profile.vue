@@ -65,9 +65,9 @@
 
 <script setup lang="ts">
 import type {
-  Artifact, ProfileBlock, 
+  Artifact,
+  ProfileBlock,
 } from '~/types/features/profile';
-import { downloadFile } from '~/helpers/file';
 
 const { $i18n } = useNuxtApp();
 const { trackExternalClickEvent } = useTracking();

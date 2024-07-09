@@ -51,7 +51,8 @@ const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
 const {
-  trackPageViewEvent, trackImpressionCollectionEvent, 
+  trackPageViewEvent,
+  trackImpressionCollectionEvent,
 } = useTracking();
 
 const loadData = async () => {

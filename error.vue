@@ -80,13 +80,13 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
-    googleSiteVerification, 
+    googleSiteVerification,
   }),
 });
 
 const onLinkClick = (event_url: string | undefined) => {
   clearError({
-    redirect: event_url, 
+    redirect: event_url,
   });
   trackInternalClickEvent({
     pageTitle: window.document.title,

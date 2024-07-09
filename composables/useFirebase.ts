@@ -5,8 +5,9 @@ export const useFirebase = () => {
   const { $i18n } = useNuxtApp();
   const {
     public: {
-      offlineMode, apiBasePath = '/api', 
-    }, 
+      offlineMode,
+      apiBasePath = '/api',
+    },
   } = useRuntimeConfig();
   const { getLocalizedSlug } = useSlug();
 
@@ -28,7 +29,7 @@ export const useFirebase = () => {
     if (!data?.length) {
       throw createError({
         message: $i18n.t('error.no_data_found', {
-          path, 
+          path,
         }),
         statusCode: 400,
         fatal: true,

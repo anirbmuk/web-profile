@@ -60,7 +60,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
-    googleSiteVerification, 
+    googleSiteVerification,
   }),
 });
 defineOptions({

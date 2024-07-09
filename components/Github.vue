@@ -63,7 +63,8 @@ import type { ImpressionEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
 const {
-  trackExternalClickEvent, trackImpressionItemEvent, 
+  trackExternalClickEvent,
+  trackImpressionItemEvent,
 } = useTracking();
 
 defineProps({

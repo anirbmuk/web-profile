@@ -37,12 +37,12 @@ export const useDate = () => {
 
     const monthText = numberOfMonths
       ? $i18n.t('components.UiTimeline.month', {
-        count: numberOfMonths, 
+        count: numberOfMonths,
       })
       : '';
     const yearText = numberOfYears
       ? $i18n.t('components.UiTimeline.year', {
-        count: numberOfYears, 
+        count: numberOfYears,
       })
       : '';
     return [yearText, monthText].filter(Boolean).join(' ');

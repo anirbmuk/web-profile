@@ -26,7 +26,8 @@
 
 <script setup lang="ts">
 import type {
-  IconLoadingType, IconPosition, 
+  IconLoadingType,
+  IconPosition,
 } from '~/types/components/icon';
 
 const sizeMappers: Record<number, string> = {
