@@ -7,8 +7,10 @@ const apiBasePath = '/api';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false, 
+    enabled: false,
   },
+
+  compatibilityDate: '2024-07-09',
 
   runtimeConfig: {
     app: {
