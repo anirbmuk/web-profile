@@ -37,7 +37,9 @@ const loadData = async () => {
   )?.sort((a1, a2) => a1.position - a2.position);
 };
 
-const { data } = useAsyncData('about', () => loadData());
+const { data } = useAsyncData('about', () => loadData(), {
+  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+});
 const aboutme = computed(() => data.value);
 
 const onLinkClick = (event: Event) => {
