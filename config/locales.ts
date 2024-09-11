@@ -5,6 +5,7 @@ export default [
     iso: 'en-US',
     domain: process.env.DEFAULT_DOMAIN,
     name: 'English',
+    default: true,
   },
   {
     code: 'de',
@@ -12,5 +13,6 @@ export default [
     iso: 'de-DE',
     domain: process.env.DEFAULT_DOMAIN,
     name: 'Deutsch',
+    default: false,
   },
 ];

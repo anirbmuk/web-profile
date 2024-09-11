@@ -1,3 +1,6 @@
+import locales from '~/config/locales';
+import type { AlternateHreflang } from '~/types/seo';
+
 export const useSeo = () => {
   const { fullPath } = useRoute();
   const { public: { baseUrl } } = useRuntimeConfig();
@@ -18,7 +21,29 @@ export const useSeo = () => {
   const getCanonical = (path = fullPath) =>
     stripDefaultLocale(stripUrlParams(`${baseUrl}${path}`));
 
+
+  const generateAlternateLinks = (page?: string) => {
+    const alternateHreflangs: AlternateHreflang[] = [];
+    for (const locale of locales) {
+      alternateHreflangs.push({
+        rel: 'alternate',
+        hreflang: locale.code,
+        href: page ? `${baseUrl}/${locale.code}/${page}` : `${baseUrl}/${locale.code}`,
+      });
+      if (locale.default) {
+        alternateHreflangs.push({
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: page ? `${baseUrl}/${locale.code}/${page}` : `${baseUrl}/${locale.code}`,
+        });
+      }
+    }
+
+    return alternateHreflangs;
+  };
+
   return {
     getCanonical,
+    generateAlternateLinks,
   };
 };
