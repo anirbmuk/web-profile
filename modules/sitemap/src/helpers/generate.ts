@@ -12,7 +12,7 @@ export function generateSitemap(baseUrl: string) {
       <loc>${baseUrl}/en</loc>
       <lastmod>${sitemapDate}</lastmod>
       <changefreq>daily</changefreq>
-      <xhtml:link rel="x-default" hreflang="en" href="${baseUrl}/en"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en"/>
       <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en"/>
       <xhtml:link rel="alternate" hreflang="de" href="${baseUrl}/de"/>
     </url>
@@ -20,7 +20,7 @@ export function generateSitemap(baseUrl: string) {
       <loc>${baseUrl}/de</loc>
       <lastmod>${sitemapDate}</lastmod>
       <changefreq>daily</changefreq>
-      <xhtml:link rel="x-default" hreflang="en" href="${baseUrl}/en"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en"/>
       <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en"/>
       <xhtml:link rel="alternate" hreflang="de" href="${baseUrl}/de"/>
     </url>
@@ -28,15 +28,15 @@ export function generateSitemap(baseUrl: string) {
       <loc>${baseUrl}/en/about</loc>
       <lastmod>${sitemapDate}</lastmod>
       <changefreq>daily</changefreq>
-      <xhtml:link rel="x-default" hreflang="en" href="${baseUrl}/en/about"/>
-      <xhtml:link rel="alternate" hreflang="de" href="${baseUrl}/de/about"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en/about"/>
       <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en/about"/>
+      <xhtml:link rel="alternate" hreflang="de" href="${baseUrl}/de/about"/>
     </url>
     <url>
       <loc>${baseUrl}/de/about</loc>
       <lastmod>${sitemapDate}</lastmod>
       <changefreq>daily</changefreq>
-      <xhtml:link rel="x-default" hreflang="en" href="${baseUrl}/en/about"/>
+      <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en/about"/>
       <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}/en/about"/>
       <xhtml:link rel="alternate" hreflang="de" href="${baseUrl}/de/about"/>
     </url>
