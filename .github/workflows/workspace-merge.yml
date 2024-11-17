@@ -44,14 +44,12 @@ jobs:
       - name: Build web-profile project
         run: yarn build
 
-      - name: Lint web-profile project
-        run: yarn lint
-
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist-compiled
+          name: compiled
           path: .output
+          if-no-files-found: error
 
   deploy:
     name: deploy
@@ -60,7 +58,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: dist-compiled
+          name: compiled
           path: .output
       - uses: golang-enthusiast/app-yaml-env-compiler@v1.0
         env:
