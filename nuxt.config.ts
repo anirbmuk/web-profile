@@ -4,6 +4,8 @@ import apiPaths from './config/paths';
 
 const apiBasePath = '/api';
 
+const WEEK = 7 * 24 * 60 * 60;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
@@ -95,5 +97,18 @@ export default defineNuxtConfig({
 
   sitemap: {
     sourceUrl: '',
+  },
+
+  routeRules: {
+    '/en/**': {
+      headers: {
+        'Cache-Control': `public, immutable, max-age=${WEEK}, s-maxage=${WEEK}`,
+      },
+    },
+    '/de/**': {
+      headers: {
+        'Cache-Control': `public, immutable, max-age=${WEEK}, s-maxage=${WEEK}`,
+      },
+    },
   },
 });
