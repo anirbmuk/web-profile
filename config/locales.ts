@@ -2,7 +2,7 @@ export default [
   {
     code: 'en',
     file: 'en-US.json',
-    iso: 'en-US',
+    language: 'en-US',
     domain: process.env.DEFAULT_DOMAIN,
     name: 'English',
     default: true,
@@ -10,7 +10,7 @@ export default [
   {
     code: 'de',
     file: 'de-DE.json',
-    iso: 'de-DE',
+    language: 'de-DE',
     domain: process.env.DEFAULT_DOMAIN,
     name: 'Deutsch',
     default: false,
