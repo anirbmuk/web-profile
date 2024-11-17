@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
-  compatibilityDate: '2024-07-09',
+  compatibilityDate: '2024-11-17',
 
   runtimeConfig: {
     app: {
