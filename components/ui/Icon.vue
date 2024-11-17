@@ -15,8 +15,7 @@
   </template>
   <div
     v-else
-    :title="title"
-    :aria-label="label || icon">
+    :title="title">
     <component
       :is="iconComponent"
       :class="iconClass"
