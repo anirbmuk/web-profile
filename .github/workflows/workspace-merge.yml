@@ -44,11 +44,15 @@ jobs:
       - name: Build web-profile project
         run: yarn build
 
+      - name: Lint web-profile project
+        run: yarn lint
+
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: compiled
           path: .output
+          include-hidden-files: true
           if-no-files-found: error
 
   deploy:
