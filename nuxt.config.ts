@@ -104,11 +104,13 @@ export default defineNuxtConfig({
       headers: {
         'Cache-Control': `public, max-age=${WEEK}`,
       },
+      swr: true,
     },
     '/de/**': {
       headers: {
         'Cache-Control': `public, max-age=${WEEK}`,
       },
+      swr: true,
     },
   },
 });
