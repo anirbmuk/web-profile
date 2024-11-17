@@ -102,12 +102,12 @@ export default defineNuxtConfig({
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, immutable, max-age=${WEEK}, s-maxage=${WEEK}`,
+        'Cache-Control': `public, max-age=${WEEK}`,
       },
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, immutable, max-age=${WEEK}, s-maxage=${WEEK}`,
+        'Cache-Control': `public, max-age=${WEEK}`,
       },
     },
   },
