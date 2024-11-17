@@ -4,7 +4,7 @@ import apiPaths from './config/paths';
 
 const apiBasePath = '/api';
 
-const WEEK = 7 * 24 * 60 * 60;
+const HOUR = 60 * 60;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -102,13 +102,13 @@ export default defineNuxtConfig({
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${WEEK}`,
+        'Cache-Control': `public, max-age=${HOUR}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${WEEK}`,
+        'Cache-Control': `public, max-age=${HOUR}`,
       },
       swr: true,
     },
