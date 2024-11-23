@@ -1,6 +1,7 @@
 import { promisify } from 'util';
 import {
-  gzip, gunzip, 
+  gzip,
+  gunzip,
 } from 'zlib';
 
 const asyncDeflate = promisify(gzip);

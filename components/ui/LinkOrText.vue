@@ -4,8 +4,7 @@
       rel="nofollow"
       target="_blank"
       :href="href"
-      @click="$emit('linkClick', href)"
-    >
+      @click="$emit('linkClick', href)">
       <slot /></a>
   </template>
   <template v-else>

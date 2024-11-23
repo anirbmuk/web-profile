@@ -3,8 +3,7 @@
     :type="buttonType.type"
     :class="buttonType.buttonClass"
     :aria-label="buttonType.ariaLabel"
-    @click="$emit('onclick')"
-  >
+    @click="$emit('onclick')">
     <slot />
   </button>
 </template>

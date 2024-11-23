@@ -1,13 +1,11 @@
 <template>
   <template
     v-for="(timeline, idx) in mappedTimelines"
-    :key="`${timeline.provider}_${timeline.start}`"
-  >
+    :key="`${timeline.provider}_${timeline.start}`">
     <div class="grid grid-cols-5 gap-3 md:gap-0">
       <div
         class="col-span-2 flex items-start justify-end pt-2 text-right"
-        :class="timeline.size ?? 'h-24'"
-      >
+        :class="timeline.size ?? 'h-24'">
         <template v-if="timeline.alignment === 'left'">
           <div class="relative -right-1/6 block space-y-1 md:-right-1/5">
             <div class="text-sm font-semibold text-gray-700">
@@ -22,8 +20,7 @@
             </div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block"
-            >
+              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
               {{ timeline.description }}
             </div>
           </div>
@@ -38,12 +35,10 @@
             'rounded-b-sm': idx === mappedTimelines.length - 1,
           },
         ]"
-        :title="timeline.provider"
-      />
+        :title="timeline.provider" />
       <div
         class="col-span-2 flex items-start justify-start pt-1"
-        :class="timeline.size ?? 'h-24'"
-      >
+        :class="timeline.size ?? 'h-24'">
         <template v-if="timeline.alignment === 'right'">
           <div class="relative -left-1/6 block space-y-1 md:-left-1/5">
             <div class="text-sm font-semibold text-gray-700">
@@ -57,8 +52,7 @@
             </div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block"
-            >
+              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
               {{ timeline.description }}
             </div>
           </div>
@@ -89,7 +83,8 @@ const props = defineProps({
 
 const { $i18n } = useNuxtApp();
 const {
-  getCurrentTimeline, sortFn, 
+  getCurrentTimeline,
+  sortFn,
 } = useDate();
 
 const getHeight = (start: string, end = getCurrentTimeline()) => {

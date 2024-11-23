@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import type {
   FirebaseApp,
-  FirebaseConfig, 
+  FirebaseConfig,
 } from './../types';
 import { fetchCollection } from './firebase.core';
 
@@ -27,10 +27,10 @@ export class FirebaseController {
         whereClause: [{
           column: 'visibility',
           operator: '==',
-          condition: 'public', 
+          condition: 'public',
         }],
         ...((limit ?? -1) > 0 && {
-          limit, 
+          limit,
         }),
       });
     } catch {

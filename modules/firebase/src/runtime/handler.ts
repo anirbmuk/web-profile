@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
   const redis = RedisController.getInstance({
     host,
     port,
-    prefix, 
+    prefix,
   });
   const key = `${slug}_${limit ?? -1}`;
 

@@ -1,6 +1,8 @@
 import { existsSync } from 'fs';
 import {
-  addServerHandler, createResolver, defineNuxtModule, 
+  addServerHandler,
+  createResolver,
+  defineNuxtModule,
 } from '@nuxt/kit';
 import type { ModuleOptions } from './types';
 
@@ -40,7 +42,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     nuxt.options.runtimeConfig.sitemap = {
-      ...options, 
+      ...options,
     };
 
     const runtimeDir = resolve('./runtime');

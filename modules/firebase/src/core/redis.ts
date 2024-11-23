@@ -16,7 +16,7 @@ export class RedisController {
   private async _createRedisClient(cfg: RedisConfig) {
     const {
       host,
-      port, 
+      port,
     } = cfg;
     const url = `redis://${host}:${port}`;
     this._client = createClient({

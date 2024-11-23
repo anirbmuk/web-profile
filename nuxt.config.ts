@@ -4,11 +4,15 @@ import apiPaths from './config/paths';
 
 const apiBasePath = '/api';
 
+const HOUR = 60 * 60;
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false, 
+    enabled: false,
   },
+
+  compatibilityDate: '2024-11-17',
 
   runtimeConfig: {
     app: {
@@ -98,5 +102,20 @@ export default defineNuxtConfig({
 
   sitemap: {
     sourceUrl: '',
+  },
+
+  routeRules: {
+    '/en/**': {
+      headers: {
+        'Cache-Control': `public, max-age=${HOUR}`,
+      },
+      swr: true,
+    },
+    '/de/**': {
+      headers: {
+        'Cache-Control': `public, max-age=${HOUR}`,
+      },
+      swr: true,
+    },
   },
 });

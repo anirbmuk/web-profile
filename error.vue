@@ -3,8 +3,7 @@
     <div class="py-4">
       <h1
         class="text-shadow items-center text-center text-3xl font-bold uppercase tracking-wide md:text-4xl md:tracking-wider lg:text-6xl"
-        translate="no"
-      >
+        translate="no">
         Anirban Mukherjee
       </h1>
     </div>
@@ -16,14 +15,12 @@
       </h1>
       <div
         v-if="error?.message"
-        class="m-2 text-red"
-      >
+        class="m-2 text-red">
         {{ error.message }}
       </div>
       <p
         v-if="error?.statusCode !== 404"
-        class="text-center"
-      >
+        class="text-center">
         {{ $i18n.t('error.message_others') }}
       </p>
       <p v-else>
@@ -32,8 +29,7 @@
       <div class="mb-2 mt-4 flex items-center justify-center">
         <UiButton
           :button-type="{ type: 'button', buttonClass: 'download-button' }"
-          @onclick="onLinkClick(localePath('/'))"
-        >
+          @onclick="onLinkClick(localePath('/'))">
           {{ $i18n.t('error.back_button') }}
         </UiButton>
       </div>
@@ -84,13 +80,13 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
-    googleSiteVerification, 
+    googleSiteVerification,
   }),
 });
 
 const onLinkClick = (event_url: string | undefined) => {
   clearError({
-    redirect: event_url, 
+    redirect: event_url,
   });
   trackInternalClickEvent({
     pageTitle: window.document.title,

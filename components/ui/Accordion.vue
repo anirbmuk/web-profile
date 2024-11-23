@@ -3,8 +3,7 @@
     <div
       class="cursor-pointer pb-0.5 md:pb-1"
       role="button"
-      @click="accordionState = !accordionState"
-    >
+      @click="accordionState = !accordionState">
       <div class="flex items-center justify-between">
         <div class="py-2">
           <slot name="heading" />
@@ -13,18 +12,18 @@
           :class="{ 'rotate-180': accordionState }"
           class="-mt-0.5 duration-300 ease-in-out"
           :title="accordionState ? $i18n.t('components.UiAccordion.collapse'): $i18n.t('components.UiAccordion.expand')"
-          role="button"
-        >
+          role="button">
           <UiIcon
             :icon="'collapse'"
-            :size="6"
-          />
+            :size="6" />
         </div>
       </div>
     </div>
-    <div :class="{ open: accordionState, close: !accordionState }">
-      <slot name="content" />
-    </div>
+    <UtilFadeInTransition>
+      <template v-if="accordionState">
+        <slot name="content" />
+      </template>
+    </UtilFadeInTransition>
   </div>
 </template>
 
@@ -46,7 +45,7 @@ defineOptions({
 </script>
 
 <style scoped>
-@keyframes fade-in {
+/* @keyframes fade-in {
   0% {
     opacity: 0;
   }
@@ -71,5 +70,5 @@ defineOptions({
 
 .close {
   display: none;
-}
+} */
 </style>

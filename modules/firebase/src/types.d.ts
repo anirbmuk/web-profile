@@ -1,6 +1,7 @@
 import { type FirebaseApp } from 'firebase/app';
 import type {
-  OrderByDirection, WhereFilterOp, 
+  OrderByDirection,
+  WhereFilterOp,
 } from 'firebase/firestore';
 
 export type FirebaseConfig = {
