@@ -6,7 +6,7 @@ import type {
 import { fetchCollection } from './firebase.core';
 
 export class FirebaseController {
-  private static instance: any | undefined;
+  private static instance: FirebaseController | undefined;
   private app: FirebaseApp | undefined;
 
   private constructor(cfg: FirebaseConfig) {
@@ -17,7 +17,7 @@ export class FirebaseController {
     if (!FirebaseController.instance) {
       FirebaseController.instance = new FirebaseController(cfg);
     }
-    return FirebaseController.instance as FirebaseController;
+    return FirebaseController.instance;
   }
 
   async fetch<T>(path: string, limit?: number | undefined) {
