@@ -6332,6 +6332,14 @@ nuxt-gtag@^3.0.1:
     pathe "^1.1.2"
     ufo "^1.5.4"
 
+nuxt-jsonld@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/nuxt-jsonld/-/nuxt-jsonld-2.1.0.tgz#306e23311ae4ff902f99fd4b5594168e9f129f8b"
+  integrity sha512-DN737T3t/xzI+NP0Fwyet3Bm94fn7m9TIQMIgBcBzLxg/eszQSgxXVXzumcuCiX5VA4mVoBHyGjgbIwMzS1H2w==
+  dependencies:
+    pathe "^1.1.2"
+    schema-dts "^1.1.2"
+
 nuxt-svgo@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/nuxt-svgo/-/nuxt-svgo-4.0.8.tgz#7a8f061bb77fc1e39012a981d818572f7ab2bfe5"
@@ -7417,6 +7425,11 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
+
+schema-dts@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.1.2.tgz#82ccf71b5dcb80065a1cc5941888507a4ce1e44b"
+  integrity sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==
 
 scule@^1.0.0, scule@^1.1.0:
   version "1.1.1"

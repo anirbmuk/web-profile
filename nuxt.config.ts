@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     'nuxt-svgo',
     'nuxt-gtag',
+    'nuxt-jsonld',
     '@nuxtjs/i18n',
     '~/modules/sitemap/src',
     '~/modules/firebase/src',

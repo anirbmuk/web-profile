@@ -1,5 +1,9 @@
 import locales from '~/config/locales';
 import type { AlternateHreflang } from '~/types/seo';
+import {
+  type ListItem,
+  type WithContext,
+} from 'schema-dts';
 
 export const useSeo = () => {
   const { fullPath } = useRoute();
@@ -42,8 +46,40 @@ export const useSeo = () => {
     return alternateHreflangs;
   };
 
+  const generateListSchema = ({
+    position,
+    name,
+    url,
+    additional,
+  }: {
+    position: number,
+    name: string,
+    url?: string,
+    additional?: string[],
+  }): WithContext<ListItem> => {
+    return {
+      '@type': 'ListItem',
+      '@context': 'https://schema.org',
+      ...(position && {
+        position,
+      }),
+      item: {
+        '@type': 'Article',
+        ...(url && {
+          url,
+        }),
+        name,
+        ...(additional && {
+          additional,
+        }),
+        author: 'Anirban Mukherjee (anirbmuk)',
+      },
+    };
+  };
+
   return {
     getCanonical,
     generateAlternateLinks,
+    generateListSchema,
   };
 };

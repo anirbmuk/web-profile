@@ -66,8 +66,9 @@ const {
   trackExternalClickEvent,
   trackImpressionItemEvent,
 } = useTracking();
+const { generateListSchema } = useSeo();
 
-defineProps({
+const props = defineProps({
   block: {
     type: Array as PropType<GithubBlock[]>,
     required: true,
@@ -111,6 +112,21 @@ const tracker = (event_section: ImpressionEventParams['event_section'], item: st
     event_section,
     item,
   });
+
+useJsonld(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  numberOfItems: props.block.length,
+  itemListElement: props.block.map(({
+    value,
+    technologies,
+  }, position) => generateListSchema({
+    name: transformRepo(String(value)) || '',
+    position: position + 1,
+    url: String(value),
+    additional: technologies,
+  })),
+}));
 
 defineOptions({
   name: 'GithubComponent',
