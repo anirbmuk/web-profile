@@ -66,7 +66,7 @@ useHead({
   title,
 });
 useSeoMeta({
-  robots: 'noindex,nofollow',
+  robots: 'noindex,follow',
   description: `${title} - ${props.error?.message || ''}`,
   ogImage: '/seo.webp',
   colorScheme: 'dark light',
@@ -90,10 +90,10 @@ const onLinkClick = (event_url: string | undefined) => {
   });
   trackInternalClickEvent({
     pageTitle: window.document.title,
-    pageType: 'footer',
+    pageType: 'error',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
-    event_section: 'footer_section',
+    event_section: 'error_page',
     event_url,
   });
 };
