@@ -46,6 +46,7 @@ useHead({
     return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
   },
 });
+
 useSeoMeta({
   robots: 'index,follow',
   description: $i18n.t('global.description'),
@@ -65,6 +66,7 @@ useSeoMeta({
     googleSiteVerification,
   }),
 });
+
 defineOptions({
   name: 'DefaultLayout',
 });
