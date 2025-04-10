@@ -27,7 +27,7 @@
     "setenv:gae": "gcloud config set project anirbmuk",
     "deploy:gae": "gcloud app deploy --quiet",
     "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "**/*.{js,ts,vue}": "eslint"
@@ -42,8 +42,8 @@
     "@types/node": "^22.13.1",
     "eslint": "^9.24.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "nuxt": "^3.16.2",
     "nuxt-gtag": "^3.0.2",
     "nuxt-jsonld": "^2.1.0",
