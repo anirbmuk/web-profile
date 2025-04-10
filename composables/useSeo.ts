@@ -1,8 +1,8 @@
 import locales from '~/config/locales';
 import type { AlternateHreflang } from '~/types/seo';
-import {
-  type ListItem,
-  type WithContext,
+import type {
+  ListItem,
+  WithContext,
 } from 'schema-dts';
 
 export const useSeo = () => {

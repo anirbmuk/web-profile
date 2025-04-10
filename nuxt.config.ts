@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '~/modules/sitemap/src',
     '~/modules/firebase/src',
+    '@nuxt/eslint',
   ],
 
   googleFonts: {
@@ -58,7 +59,7 @@ export default defineNuxtConfig({
       {
         userAgent: '*',
         disallow: ['/api/*', '/_nuxt/*'],
-      }
+      },
     ],
     sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
   },
@@ -87,6 +88,9 @@ export default defineNuxtConfig({
     vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   sitemap: {
@@ -113,6 +117,6 @@ export default defineNuxtConfig({
       key: 'localhost.pem',
       cert: 'localhost.crt',
     },
-  }
+  },
 
 });

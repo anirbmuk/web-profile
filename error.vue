@@ -46,7 +46,7 @@ const props = defineProps({
       statusMessage: string;
       message: string;
       description: string;
-      data: any;
+      data: unknown;
     }>,
     default: null,
   },

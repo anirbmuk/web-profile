@@ -1,4 +1,4 @@
-import { type FirebaseApp } from 'firebase/app';
+import type { FirebaseApp } from 'firebase/app';
 import type {
   OrderByDirection,
   WhereFilterOp,
@@ -20,6 +20,7 @@ export type ModuleOptions = FirebaseConfig & {
   apiPaths: string[];
 };
 
+// eslint-disable-next-line sonarjs/redundant-type-aliases
 export type FirebaseApp = FirebaseApp;
 
 export type FirestoreWhere = {

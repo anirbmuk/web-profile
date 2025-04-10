@@ -11,7 +11,9 @@
 </template>
 
 <script setup lang="ts">
-defineEmits(['scrollToTop']);
+defineEmits<{
+  scrollToTop: [],
+}>();
 
 defineOptions({
   name: 'BackToTopComponent',

@@ -94,7 +94,9 @@ const props = defineProps({
   },
 });
 
-defineEmits<{(e: 'iconClick', href: string | undefined): void;}>();
+defineEmits<{
+  iconClick: [href: string | undefined]
+}>();
 
 const iconName = computed(() => props.icon.charAt(0).toUpperCase() + props.icon.slice(1));
 
