@@ -107,4 +107,12 @@ export default defineNuxtConfig({
       swr: true,
     },
   },
+
+  devServer: {
+    https: {
+      key: 'localhost.pem',
+      cert: 'localhost.crt',
+    },
+  }
+
 });
