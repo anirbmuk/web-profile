@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import {
-  Firestore,
-  QueryFieldFilterConstraint,
-  QueryOrderByConstraint,
+  type Firestore,
+  type QueryFieldFilterConstraint,
+  type QueryOrderByConstraint,
   collection,
   endAt,
   getDocs,
@@ -21,6 +21,7 @@ import type {
   FirestoreWhere,
 } from './../types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let offlineData: any | undefined;
 
 export function initFirebaseApp(firebaseConfig: FirebaseConfig) {
@@ -32,12 +33,8 @@ export async function fetchOfflineCollection<T>(path: string) {
     offlineData = (await import('./../offline')).default;
   }
   const [collection, locale] = path.split('_');
-  return new Promise<T[]>((resolve) => {
-    resolve(
-      ((locale ? offlineData?.[collection]?.[locale] : offlineData?.[collection]) ||
-        []) as T[],
-    );
-  });
+  return Promise.resolve(((locale ? offlineData?.[collection]?.[locale] : offlineData?.[collection]) ||
+  []) as T[]);
 }
 
 export async function fetchCollection<T>(
@@ -100,7 +97,7 @@ function _getCollectionDataFromFireStore(
       collectionRootQuery = query(collectionRootQuery, ...clauses);
     }
     if (!!limitValue && limitValue !== 0) {
-      collectionRootQuery = collectionRootQuery = query(
+      collectionRootQuery = query(
         collectionRootQuery,
         limit(limitValue),
       );

@@ -19,7 +19,9 @@ defineProps({
     default: undefined,
   },
 });
-defineEmits<{(e: 'linkClick', href: string | undefined): void;}>();
+defineEmits<{
+  linkClick: [href: string | undefined]
+}>();
 defineOptions({
   name: 'LinkOrTextComponent',
 });

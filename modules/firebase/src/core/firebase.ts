@@ -6,6 +6,7 @@ import type {
 import { fetchCollection } from './firebase.core';
 
 export class FirebaseController {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static instance: any | undefined;
   private app: FirebaseApp | undefined;
 

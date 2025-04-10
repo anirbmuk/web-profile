@@ -11,7 +11,7 @@ declare module '@nuxt/schema' {
     ['sitemap']?: Partial<ModuleOptions>;
   }
   interface NuxtOptions {
-    ['sitemap']?: ModuleOptions;
+    ['sitemap']: ModuleOptions;
   }
   interface RuntimeConfig {
     ['sitemap']: ModuleOptions;

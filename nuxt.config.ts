@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '~/modules/sitemap/src',
     '~/modules/firebase/src',
+    '@nuxt/eslint',
   ],
 
   googleFonts: {
@@ -54,20 +55,13 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    rules: [
+    groups: [
       {
-        UserAgent: '*',
-      },
-      {
-        Disallow: '/api/*',
-      },
-      {
-        Disallow: '/_nuxt/*',
-      },
-      {
-        Sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
+        userAgent: '*',
+        disallow: ['/api/*', '/_nuxt/*'],
       },
     ],
+    sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
   },
 
   svgo: {
@@ -89,11 +83,14 @@ export default defineNuxtConfig({
   i18n: {
     strategy: 'prefix',
     detectBrowserLanguage: false,
-    langDir: 'assets/i18n',
+    langDir: './../assets/i18n',
     lazy: true,
-    vueI18n: 'vue-i18n.config.ts',
+    vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   sitemap: {
@@ -114,4 +111,12 @@ export default defineNuxtConfig({
       swr: true,
     },
   },
+
+  devServer: {
+    https: {
+      key: 'localhost.pem',
+      cert: 'localhost.crt',
+    },
+  },
+
 });

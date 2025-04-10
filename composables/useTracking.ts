@@ -20,21 +20,17 @@ export const useTracking = () => {
     return `${dd}/${mm}/${yyyy} ${hh}:${mi}:${ss}`;
   };
 
-  const track = async <T extends BaseEventParams>({ event }: BaseEvent, metadata: T) => {
-    await new Promise((resolve) => {
-      resolve(
-        gtag('event', event, {
-          event,
-          ...metadata,
-          clientTimestamp: getClientTimestamp(),
-          locale: metadata.locale || window.navigator.language,
-          agent: window.navigator.userAgent,
-          vendor: window.navigator.vendor,
-          platform: window.navigator.platform,
-        }),
-      );
-    });
-  };
+  const track = async <T extends BaseEventParams>({ event }: BaseEvent, metadata: T) => Promise.resolve(
+    gtag('event', event, {
+      event,
+      ...metadata,
+      clientTimestamp: getClientTimestamp(),
+      locale: metadata.locale || window.navigator.language,
+      agent: window.navigator.userAgent,
+      vendor: window.navigator.vendor,
+      platform: window.navigator.platform,
+    }),
+  );
 
   const trackPageViewEvent = <T extends BaseEventParams>(metadata: T) =>
     track({

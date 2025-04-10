@@ -81,7 +81,6 @@ const transformRepo = (value: string | undefined) => {
   }
   const urlParts = value.split('/');
   const repo = urlParts?.pop();
-  // const author = urlParts?.pop();
   return `${repo}`;
 };
 
