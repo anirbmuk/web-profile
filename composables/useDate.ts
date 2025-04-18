@@ -25,7 +25,7 @@ export const useDate = () => {
     return `${mm}/${yyyy}` satisfies Timeline['end'];
   };
 
-  const sortFn = (start: string, end = getCurrentTimeline()) => {
+  const sortFn = (start: Timeline['start'], end: Timeline['end'] = getCurrentTimeline()) => {
     const [endMonth, endYear] = end.split('/', 2);
     const [startMonth, startYear] = start.split('/', 2);
     return +endYear - +startYear || +endMonth - +startMonth;
@@ -36,7 +36,7 @@ export const useDate = () => {
     return new Date([mm, '01', yyyy].join('/'));
   };
 
-  const getDurationText = (start: string, end: string | undefined) => {
+  const getDurationText = (start: Timeline['start'], end: Timeline['end'] = getCurrentTimeline()) => {
     if (!end) {
       return '';
     }
@@ -47,7 +47,7 @@ export const useDate = () => {
     const totalNumberOfMonths =
       endDate.getMonth() -
       startDate.getMonth() +
-      12 * (endDate.getFullYear() - startDate.getFullYear());
+      12 * (endDate.getFullYear() - startDate.getFullYear()) + 1;
 
     const numberOfYears = Math.floor(totalNumberOfMonths / 12);
     const numberOfMonths = totalNumberOfMonths - numberOfYears * 12;

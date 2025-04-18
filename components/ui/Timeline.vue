@@ -12,13 +12,16 @@
               {{ getQualifiedDate(timeline.start) }} -
               {{ getQualifiedDate(timeline.end) || $i18n.t('components.UiTimeline.present') }}
             </div>
+            <div class="!-mt-0.5 text-sm text-gray-600">
+              {{ getDurationText(timeline.start, timeline.end) }}
+            </div>
             <div
               translate="no"
-              class="grid gap-0.5 text-sm font-semibold !leading-tight text-black-dark md:gap-1 md:text-md">
-              <div>
+              class="grid gap-0.5 font-semibold text-black-dark">
+              <div class="!leading-4 max-md:text-md">
                 {{ timeline.designation }}
               </div>
-              <div>
+              <div class="text-sm md:text-md">
                 {{ timeline.provider }}
               </div>
             </div>
@@ -51,13 +54,16 @@
             <div class="text-sm font-semibold text-gray-700">
               {{ getQualifiedDate(timeline.start) }} - {{ getQualifiedDate(timeline.end) }}
             </div>
+            <div class="!-mt-0.5 text-sm text-gray-600">
+              {{ getDurationText(timeline.start, timeline.end) }}
+            </div>
             <div
               translate="no"
-              class="grid gap-0.5 text-sm font-semibold !leading-tight text-black-dark md:gap-1 md:text-md">
-              <div>
+              class="grid gap-0.5 font-semibold text-black-dark">
+              <div class="!leading-4 max-md:text-md">
                 {{ timeline.designation }}
               </div>
-              <div>
+              <div class="text-sm md:text-md">
                 {{ timeline.provider }}
               </div>
             </div>
@@ -101,6 +107,7 @@ const {
   getCurrentTimeline,
   sortFn,
   getQualifiedDate,
+  getDurationText,
 } = useDate();
 
 const getHeight = (start: Timeline['start'], end = getCurrentTimeline()) => {
