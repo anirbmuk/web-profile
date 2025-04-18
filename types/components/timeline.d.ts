@@ -1,8 +1,8 @@
 import type { BaseDocument } from '../base';
 
 export type Timeline = BaseDocument & {
-  start: string;
-  end?: string | undefined;
+  start: `${string}/${string}`;
+  end?: `${string}/${string}`;
   provider?: string | undefined;
   location?: string | undefined;
   description?: string | undefined;

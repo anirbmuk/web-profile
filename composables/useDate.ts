@@ -1,11 +1,28 @@
+import type { Timeline } from '~/types/components/timeline';
+
+const MONTH_KEYS = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+];
+
 export const useDate = () => {
   const { $i18n } = useNuxtApp();
 
   const getCurrentTimeline = () => {
     const date = new Date();
     const mm = `${date.getMonth() + 1}`.padStart(2, '0');
-    const yyyy = date.getFullYear();
-    return `${mm}/${yyyy}`;
+    const yyyy = String(date.getFullYear());
+    return `${mm}/${yyyy}` satisfies Timeline['end'];
   };
 
   const sortFn = (start: string, end = getCurrentTimeline()) => {
@@ -48,9 +65,23 @@ export const useDate = () => {
     return [yearText, monthText].filter(Boolean).join(' ');
   };
 
+  const getQualifiedDate = (date: Timeline['start'] | Timeline['end'], format: 'long' | 'short' = 'short') => {
+    if (!date) {
+      return '';
+    }
+    const [mm, yyyy] = date.split('/');
+    const mmNum = Number(mm);
+    if (isNaN(mmNum)) {
+      return '';
+    }
+    const translationKey = `main.career.timeline.months.${format}.${MONTH_KEYS[mmNum - 1]}`;
+    return `${$i18n.t(translationKey)} ${String(yyyy)}`;
+  };
+
   return {
     sortFn,
     getCurrentTimeline,
     getDurationText,
+    getQualifiedDate,
   };
 };

@@ -9,11 +9,18 @@
         <template v-if="timeline.alignment === 'left'">
           <div class="relative -right-1/6 block space-y-1 md:-right-1/5">
             <div class="text-sm font-semibold text-gray-700">
-              {{ timeline.start }} -
-              {{ timeline.end || $i18n.t('components.UiTimeline.present') }}
+              {{ getQualifiedDate(timeline.start) }} -
+              {{ getQualifiedDate(timeline.end) || $i18n.t('components.UiTimeline.present') }}
             </div>
-            <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
-              <span translate="no">{{ timeline.designation }}, {{ timeline.provider }}</span>
+            <div
+              translate="no"
+              class="grid gap-0.5 text-sm font-semibold !leading-tight text-black-dark md:gap-1 md:text-md">
+              <div>
+                {{ timeline.designation }}
+              </div>
+              <div>
+                {{ timeline.provider }}
+              </div>
             </div>
             <div class="text-sm text-gray-600">
               {{ timeline.location }}
@@ -42,10 +49,17 @@
         <template v-if="timeline.alignment === 'right'">
           <div class="relative -left-1/6 block space-y-1 md:-left-1/5">
             <div class="text-sm font-semibold text-gray-700">
-              {{ timeline.start }} - {{ timeline.end }}
+              {{ getQualifiedDate(timeline.start) }} - {{ getQualifiedDate(timeline.end) }}
             </div>
-            <div class="text-sm font-semibold !leading-4 text-black-dark md:text">
-              <span translate="no">{{ timeline.designation }}, {{ timeline.provider }}</span>
+            <div
+              translate="no"
+              class="grid gap-0.5 text-sm font-semibold !leading-tight text-black-dark md:gap-1 md:text-md">
+              <div>
+                {{ timeline.designation }}
+              </div>
+              <div>
+                {{ timeline.provider }}
+              </div>
             </div>
             <div class="text-sm text-gray-600">
               {{ timeline.location }}
@@ -72,6 +86,7 @@ const heights: Record<number, string> = {
   4: 'h-48 md:h-56',
   5: 'h-56 md:h-64',
   6: 'h-64 md:h-72',
+  7: 'h-72 md:h-80',
 };
 
 const props = defineProps({
@@ -85,12 +100,13 @@ const { $i18n } = useNuxtApp();
 const {
   getCurrentTimeline,
   sortFn,
+  getQualifiedDate,
 } = useDate();
 
-const getHeight = (start: string, end = getCurrentTimeline()) => {
+const getHeight = (start: Timeline['start'], end = getCurrentTimeline()) => {
   const [, endYear] = end.split('/', 2);
   const [, startYear] = start.split('/', 2);
-  return heights[+endYear - +startYear || 1] || heights[1];
+  return heights[+endYear - +startYear || 1] || heights[7];
 };
 
 const mappedTimelines = computed(() =>

@@ -19,7 +19,39 @@
       "download_resume": "Lebenslauf herunterladen"
     },
     "career": {
-      "title": "Karriereweg"
+      "title": "Karriereweg",
+      "timeline": {
+        "months": {
+          "long": {
+            "jan": "Januar",
+            "feb": "Februar",
+            "mar": "März",
+            "apr": "April",
+            "may": "Mai",
+            "jun": "Juni",
+            "jul": "Juli",
+            "aug": "August",
+            "sep": "September",
+            "oct": "Oktober",
+            "nov": "November",
+            "dec": "Dezember"
+          },
+          "short": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mär",
+            "apr": "Apr",
+            "may": "Mai",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Okt",
+            "nov": "Nov",
+            "dec": "Dez"
+          }
+        }
+      }
     },
     "techstack": {
       "title": "Technologien"

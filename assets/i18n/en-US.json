@@ -19,7 +19,39 @@
       "download_resume": "Download Resume"
     },
     "career": {
-      "title": "Career Path"
+      "title": "Career Path",
+      "timeline": {
+        "months": {
+          "long": {
+            "jan": "January",
+            "feb": "February",
+            "mar": "March",
+            "apr": "April",
+            "may": "May",
+            "jun": "June",
+            "jul": "July",
+            "aug": "August",
+            "sep": "September",
+            "oct": "October",
+            "nov": "November",
+            "dec": "December"
+          },
+          "short": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "may": "May",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Oct",
+            "nov": "Nov",
+            "dec": "Dec"
+          }
+        }
+      }
     },
     "techstack": {
       "title": "Technologies"
