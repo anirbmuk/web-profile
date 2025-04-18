@@ -31,9 +31,10 @@ export default {
       {
         currentjob: 'SCAYLE GmbH',
         bio: [
-          'More than <strong>16 years</strong> of professional experience in developing enterprise software products.',
-          'Currently working as Senior Frontend Developer at <em>SCAYLE GmbH</em>’s cloud shop solutions team, building and supporting multiple online retail shops across Europe. The present tech-stack includes <em>Angular 12</em>, <em>Vue</em>/<em>Nuxt</em>, <em>Tailwind</em> and <em>Node</em>.',
-          '<strong>6+ years</strong> of experience in building interactive software using Angular, Bootstrap, Material design, Firebase & Firestore and Chart.js.',
+          'Close to <strong>18 years</strong> of professional experience in developing enterprise software products.',
+          'Currently working as Staff Frontend Developer at <em>SCAYLE GmbH</em>’s cloud shop solutions team, leading development of multiple online retail shops across Europe. The present tech-stack includes <em>Nuxt</em>/<em>Vue</em>, <em>Angular 12</em>, <em>Tailwind</em> and <em>Node</em>.',
+          'As a front-end lead and expert, I also work on partner enablement with external agencies and new clients working with our shop front-end solution.',
+          '<strong>8+ years</strong> of experience in building interactive software using <em>Nuxt</em>/<em>Vue</em>, <em>Angular</em>, <em>Tailwind</em>, <em>Redis</em>, <em>Material design</em>, <em>Firebase</em> & <em>Firestore</em>, <em>MongoDB</em> and Chart.js.',
           'Enjoy working on personal projects, learning new technologies, blogging and posting sample POCs to my personal <strong><a rel="nofollow" target="_blank" href="https://github.com/anirbmuk" class="navlink"><span class="gradient-text">GitHub</span></a></strong> account during my free time.',
         ],
         artifact: [
@@ -44,7 +45,7 @@ export default {
           },
         ],
         visibility: 'public',
-        designation: 'Senior Frontend Developer',
+        designation: 'Staff Frontend Developer',
         social: [
           {
             type: 'linkedin',
@@ -93,7 +94,7 @@ export default {
   career: {
     en: [
       {
-        description: 'Member of L2 support team for major US retailer.',
+        description: 'Member of L2 support team, involved in fixing priority issues for a major US retailer. Worked on PL/SQL.',
         visibility: 'public',
         designation: 'Senior Programmer',
         provider: 'Accenture Services',
@@ -147,10 +148,10 @@ export default {
           'Member of a distributed public sector SaaS product development team. Worked on Angular and Oracle JET.',
       },
       {
-        designation: 'Senior Frontend Developer',
+        designation: 'Staff Frontend Developer',
         provider: 'SCAYLE GmbH',
         description:
-          'Senior developer at SCAYLE’s cloud shop team, building and supporting retail shops across Europe. Working on Angular, Vue/Nuxt, Tailwind, Cypress.',
+          'Senior developer at AY\'s cloud shop solutions team, building and supporting multiple client shops across Europe. As a front-end lead and expert, I also work on partner enablement with external agencies and new clients working with our shop front-end solution. Working on Vue/Nuxt, Angular, Redis, Tailwind, Cypress.',
         documentid: 'lwwR6wc1K3o0L7DK05Z6',
         location: 'Hamburg, Germany',
         visibility: 'public',
@@ -162,7 +163,7 @@ export default {
     {
       technology: [
         {
-          rating: 8,
+          rating: 7.5,
           position: 1,
           icon: 'angular',
           name: 'Angular',
@@ -177,7 +178,7 @@ export default {
           name: 'Vue',
           position: 7,
           icon: 'vue',
-          rating: 6.5,
+          rating: 8.5,
         },
         {
           name: 'Tailwindcss',
@@ -195,17 +196,17 @@ export default {
           icon: 'javascript',
           name: 'JavaScript',
           position: 3,
-          rating: 7,
+          rating: 7.5,
         },
         {
           icon: 'nuxtjs',
-          rating: 7.5,
+          rating: 8.5,
           name: 'Nuxt',
           position: 6,
         },
         {
           icon: 'nodejs',
-          rating: 5,
+          rating: 6,
           name: 'Node.js',
           position: 4,
         },
@@ -253,6 +254,12 @@ export default {
           icon: 'mongodb',
           name: 'MongoDB',
           position: 3,
+        },
+        {
+          rating: 5.5,
+          icon: 'redis',
+          name: 'Redis',
+          position: 4,
         },
       ],
       documentid: 'ZxRl6ypyrBaio9aTjWHC',
@@ -342,7 +349,7 @@ export default {
       {
         documentid: 'IRIlOVsFiHON7862OdZE',
         description:
-          'I am a <em><strong>Senior Frontend Developer</strong></em> at <strong><a rel="nofollow" href="https://www.scayle.com/" target="_blank" class="navlink"><span class="gradient-text">SCAYLE GmbH</span></a></strong> and I am a member of their cloud shop development team. My career spans more than <em><strong>16 years</strong></em>, with almost 8 years of <em>Oracle</em> fusion stack experience.',
+          'I am a <em><strong>Staff Frontend Developer</strong></em> at <strong><a rel="nofollow" href="https://www.scayle.com/" target="_blank" class="navlink"><span class="gradient-text">SCAYLE GmbH</span></a></strong>. I lead the development of multiple online retail shops across Europe and US. My IT career spans close to <em><strong>18 years</strong></em>, with almost 8 years of <em>Oracle</em> fusion stack experience and more than 8 years of front-end development experience.',
         type: 'text',
         visibility: 'public',
         value: 'paragraph',
