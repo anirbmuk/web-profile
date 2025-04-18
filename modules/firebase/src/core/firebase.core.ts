@@ -1,4 +1,7 @@
-import { initializeApp } from 'firebase/app';
+import {
+  type FirebaseApp,
+  initializeApp,
+} from 'firebase/app';
 import {
   type Firestore,
   type QueryFieldFilterConstraint,
@@ -14,7 +17,6 @@ import {
   where,
 } from 'firebase/firestore';
 import type {
-  FirebaseApp,
   FirebaseConfig,
   FirestoreOrderBy,
   FirestoreQuery,
