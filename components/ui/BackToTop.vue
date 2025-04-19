@@ -1,11 +1,15 @@
 <template>
   <button
     type="button"
+    class="fixed bottom-16 right-4 z-10 cursor-pointer rounded-full bg-black p-2.5 hover:opacity-100 md:opacity-70 dark:border-2 dark:border-white"
     @click="$emit('scrollToTop')">
     <div
       class="flex items-center text-3xl text-white"
       translate="no">
-      &#8593;
+      <LazyUiIcon
+        icon="UpArrow"
+        loading="lazy"
+        :size="6" />
     </div>
   </button>
 </template>
@@ -19,15 +23,3 @@ defineOptions({
   name: 'BackToTopComponent',
 });
 </script>
-
-<style scoped>
-button {
-  @apply fixed bottom-16 right-4 z-10 cursor-pointer rounded-full bg-black-light px-4 pb-2 pt-1 opacity-70 hover:bg-black;
-}
-
-@media (hover: hover) {
-  button:hover {
-    @apply md:opacity-100;
-  }
-}
-</style>
