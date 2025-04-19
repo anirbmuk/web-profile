@@ -17,6 +17,7 @@
                 <LazyUiIcon
                   v-if="tech.icon"
                   :icon="tech.icon"
+                  loading="lazy"
                   :size="8" />
                 <div
                   class="text-md md:text"
@@ -40,6 +41,7 @@
                 <LazyUiIcon
                   v-if="db.icon"
                   :icon="db.icon"
+                  loading="lazy"
                   :size="8" />
                 <div class="text-md md:text">
                   {{ db.name }}

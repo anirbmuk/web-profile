@@ -25,7 +25,8 @@
                     <div class="flex items-center space-x-2">
                       <LazyUiIcon
                         :icon="'github'"
-                        :size="7" />
+                        :size="7"
+                        loading="lazy"/>
                       <div
                         class="-mt-1 text md:text-2xl"
                         translate="no">
