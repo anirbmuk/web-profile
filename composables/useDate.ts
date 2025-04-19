@@ -1,4 +1,4 @@
-import type { Timeline } from '~/types/components/timeline';
+import type { TimelinePeriod } from '~/types/components/timeline';
 
 const MONTH_KEYS = [
   'jan',
@@ -18,28 +18,25 @@ const MONTH_KEYS = [
 export const useDate = () => {
   const { $i18n } = useNuxtApp();
 
-  const getCurrentTimeline = () => {
+  const getCurrentTimeline = (): TimelinePeriod => {
     const date = new Date();
     const mm = `${date.getMonth() + 1}`.padStart(2, '0');
     const yyyy = String(date.getFullYear());
-    return `${mm}/${yyyy}` satisfies Timeline['end'];
+    return `${mm}/${yyyy}`;
   };
 
-  const sortFn = (start: Timeline['start'], end: Timeline['end'] = getCurrentTimeline()) => {
+  const sortFn = (start: TimelinePeriod, end: TimelinePeriod = getCurrentTimeline()) => {
     const [endMonth, endYear] = end.split('/', 2);
     const [startMonth, startYear] = start.split('/', 2);
     return +endYear - +startYear || +endMonth - +startMonth;
   };
 
-  const getDateFromString = (str: string) => {
+  const getDateFromString = (str: TimelinePeriod) => {
     const [mm, yyyy] = str.split('/');
     return new Date([mm, '01', yyyy].join('/'));
   };
 
-  const getDurationText = (start: Timeline['start'], end: Timeline['end'] = getCurrentTimeline()) => {
-    if (!end) {
-      return '';
-    }
+  const getDurationText = (start: TimelinePeriod, end: TimelinePeriod | undefined = getCurrentTimeline()) => {
 
     const startDate = getDateFromString(start);
     const endDate = getDateFromString(end);
@@ -65,7 +62,7 @@ export const useDate = () => {
     return [yearText, monthText].filter(Boolean).join(' ');
   };
 
-  const getQualifiedDate = (date: Timeline['start'] | Timeline['end'], format: 'long' | 'short' = 'short') => {
+  const getQualifiedDate = (date: TimelinePeriod | undefined, format: 'long' | 'short' = 'short') => {
     if (!date) {
       return '';
     }
