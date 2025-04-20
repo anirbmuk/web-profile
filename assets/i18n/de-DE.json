@@ -2,10 +2,11 @@
   "global": {
     "title": "Anirban Mukherjee (anirbmuk)",
     "description": "Ich bin Anirban Mukherjee, Leitender Frontend-Entwickler bei SCAYLE, derzeit in Hamburg, Deutschland.",
+    "keywords": "anirban,mukherjee,anirbmuk,teamleiter,leitender,staff,frontend,developer,lebenslauf,scayle,hamburg,deutschland",
     "accessibility": {
       "ariaLabel": {
         "backToTopButton": "Klicken Sie hier, um zum Anfang der Seite zu scrollen",
-        "profileImage": "Hauptprofilbild"
+        "profileImage": "Haupt Profilbild"
       }
     }
   },

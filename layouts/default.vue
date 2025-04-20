@@ -59,7 +59,7 @@ useSeoMeta({
   ogType: 'website',
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  keywords: $i18n.t('global.keywords'),
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
