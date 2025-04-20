@@ -7,11 +7,12 @@
         </h3>
       </template>
       <template #content>
-        <div class="github-container snaps-inline">
+        <div class="grid snap-x snap-mandatory gap-2 max-md:auto-cols-[87.5%] max-md:grid-flow-col max-md:overflow-y-hidden max-md:overscroll-contain md:snap-none md:grid-cols-2 md:gap-3 2xl:grid-cols-3 3xl:grid-cols-4">
           <template
             v-for="(repo, index) in block"
-            :key="index">
+            :key="`github_${index + 1}`">
             <UtilIntersect
+              class="max-md:snap-start"
               @tracked="
                 tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
               ">
@@ -20,7 +21,7 @@
                 @link-click="onLinkClick(repo?.value?.toString())">
                 <div
                   v-if="repo?.value"
-                  class="preview-container">
+                  class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
                       <LazyUiIcon
@@ -132,48 +133,3 @@ defineOptions({
   name: 'GithubComponent',
 });
 </script>
-
-<style scoped>
-@media screen and (min-width: 768px) {
-  .github-container {
-    @apply grid gap-3 md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .github-container {
-    @apply grid grid-flow-col gap-2 overflow-y-hidden overscroll-contain;
-    grid-auto-columns: 87.5%;
-  }
-}
-
-.preview-container {
-  @apply mb-2.5 flex h-[8rem] items-center rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5 lg:h-[9rem];
-}
-
-@media screen and (min-width: 768px) and (hover: hover) {
-  .preview-container:hover {
-    @apply scale-105 bg-gray-50 ease-in;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .preview-container {
-    @apply bg-transparent;
-  }
-
-  @media screen and (min-width: 768px) and (hover: hover) {
-    .preview-container:hover {
-      @apply scale-105 bg-transparent ease-in;
-    }
-  }
-}
-
-.snaps-inline {
-  scroll-snap-type: inline mandatory;
-}
-
-.snaps-inline>* {
-  scroll-snap-align: start;
-}
-</style>
