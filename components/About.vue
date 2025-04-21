@@ -71,7 +71,7 @@ const onLinkClick = (event: Event) => {
 onMounted(() =>
   trackPageViewEvent({
     pageTitle: window.document.title,
-    pageType: 'home',
+    pageType: 'about',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
   }),
