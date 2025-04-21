@@ -79,6 +79,7 @@ export default defineNuxtConfig({
   gtm: {
     id: '', // Override by setting NUXT_PUBLIC_GTM_ID
     debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
+    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED
   },
 
   i18n: {
