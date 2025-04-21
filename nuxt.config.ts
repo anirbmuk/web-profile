@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts',
     'nuxt-svgo',
-    'nuxt-gtag',
+    '@zadigetvoltaire/nuxt-gtm',
     'nuxt-jsonld',
     '@nuxtjs/i18n',
     '~/modules/sitemap/src',
@@ -76,8 +76,9 @@ export default defineNuxtConfig({
     apiPaths, // Override by setting NUXT_FIREBASE_API_PATHS
   },
 
-  gtag: {
-    id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
+  gtm: {
+    id: '', // Override by setting NUXT_PUBLIC_GTM_ID
+    debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
   },
 
   i18n: {
