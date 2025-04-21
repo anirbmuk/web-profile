@@ -102,15 +102,3 @@ defineOptions({
   name: 'ProfileComponent',
 });
 </script>
-
-<style scoped>
-.download-button {
-  @apply min-w-xs cursor-pointer rounded border border-gray-200 bg-gray-100 px-2 py-2 text-center text-md tracking-tight text-black-dark shadow-lg duration-200 ease-in md:min-w-base md:text md:hover:border-gray-300 md:hover:bg-gray-200;
-}
-
-@media (prefers-color-scheme: dark) {
-  .download-button {
-    @apply border border-white bg-transparent text-white shadow-none md:hover:border-white md:hover:bg-transparent;
-  }
-}
-</style>
