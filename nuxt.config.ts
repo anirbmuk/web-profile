@@ -55,7 +55,7 @@ export default defineNuxtConfig({
         disallow: ['/api/*', '/_nuxt/*'],
       },
     ],
-    sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
+    sitemap: `${process.env.NUXT_PUBLIC_BASE_URL}/sitemap.xml`,
   },
 
   svgo: {
