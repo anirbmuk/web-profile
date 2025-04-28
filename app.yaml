@@ -2,6 +2,9 @@ runtime: nodejs22
 
 default_expiration: '2d'
 
+automatic_scaling:
+  max_instances: 10
+
 env_variables:
   NUXT_PUBLIC_APP_ENV: $NUXT_PUBLIC_APP_ENV
   DEFAULT_DOMAIN: $DEFAULT_DOMAIN
