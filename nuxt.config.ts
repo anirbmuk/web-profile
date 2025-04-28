@@ -12,15 +12,9 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
-  compatibilityDate: '2024-11-17',
+  compatibilityDate: '2025-04-28',
 
   runtimeConfig: {
-    app: {
-      head: {
-        charset: 'utf-8',
-        viewport: 'width=device-width, initial-scale=1',
-      },
-    },
     public: {
       appEnv: '', // Override by setting NUXT_PUBLIC_APP_ENV
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
@@ -119,6 +113,10 @@ export default defineNuxtConfig({
       key: 'localhost.pem',
       cert: 'localhost.crt',
     },
+  },
+
+  experimental: {
+    renderJsonPayloads: false,
   },
 
 });
