@@ -41,6 +41,11 @@ useHead({
       type: 'image/x-icon',
       href: '/favicon.ico',
     },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/apple-touch-icon.png',
+    },
   ],
   titleTemplate(title) {
     return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
