@@ -68,6 +68,7 @@ useHead({
 useSeoMeta({
   robots: 'noindex,follow',
   description: `${title} - ${props.error?.message || ''}`,
+  ogDescription: `${title} - ${props.error?.message || ''}`,
   ogImage: '/seo.webp',
   colorScheme: 'dark light',
   ogLocale: $i18n.locale.value,
@@ -76,7 +77,7 @@ useSeoMeta({
   ogType: 'website',
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  keywords: $i18n.t('global.keywords'),
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
