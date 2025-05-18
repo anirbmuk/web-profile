@@ -6,7 +6,8 @@
     "accessibility": {
       "ariaLabel": {
         "backToTopButton": "Click to scroll to the top of the page",
-        "profileImage": "Main profile image"
+        "profileImage": "Main profile image",
+        "loadingProgressBar": "Progress bar for loading the page"
       }
     }
   },

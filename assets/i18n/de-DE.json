@@ -6,7 +6,8 @@
     "accessibility": {
       "ariaLabel": {
         "backToTopButton": "Klicken Sie hier, um zum Anfang der Seite zu scrollen",
-        "profileImage": "Haupt Profilbild"
+        "profileImage": "Haupt Profilbild",
+        "loadingProgressBar": "Fortschrittsanzeige für das Laden der Seite"
       }
     }
   },
