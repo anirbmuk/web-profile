@@ -69,7 +69,7 @@ export const useSeo = () => {
         position,
       }),
       item: {
-        '@type': 'SoftwareSourceCode',
+        '@type': 'Article',
         ...(url && {
           url,
         }),
