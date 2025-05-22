@@ -6,6 +6,7 @@ import type {
 } from 'schema-dts';
 
 export const useSeo = () => {
+  const { $i18n } = useNuxtApp();
   const { fullPath } = useRoute();
   const { public: { baseUrl } } = useRuntimeConfig();
 
@@ -49,11 +50,15 @@ export const useSeo = () => {
   const generateListSchema = ({
     position,
     name,
+    description,
+    image,
     url,
     additional,
   }: {
     position: number,
     name: string,
+    description: string,
+    image?: string,
     url?: string,
     additional?: string[],
   }): WithContext<ListItem> => {
@@ -64,15 +69,23 @@ export const useSeo = () => {
         position,
       }),
       item: {
-        '@type': 'Article',
+        '@type': 'SoftwareSourceCode',
         ...(url && {
           url,
         }),
         name,
-        ...(additional && {
-          additional,
+        headline: description,
+        ...(image && {
+          image,
         }),
-        author: 'Anirban Mukherjee (anirbmuk)',
+        ...(additional && {
+          programmingLanguage: additional.join(', '),
+        }),
+        author: {
+          name: 'Anirban Mukherjee (anirbmuk)',
+          '@type': 'Person',
+          url: `${baseUrl}/${$i18n.locale.value}`,
+        },
       },
     };
   };

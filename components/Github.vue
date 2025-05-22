@@ -120,9 +120,13 @@ useJsonld(() => ({
   numberOfItems: props.block.length,
   itemListElement: props.block.map(({
     value,
+    description,
+    image,
     technologies,
   }, position) => generateListSchema({
     name: transformRepo(String(value)) || '',
+    description,
+    image,
     position: position + 1,
     url: String(value),
     additional: technologies,
