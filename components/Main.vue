@@ -1,39 +1,25 @@
 <template>
   <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
-    <UtilIntersect @tracked="tracker('profile_image_section')">
-      <div
-        role="img"
-        class="profile-image"
-        :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
-    </UtilIntersect>
+    <div
+      role="img"
+      class="profile-image"
+      :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
   </section>
   <div class="mx-auto space-y-16 xl:max-w-3/4 2xl:max-w-4/5">
     <template v-if="profile">
-      <UtilIntersect @tracked="tracker('profile_section')">
-        <Profile :profile="profile" />
-      </UtilIntersect>
+      <Profile :profile="profile" />
     </template>
     <template v-if="data?.career?.length">
-      <UtilIntersect
-        :threshold="[0.7]"
-        @tracked="tracker('career_section')">
-        <LazyCareer :block="data.career" />
-      </UtilIntersect>
+      <LazyCareer :block="data.career" />
     </template>
     <template v-if="data?.techstack">
-      <UtilIntersect @tracked="tracker('techstack_section')">
-        <LazyTechstack :block="data.techstack" />
-      </UtilIntersect>
+      <LazyTechstack :block="data.techstack" />
     </template>
     <template v-if="data?.github?.length">
-      <UtilIntersect @tracked="tracker('github_section')">
-        <LazyGithub :block="data.github" />
-      </UtilIntersect>
+      <LazyGithub :block="data.github" />
     </template>
     <template v-if="data?.education?.length">
-      <UtilIntersect @tracked="tracker('education_section')">
-        <LazyEducation :block="data.education" />
-      </UtilIntersect>
+      <LazyEducation :block="data.education" />
     </template>
   </div>
 </template>
@@ -45,15 +31,10 @@ import type { TechstackBlock } from '~/types/components/techstack';
 import type { GithubBlock } from '~/types/features/github';
 import type { EducationBlock } from '~/types/features/education';
 
-import type { ImpressionEventParams } from '~/types/tracking';
-
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
-const {
-  trackPageViewEvent,
-  trackImpressionCollectionEvent,
-} = useTracking();
+const { trackPageViewEvent } = useTracking();
 
 const loadData = async () => {
   loadingState.value = true;
@@ -91,15 +72,6 @@ const { data } = useLazyAsyncData('others', async () => {
     return nuxt.payload.data[key];
   },
 });
-
-const tracker = (event_section: ImpressionEventParams['event_section']) =>
-  trackImpressionCollectionEvent({
-    pageTitle: window.document.title,
-    pageType: 'home',
-    pageUrl: window.location.href,
-    locale: $i18n.locale.value,
-    event_section,
-  });
 
 onMounted(() =>
   trackPageViewEvent({
