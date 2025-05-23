@@ -28,7 +28,9 @@ const { data: footer } = useAsyncData('footer', async () => {
   const [footer] = await fetch<FooterBlock>('footer', true, 1);
   return footer;
 }, {
-  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+  getCachedData(key, nuxt) {
+    return nuxt.payload.data[key];
+  },
 });
 
 useHead({
