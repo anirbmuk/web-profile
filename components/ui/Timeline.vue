@@ -103,13 +103,15 @@ type MappedTimeline = Timeline & {
 };
 
 const heights: Record<number, string> = {
-  1: 'h-24 md:h-32',
-  2: 'h-32 md:h-40',
-  3: 'h-40 md:h-48',
-  4: 'h-48 md:h-56',
-  5: 'h-56 md:h-64',
-  6: 'h-64 md:h-72',
-  7: 'h-72 md:h-80',
+  1: 'h-32 md:h-40',
+  2: 'h-40 md:h-48',
+  3: 'h-48 md:h-56',
+  4: 'h-56 md:h-64',
+  5: 'h-64 md:h-72',
+  6: 'h-72 md:h-80',
+  7: 'h-80 md:h-[22rem]',
+  8: 'h-[22rem] md:h-96',
+  9: 'h-96 md:h-[26rem]',
 };
 
 const props = defineProps({
@@ -130,7 +132,7 @@ const {
 const getHeight = (start: MappedTimeline['start'], end = getCurrentTimeline()) => {
   const [, endYear] = end.split('/', 2);
   const [, startYear] = start.split('/', 2);
-  return heights[+endYear - +startYear || 1] || heights[7];
+  return heights[+endYear - +startYear || 1] || heights[Object.keys(heights).length];
 };
 
 const mappedTimelines = computed<MappedTimeline[]>(() =>
