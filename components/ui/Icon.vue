@@ -7,9 +7,12 @@
         :aria-label="label || icon"
         :title="title"
         rel="nofollow"
-        @click="$emit('iconClick', url)"><component
+        @click="$emit('iconClick', url)">
+        <component
           :is="iconComponent"
-          :class="iconClass" /></a>
+          :class="iconClass"
+          :aria-hidden="true" />
+      </a>
     </div>
     <slot :class="displayClass" />
   </template>
@@ -19,6 +22,7 @@
     <component
       :is="iconComponent"
       :class="iconClass"
+      :aria-hidden="true"
       @click="$emit('iconClick', undefined)" />
   </div>
 </template>
