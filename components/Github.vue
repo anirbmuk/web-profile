@@ -13,10 +13,11 @@
             :key="`github_${index + 1}`">
             <UiLinkOrText
               :href="repo?.value?.toString()"
+              class="max-md:snap-start"
               @link-click="onLinkClick(repo?.value?.toString())">
               <div
                 v-if="repo?.value"
-                class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
+                class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
                 <div class="items-center space-y-2">
                   <div class="flex items-center space-x-2">
                     <LazyUiIcon
