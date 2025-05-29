@@ -18,10 +18,14 @@
             <div
               translate="no"
               class="grid gap-0.5 font-semibold text-black-dark">
-              <div class="!leading-4 max-md:text-md">
+              <div
+                class="!leading-4 transition-all duration-200 ease-in-out max-md:text-md"
+                :style="{ color: hoverMap.get(`${timeline.provider}_${timeline.start}`) }">
                 {{ timeline.designation }}
               </div>
-              <div class="text-sm md:text-md">
+              <div
+                class="text-sm transition-all duration-200 ease-in-out md:text-md"
+                :style="{ color: hoverMap.get(`${timeline.provider}_${timeline.start}`), textDecoration: hoverMap.has(`${timeline.provider}_${timeline.start}`) ? 'underline' : 'none' }">
                 {{ timeline.provider }}
               </div>
             </div>
@@ -37,7 +41,7 @@
         </template>
       </div>
       <div
-        class="mx-auto flex w-4 cursor-pointer items-center justify-center border-2 border-gray-400 bg-gray-400 duration-200 ease-in lg:hover:border-black-alt lg:hover:bg-black-alt"
+        class="m-0.5 mx-auto flex w-4 cursor-pointer items-center justify-center rounded-sm border-2 border-transparent duration-200 ease-in lg:opacity-85 lg:hover:opacity-100"
         :class="[
           timeline.size ?? 'h-24',
           {
@@ -45,7 +49,10 @@
             'rounded-b-sm': idx === mappedTimelines.length - 1,
           },
         ]"
-        :title="timeline.provider" />
+        :style="{ backgroundColor: timeline.backgroundColor }"
+        :title="timeline.provider"
+        @mouseenter="onMouseEnter(timeline)"
+        @mouseleave="onMouseLeave(timeline)" />
       <div
         class="col-span-2 flex items-start justify-start pt-1"
         :class="timeline.size ?? 'h-24'">
@@ -60,10 +67,14 @@
             <div
               translate="no"
               class="grid gap-0.5 font-semibold text-black-dark">
-              <div class="!leading-4 max-md:text-md">
+              <div
+                class="!leading-4 transition-all duration-200 ease-in-out max-md:text-md"
+                :style="{ color: hoverMap.get(`${timeline.provider}_${timeline.start}`) }">
                 {{ timeline.designation }}
               </div>
-              <div class="text-sm md:text-md">
+              <div
+                class="text-sm transition-all duration-200 ease-in-out md:text-md"
+                :style="{ color: hoverMap.get(`${timeline.provider}_${timeline.start}`), textDecoration: hoverMap.has(`${timeline.provider}_${timeline.start}`) ? 'underline' : 'none' }">
                 {{ timeline.provider }}
               </div>
             </div>
@@ -84,6 +95,12 @@
 
 <script setup lang="ts" generic="T extends Timeline">
 import type { Timeline } from '~/types/components/timeline';
+
+type MappedTimeline = Timeline & {
+  size: string;
+  alignment: 'left' | 'right';
+  backgroundColor: string;
+};
 
 const heights: Record<number, string> = {
   1: 'h-24 md:h-32',
@@ -110,13 +127,13 @@ const {
   getDurationText,
 } = useDate();
 
-const getHeight = (start: Timeline['start'], end = getCurrentTimeline()) => {
+const getHeight = (start: MappedTimeline['start'], end = getCurrentTimeline()) => {
   const [, endYear] = end.split('/', 2);
   const [, startYear] = start.split('/', 2);
   return heights[+endYear - +startYear || 1] || heights[7];
 };
 
-const mappedTimelines = computed(() =>
+const mappedTimelines = computed<MappedTimeline[]>(() =>
   (props.timelines || [])
     .sort((t1, t2) => sortFn(t1.start, t2.start))
     .map((each, index) => {
@@ -124,9 +141,23 @@ const mappedTimelines = computed(() =>
         ...each,
         size: getHeight(each.start, each.end),
         alignment: index % 2 === 0 ? 'left' : 'right',
+        backgroundColor: getTimelineColor(index),
       };
     }),
 );
+
+const hoverMap = reactive<Map<string, string>>(
+  new Map<string, string>(),
+);
+
+const onMouseEnter = (timeline: MappedTimeline) => {
+  const key = `${timeline.provider}_${timeline.start}`;
+  hoverMap.set(key, timeline.backgroundColor);
+};
+const onMouseLeave = (timeline: MappedTimeline) => {
+  const key = `${timeline.provider}_${timeline.start}`;
+  hoverMap.delete(key);
+};
 
 defineOptions({
   name: 'TimelineComponent',
