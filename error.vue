@@ -10,9 +10,9 @@
   </header>
   <main class="container mx-auto my-20">
     <section class="text-center">
-      <h1 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
+      <h2 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
         !{{ error?.statusCode }}!
-      </h1>
+      </h2>
       <div
         v-if="error?.message"
         class="m-2 text-red">
@@ -63,6 +63,9 @@ const title =
     : $i18n.t('error.title_others');
 
 useHead({
+  htmlAttrs: {
+    lang: $i18n.locale.value,
+  },
   title,
 });
 useSeoMeta({

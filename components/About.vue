@@ -2,7 +2,7 @@
   <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
-      class="mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
+      class="mx-auto whitespace-break-spaces text-pretty text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
