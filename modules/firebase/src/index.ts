@@ -10,7 +10,7 @@ declare module '@nuxt/schema' {
     ['firebase']?: Partial<ModuleOptions>;
   }
   interface NuxtOptions {
-    ['firebase']?: ModuleOptions;
+    ['firebase']: ModuleOptions;
   }
   interface RuntimeConfig {
     ['firebase']: ModuleOptions;

@@ -12,15 +12,9 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
-  compatibilityDate: '2024-11-17',
+  compatibilityDate: '2025-04-28',
 
   runtimeConfig: {
-    app: {
-      head: {
-        charset: 'utf-8',
-        viewport: 'width=device-width, initial-scale=1',
-      },
-    },
     public: {
       appEnv: '', // Override by setting NUXT_PUBLIC_APP_ENV
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
@@ -42,10 +36,12 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts',
     'nuxt-svgo',
-    'nuxt-gtag',
+    '@zadigetvoltaire/nuxt-gtm',
+    'nuxt-jsonld',
     '@nuxtjs/i18n',
     '~/modules/sitemap/src',
     '~/modules/firebase/src',
+    '@nuxt/eslint',
   ],
 
   googleFonts: {
@@ -58,20 +54,13 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    rules: [
+    groups: [
       {
-        UserAgent: '*',
-      },
-      {
-        Disallow: '/api/*',
-      },
-      {
-        Disallow: '/_nuxt/*',
-      },
-      {
-        Sitemap: 'https://anirbmuk.appspot.com/sitemap.xml',
+        userAgent: '*',
+        disallow: ['/api/*', '/_nuxt/*'],
       },
     ],
+    sitemap: '/sitemap.xml',
   },
 
   svgo: {
@@ -86,18 +75,23 @@ export default defineNuxtConfig({
     apiPaths, // Override by setting NUXT_FIREBASE_API_PATHS
   },
 
-  gtag: {
-    id: '', // Override by setting NUXT_PUBLIC_GTAG_ID
+  gtm: {
+    id: '', // Override by setting NUXT_PUBLIC_GTM_ID
+    debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
+    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED
   },
 
   i18n: {
     strategy: 'prefix',
     detectBrowserLanguage: false,
-    langDir: 'assets/i18n',
+    langDir: './../assets/i18n',
     lazy: true,
-    vueI18n: 'vue-i18n.config.ts',
+    vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   sitemap: {
@@ -118,4 +112,16 @@ export default defineNuxtConfig({
       swr: true,
     },
   },
+
+  devServer: {
+    https: {
+      key: 'localhost.pem',
+      cert: 'localhost.crt',
+    },
+  },
+
+  experimental: {
+    renderJsonPayloads: false,
+  },
+
 });

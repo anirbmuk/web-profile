@@ -9,10 +9,11 @@ export type TrackingEvents =
 
 export type ExternalLink = 'twitter' | 'linkedin' | 'github' | 'blogger' | 'devto';
 export type ImpressionSections = 'education' | 'github' | 'profile' | 'career';
-export type PageType = 'home' | 'about' | 'footer' | 'error';
+export type PageType = 'home' | 'about' | 'footer' | 'error' | 'body';
 
 export type BaseEvent = {
   event: TrackingEvents;
+  action: 'click_action' | 'view_action'
 };
 
 export type BaseEventParams = {
@@ -24,6 +25,7 @@ export type BaseEventParams = {
 
 export type ImpressionEventParams = BaseEventParams & {
   event_section:
+    | 'backtotop_section'
     | 'header_section'
     | 'footer_section'
     | 'profile_section'

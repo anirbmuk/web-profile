@@ -43,32 +43,3 @@ defineOptions({
   name: 'AccordionComponent',
 });
 </script>
-
-<style scoped>
-/* @keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-.open {
-  display: block;
-  animation: fade-in 750ms forwards;
-}
-
-.close {
-  display: none;
-} */
-</style>

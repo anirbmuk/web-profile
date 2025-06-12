@@ -5,17 +5,16 @@
       'border border-gray-300 bg-gray-200': blockStyle === 'inverted',
     }"
     class="flex space-x-2 rounded-t p-4">
-    <span class="circle bg-red" />
-    <span class="circle bg-yellow" />
-    <span class="circle bg-fluorescent-green" />
+    <span class="inline-block size-3 rounded-full bg-red" />
+    <span class="inline-block size-3 rounded-full bg-yellow" />
+    <span class="inline-block size-3 rounded-full bg-fluorescent-green" />
   </div>
   <div
     :class="{
       'bg-black text-white': blockStyle === 'normal',
       'border border-gray-300 bg-gray-100': blockStyle === 'inverted',
     }"
-    class="-mt-0.5 rounded-b p-5"
-    previewbody>
+    class="-mt-0.5 rounded-b p-5 dark:bg-transparent">
     <slot />
   </div>
 </template>
@@ -33,15 +32,3 @@ defineOptions({
   name: 'BlockComponent',
 });
 </script>
-
-<style scoped>
-.circle {
-  @apply inline-block h-3 w-3 rounded-full;
-}
-
-@media (prefers-color-scheme: dark) {
-  [previewbody] {
-    @apply bg-transparent;
-  }
-}
-</style>

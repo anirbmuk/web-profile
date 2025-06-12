@@ -7,49 +7,46 @@
         </h3>
       </template>
       <template #content>
-        <div class="github-container snaps-inline">
+        <div class="grid snap-x snap-mandatory gap-2 max-md:auto-cols-[87.5%] max-md:grid-flow-col max-md:overflow-y-hidden max-md:overscroll-contain md:snap-none md:grid-cols-2 md:gap-3 2xl:grid-cols-3 3xl:grid-cols-4">
           <template
             v-for="(repo, index) in block"
-            :key="index">
-            <UtilIntersect
-              @tracked="
-                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
-              ">
-              <UiLinkOrText
-                :href="repo?.value?.toString()"
-                @link-click="onLinkClick(repo?.value?.toString())">
-                <div
-                  v-if="repo?.value"
-                  class="preview-container">
-                  <div class="items-center space-y-2">
-                    <div class="flex items-center space-x-2">
-                      <LazyUiIcon
-                        :icon="'github'"
-                        :size="7" />
-                      <div
-                        class="-mt-1 text md:text-2xl"
-                        translate="no">
-                        {{ transformRepo(repo?.value?.toString()) }}
-                      </div>
-                    </div>
+            :key="`github_${index + 1}`">
+            <UiLinkOrText
+              :href="repo?.value?.toString()"
+              class="max-md:snap-start"
+              @link-click="onLinkClick(repo?.value?.toString())">
+              <div
+                v-if="repo?.value"
+                class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
+                <div class="items-center space-y-2">
+                  <div class="flex items-center space-x-2">
+                    <LazyUiIcon
+                      :icon="'github'"
+                      :size="7"
+                      loading="lazy"/>
                     <div
-                      class="text-md text-gray-500 lg:hidden"
+                      class="-mt-1 text md:text-2xl"
                       translate="no">
-                      {{ transformTechstack(repo?.technologies) }}
-                    </div>
-                    <div class="hidden space-x-2 lg:flex">
-                      <UiChip
-                        v-for="technology in repo?.technologies"
-                        :key="technology"
-                        :text="technology" />
-                    </div>
-                    <div class="text-md leading-4">
-                      {{ repo?.description }}
+                      {{ transformRepo(repo?.value?.toString()) }}
                     </div>
                   </div>
+                  <div
+                    class="text-md text-gray-500 lg:hidden"
+                    translate="no">
+                    {{ transformTechstack(repo?.technologies) }}
+                  </div>
+                  <div class="hidden space-x-2 lg:flex">
+                    <UiChip
+                      v-for="technology in repo?.technologies"
+                      :key="technology"
+                      :text="technology" />
+                  </div>
+                  <div class="text-md leading-4">
+                    {{ repo?.description }}
+                  </div>
                 </div>
-              </UiLinkOrText>
-            </UtilIntersect>
+              </div>
+            </UiLinkOrText>
           </template>
         </div>
       </template>
@@ -59,15 +56,12 @@
 
 <script setup lang="ts">
 import type { GithubBlock } from '~/types/features/github';
-import type { ImpressionEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
-const {
-  trackExternalClickEvent,
-  trackImpressionItemEvent,
-} = useTracking();
+const { trackExternalClickEvent } = useTracking();
+const { generateListSchema } = useSeo();
 
-defineProps({
+const props = defineProps({
   block: {
     type: Array as PropType<GithubBlock[]>,
     required: true,
@@ -80,7 +74,6 @@ const transformRepo = (value: string | undefined) => {
   }
   const urlParts = value.split('/');
   const repo = urlParts?.pop();
-  // const author = urlParts?.pop();
   return `${repo}`;
 };
 
@@ -102,62 +95,26 @@ const onLinkClick = (event_url: string | undefined) => {
   });
 };
 
-const tracker = (event_section: ImpressionEventParams['event_section'], item: string) =>
-  trackImpressionItemEvent({
-    pageTitle: window.document.title,
-    pageType: 'home',
-    pageUrl: window.location.href,
-    locale: $i18n.locale.value,
-    event_section,
-    item,
-  });
+useJsonld(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  numberOfItems: props.block.length,
+  itemListElement: props.block.map(({
+    value,
+    description,
+    image,
+    technologies,
+  }, position) => generateListSchema({
+    name: transformRepo(String(value)) || '',
+    description,
+    image,
+    position: position + 1,
+    url: String(value),
+    additional: technologies,
+  })),
+}));
 
 defineOptions({
   name: 'GithubComponent',
 });
 </script>
-
-<style scoped>
-@media screen and (min-width: 768px) {
-  .github-container {
-    @apply grid gap-3 md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .github-container {
-    @apply grid grid-flow-col gap-2 overflow-y-hidden overscroll-contain;
-    grid-auto-columns: 87.5%;
-  }
-}
-
-.preview-container {
-  @apply mb-2.5 flex h-[8rem] items-center rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5 lg:h-[9rem];
-}
-
-@media screen and (min-width: 768px) and (hover: hover) {
-  .preview-container:hover {
-    @apply scale-105 bg-gray-50 ease-in;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .preview-container {
-    @apply bg-transparent;
-  }
-
-  @media screen and (min-width: 768px) and (hover: hover) {
-    .preview-container:hover {
-      @apply scale-105 bg-transparent ease-in;
-    }
-  }
-}
-
-.snaps-inline {
-  scroll-snap-type: inline mandatory;
-}
-
-.snaps-inline>* {
-  scroll-snap-align: start;
-}
-</style>

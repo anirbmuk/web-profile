@@ -1,4 +1,3 @@
-import { type FirebaseApp } from 'firebase/app';
 import type {
   OrderByDirection,
   WhereFilterOp,
@@ -25,8 +24,6 @@ export type ModuleOptions = FirebaseConfig & RedisConfig & {
   apiBasePath: string;
   apiPaths: string[];
 };
-
-export type FirebaseApp = FirebaseApp;
 
 export type FirestoreWhere = {
   column: string;

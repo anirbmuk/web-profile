@@ -28,7 +28,9 @@ const { data: footer } = useAsyncData('footer', async () => {
   const [footer] = await fetch<FooterBlock>('footer', true, 1);
   return footer;
 }, {
-  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+  getCachedData(key, nuxt) {
+    return nuxt.payload.data[key];
+  },
 });
 
 useHead({
@@ -41,11 +43,17 @@ useHead({
       type: 'image/x-icon',
       href: '/favicon.ico',
     },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/apple-touch-icon.png',
+    },
   ],
   titleTemplate(title) {
     return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
   },
 });
+
 useSeoMeta({
   robots: 'index,follow',
   description: $i18n.t('global.description'),
@@ -58,13 +66,14 @@ useSeoMeta({
   ogType: 'website',
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  keywords: $i18n.t('global.keywords'),
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
     googleSiteVerification,
   }),
 });
+
 defineOptions({
   name: 'DefaultLayout',
 });

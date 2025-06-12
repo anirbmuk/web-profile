@@ -11,7 +11,9 @@ const props = defineProps({
     default: undefined,
   },
 });
-const emit = defineEmits(['tracked']);
+const emit = defineEmits<{
+  tracked: [],
+}>();
 
 const content = ref<HTMLElement | null>(null);
 const tracked = ref(false);
@@ -34,7 +36,9 @@ onMounted(() => {
   };
   observer = new IntersectionObserver(intersectionCallback, intersectionOptions);
   const target = content.value;
-  target && observer?.observe(target);
+  if (target && observer) {
+    observer.observe(target);
+  }
 });
 
 onBeforeUnmount(() => observer?.disconnect());

@@ -8,6 +8,7 @@ const {
   getCanonical,
   generateAlternateLinks,
 } = useSeo();
+
 useHead({
   title: $i18n.t('about.title'),
   link: [
@@ -18,6 +19,12 @@ useHead({
     ...generateAlternateLinks('about'),
   ],
 });
+
+definePageMeta({
+  scrollToTop: true,
+  pageMeta: 'about',
+});
+
 defineOptions({
   name: 'AboutIndexPage',
 });

@@ -4,7 +4,7 @@
       <div
         role="img"
         class="profile-image"
-        aria-label="profile image" />
+        :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
     </UtilIntersect>
   </section>
   <div class="mx-auto space-y-16 xl:max-w-3/4 2xl:max-w-4/5">
@@ -73,7 +73,9 @@ const { data: profile } = useAsyncData('profile', async () => {
   const [profile] = await fetch<ProfileBlock>('profile', true, 1);
   return profile;
 }, {
-  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+  getCachedData(key, nuxt) {
+    return nuxt.payload.data[key];
+  },
 });
 
 const { data } = useLazyAsyncData('others', async () => {
@@ -85,7 +87,9 @@ const { data } = useLazyAsyncData('others', async () => {
     education,
   };
 }, {
-  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+  getCachedData(key, nuxt) {
+    return nuxt.payload.data[key];
+  },
 });
 
 const tracker = (event_section: ImpressionEventParams['event_section']) =>

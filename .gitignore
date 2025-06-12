@@ -25,3 +25,10 @@ logs
 
 # Ignore generated credentials from google-github-actions/auth
 gha-creds-*.json
+
+# https
+*.pub.key
+*.pem
+*.crt
+*.csr
+*.key

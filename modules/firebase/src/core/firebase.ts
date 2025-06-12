@@ -1,11 +1,12 @@
-import { initializeApp } from 'firebase/app';
-import type {
-  FirebaseApp,
-  FirebaseConfig,
-} from './../types';
+import {
+  type FirebaseApp,
+  initializeApp,
+} from 'firebase/app';
+import type { FirebaseConfig } from './../types';
 import { fetchCollection } from './firebase.core';
 
 export class FirebaseController {
+
   private static instance: FirebaseController | undefined;
   private app: FirebaseApp | undefined;
 
@@ -13,7 +14,7 @@ export class FirebaseController {
     this.app = initializeApp(cfg);
   }
 
-  static getInstance(cfg: FirebaseConfig) {
+  static getInstance(cfg: FirebaseConfig): FirebaseController {
     if (!FirebaseController.instance) {
       FirebaseController.instance = new FirebaseController(cfg);
     }
@@ -22,7 +23,10 @@ export class FirebaseController {
 
   async fetch<T>(path: string, limit?: number | undefined) {
     try {
-      return await fetchCollection<T>(this.app!, {
+      if (!this.app) {
+        throw new Error('FirebaseApp instance is undefined');
+      }
+      return await fetchCollection<T>(this.app, {
         collections: [path],
         whereClause: [{
           column: 'visibility',

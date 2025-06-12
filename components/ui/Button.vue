@@ -19,7 +19,9 @@ defineProps({
     }),
   },
 });
-defineEmits(['onclick']);
+defineEmits<{
+  onclick: [],
+}>();
 defineOptions({
   name: 'ButtonComponent',
 });

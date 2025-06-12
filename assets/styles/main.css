@@ -175,6 +175,10 @@ li[fehover] {
   @apply relative z-1 m-0.5 rounded border border-gray-300 p-2;
 }
 
+.text-shadow {
+  text-shadow: 0 0 2px var(--black-light);
+}
+
 @media screen and (min-width: 768px) and (hover: hover) {
   li[fehover]::after {
     @apply absolute bottom-0 left-0 top-0 z-minus1 w-full origin-right scale-x-0 rounded;

@@ -2,7 +2,7 @@
   <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
-      class="wrapper mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
+      class="mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
@@ -37,8 +37,10 @@ const loadData = async () => {
   )?.sort((a1, a2) => a1.position - a2.position);
 };
 
-const { data } = useAsyncData('about', () => loadData(), {
-  getCachedData: (key, nuxt) => nuxt.payload.data[key],
+const { data } = useAsyncData('about', loadData, {
+  getCachedData(key, nuxt) {
+    return nuxt.payload.data[key];
+  },
 });
 const aboutme = computed(() => data.value);
 
@@ -71,7 +73,7 @@ const onLinkClick = (event: Event) => {
 onMounted(() =>
   trackPageViewEvent({
     pageTitle: window.document.title,
-    pageType: 'home',
+    pageType: 'about',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
   }),
@@ -81,9 +83,3 @@ defineOptions({
   name: 'AboutComponent',
 });
 </script>
-
-<style scoped>
-.wrapper {
-  text-wrap: pretty;
-}
-</style>

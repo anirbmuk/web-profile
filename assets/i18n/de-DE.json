@@ -1,7 +1,15 @@
 {
   "global": {
     "title": "Anirban Mukherjee (anirbmuk)",
-    "description": "Ich bin Anirban Mukherjee, Senior Frontend-Entwickler bei SCAYLE, derzeit in Hamburg, Deutschland."
+    "description": "Ich bin Anirban Mukherjee, Leitender Frontend-Entwickler bei SCAYLE, derzeit in Hamburg, Deutschland.",
+    "keywords": "anirban,mukherjee,anirbmuk,teamleiter,leitender,staff,frontend,developer,lebenslauf,scayle,hamburg,deutschland",
+    "accessibility": {
+      "ariaLabel": {
+        "backToTopButton": "Klicken Sie hier, um zum Anfang der Seite zu scrollen",
+        "profileImage": "Haupt Profilbild",
+        "loadingProgressBar": "Fortschrittsanzeige für das Laden der Seite"
+      }
+    }
   },
   "footer": {
     "en": {
@@ -14,12 +22,44 @@
     }
   },
   "main": {
-    "title": "Senior Frontend-Entwickler",
+    "title": "Leitender Frontend-Entwickler",
     "profile": {
       "download_resume": "Lebenslauf herunterladen"
     },
     "career": {
-      "title": "Karriereweg"
+      "title": "Karriereweg",
+      "timeline": {
+        "months": {
+          "long": {
+            "jan": "Januar",
+            "feb": "Februar",
+            "mar": "März",
+            "apr": "April",
+            "may": "Mai",
+            "jun": "Juni",
+            "jul": "Juli",
+            "aug": "August",
+            "sep": "September",
+            "oct": "Oktober",
+            "nov": "November",
+            "dec": "Dezember"
+          },
+          "short": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mär",
+            "apr": "Apr",
+            "may": "Mai",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Okt",
+            "nov": "Nov",
+            "dec": "Dez"
+          }
+        }
+      }
     },
     "techstack": {
       "title": "Technologien"

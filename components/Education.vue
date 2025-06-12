@@ -10,7 +10,8 @@
         <ul class="md:grid md:grid-cols-2 md:gap-3 2xl:grid-cols-3">
           <li
             v-for="(education, index) in block"
-            :key="index">
+            :key="`education_${index + 1}`"
+            class="mb-2.5 rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 md:m-0.5 dark:bg-transparent dark:hover:bg-transparent">
             <UiLinkOrText>
               <div class="space-y-2">
                 <div class="flex items-center justify-between">
@@ -53,27 +54,3 @@ defineOptions({
   name: 'EducationComponent',
 });
 </script>
-
-<style scoped>
-li {
-  @apply mb-2.5 rounded border border-gray-300 p-4 duration-300 ease-out md:m-0.5;
-}
-
-@media screen and (min-width: 768px) and (hover: hover) {
-  li:hover {
-    @apply scale-105 bg-gray-50 ease-in;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  li {
-    @apply bg-transparent;
-  }
-
-  @media screen and (min-width: 768px) and (hover: hover) {
-    li:hover {
-      @apply scale-105 bg-transparent ease-in;
-    }
-  }
-}
-</style>

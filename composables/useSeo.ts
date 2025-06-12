@@ -1,7 +1,12 @@
 import locales from '~/config/locales';
 import type { AlternateHreflang } from '~/types/seo';
+import type {
+  ListItem,
+  WithContext,
+} from 'schema-dts';
 
 export const useSeo = () => {
+  const { $i18n } = useNuxtApp();
   const { fullPath } = useRoute();
   const { public: { baseUrl } } = useRuntimeConfig();
 
@@ -42,8 +47,52 @@ export const useSeo = () => {
     return alternateHreflangs;
   };
 
+  const generateListSchema = ({
+    position,
+    name,
+    description,
+    image,
+    url,
+    additional,
+  }: {
+    position: number,
+    name: string,
+    description: string,
+    image?: string,
+    url?: string,
+    additional?: string[],
+  }): WithContext<ListItem> => {
+    return {
+      '@type': 'ListItem',
+      '@context': 'https://schema.org',
+      ...(position && {
+        position,
+      }),
+      item: {
+        '@type': 'Article',
+        ...(url && {
+          url,
+        }),
+        name,
+        headline: description,
+        ...(image && {
+          image,
+        }),
+        ...(additional && {
+          programmingLanguage: additional.join(', '),
+        }),
+        author: {
+          name: 'Anirban Mukherjee (anirbmuk)',
+          '@type': 'Person',
+          url: `${baseUrl}/${$i18n.locale.value}`,
+        },
+      },
+    };
+  };
+
   return {
     getCanonical,
     generateAlternateLinks,
+    generateListSchema,
   };
 };

@@ -2,13 +2,16 @@
   <div
     v-show="width"
     :key="width"
-    class="progress-bar"
+    role="progressbar"
+    :aria-label="$i18n.t('global.accessibility.ariaLabel.loadingProgressBar')"
+    class="h-0.5 bg-gray-500 dark:bg-white"
     :style="{ width: `${width}%` }" />
 </template>
 
 <script setup lang="ts">
 const loadingState = useState('loader');
 const width = ref<number>(0);
+const { $i18n } = useNuxtApp();
 
 let progressBar: NodeJS.Timeout | undefined;
 
@@ -35,15 +38,3 @@ defineOptions({
   name: 'ProgressBarComponent',
 });
 </script>
-
-<style scoped>
-.progress-bar {
-  @apply h-0.5 bg-gray-500;
-}
-
-@media (prefers-color-scheme: dark) {
-  .progress-bar {
-    @apply bg-white;
-  }
-}
-</style>

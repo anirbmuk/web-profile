@@ -1,5 +1,5 @@
 <template>
-  <div class="chip">
+  <div class="min-w-4xs rounded-md border border-gray-400 bg-gray-100 px-2 py-1 text-center text-md dark:border-white dark:bg-transparent">
     {{ text }}
   </div>
 </template>
@@ -15,9 +15,3 @@ defineOptions({
   name: 'ChipComponent',
 });
 </script>
-
-<style scoped>
-.chip {
-  @apply min-w-4xs rounded-md border border-gray-400 bg-transparent px-2 py-1 text-center text-md bg-gray-100;
-}
-</style>

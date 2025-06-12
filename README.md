@@ -1,5 +1,5 @@
 # anirbmuk:profile
-**Anirban Mukherjee (anirbmuk) | Senior Frontend Developer | Professional Bio**
+**Anirban Mukherjee (anirbmuk) | Staff Frontend Developer | Professional Bio**
 
 ## Key features
 :heavy_check_mark: Search engine optimized (SEO)  
@@ -40,4 +40,4 @@ https://anirbmuk.appspot.com/en
 
 ---
 ## Copyright
-(C) anirbmuk, 2024  
+(C) anirbmuk, 2025  

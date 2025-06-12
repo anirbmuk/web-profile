@@ -31,7 +31,9 @@ defineProps({
   },
 });
 
-defineEmits<{(e: 'linkClick', type: 'internal' | 'external'): void;}>();
+defineEmits<{
+  linkClick: [type: 'internal' | 'external']
+}>();
 
 const localePath = useLocalePath();
 

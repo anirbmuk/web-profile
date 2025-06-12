@@ -19,6 +19,12 @@ useHead({
     ...generateAlternateLinks(),
   ],
 });
+
+definePageMeta({
+  scrollToTop: true,
+  pageMeta: 'main',
+});
+
 defineOptions({
   name: 'RootIndexPage',
 });

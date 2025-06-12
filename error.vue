@@ -1,5 +1,5 @@
 <template>
-  <header class="header-background fixed top-0 z-50 w-full">
+  <header class="fixed top-0 z-50 w-full border-b border-gray-100 bg-gray-50 dark:bg-transparent">
     <div class="py-4">
       <h1
         class="text-shadow items-center text-center text-3xl font-bold uppercase tracking-wide md:text-4xl md:tracking-wider lg:text-6xl"
@@ -46,7 +46,7 @@ const props = defineProps({
       statusMessage: string;
       message: string;
       description: string;
-      data: any;
+      data: unknown;
     }>,
     default: null,
   },
@@ -66,8 +66,9 @@ useHead({
   title,
 });
 useSeoMeta({
-  robots: 'noindex,nofollow',
+  robots: 'noindex,follow',
   description: `${title} - ${props.error?.message || ''}`,
+  ogDescription: `${title} - ${props.error?.message || ''}`,
   ogImage: '/seo.webp',
   colorScheme: 'dark light',
   ogLocale: $i18n.locale.value,
@@ -76,7 +77,7 @@ useSeoMeta({
   ogType: 'website',
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: 'anirban,mukherjee,anirbmuk,frontend,developer,bio,resume',
+  keywords: $i18n.t('global.keywords'),
   twitterCard: 'summary_large_image',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
@@ -90,10 +91,10 @@ const onLinkClick = (event_url: string | undefined) => {
   });
   trackInternalClickEvent({
     pageTitle: window.document.title,
-    pageType: 'footer',
+    pageType: 'error',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
-    event_section: 'footer_section',
+    event_section: 'error_page',
     event_url,
   });
 };
@@ -102,13 +103,3 @@ defineOptions({
   name: 'GlobalErrorPage',
 });
 </script>
-
-<style scoped>
-.text-shadow {
-  text-shadow: 0 0 2px var(--black-light);
-}
-
-.header-background {
-  @apply border-b border-gray-100 bg-gray-50 dark:border-transparent;
-}
-</style>
