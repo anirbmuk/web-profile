@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import type { FooterBlock } from '~/types/features/footer';
+import { omit } from 'radash';
 
 const { $i18n } = useNuxtApp();
 const { public: { googleSiteVerification } } = useRuntimeConfig();
@@ -30,6 +31,9 @@ const { data: footer } = useAsyncData('footer', async () => {
 }, {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
+  },
+  transform(data) {
+    return omit(data, ['documentid', 'visibility']) as FooterBlock;
   },
 });
 

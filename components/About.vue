@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import type { AboutmeBlock } from '~/types/features/about';
 import type { ClickEventParams } from '~/types/tracking';
+import { omit } from 'radash';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
@@ -40,6 +41,9 @@ const loadData = async () => {
 const { data } = useAsyncData('about', loadData, {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
+  },
+  transform(data) {
+    return data.map((each) => omit(each, ['category', 'type', 'value', 'visibility']));
   },
 });
 const aboutme = computed(() => data.value);

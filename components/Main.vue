@@ -47,6 +47,8 @@ import type { EducationBlock } from '~/types/features/education';
 
 import type { ImpressionEventParams } from '~/types/tracking';
 
+import { omit } from 'radash';
+
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
 const { loadingState } = useLoader();
@@ -76,6 +78,9 @@ const { data: profile } = useAsyncData('profile', async () => {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
   },
+  transform(profileBlock) {
+    return omit(profileBlock, ['contact', 'documentid', 'visibility']) as ProfileBlock;
+  },
 });
 
 const { data } = useLazyAsyncData('others', async () => {
@@ -89,6 +94,19 @@ const { data } = useLazyAsyncData('others', async () => {
 }, {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
+  },
+  transform({
+    career,
+    techstack,
+    github,
+    education,
+  }) {
+    return {
+      career: career.map((each) => omit(each, ['documentid', 'visibility']) as CareerBlock),
+      techstack: omit(techstack, ['documentid', 'visibility']) as TechstackBlock,
+      github: github.map((each) => omit(each, ['documentid', 'visibility']) as GithubBlock),
+      education: education.map((each) => omit(each, ['documentid', 'visibility']) as EducationBlock),
+    };
   },
 });
 

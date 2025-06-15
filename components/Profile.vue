@@ -54,7 +54,9 @@
               :position="blog.position"
               loading="lazy"
               @icon-click="onLinkClick(blog.url)">
-              <span class="text-md md:text">{{ blog.description }}</span>
+              <span class="text-md md:text">
+                {{ blog.description }}
+              </span>
             </UiIcon>
           </div>
         </div>
