@@ -50,6 +50,7 @@
     "nuxt-jsonld": "^2.1.0",
     "nuxt-svgo": "^4.0.18",
     "radash": "^12.1.0",
+    "redis": "^5.5.6",
     "rimraf": "^6.0.1",
     "schema-dts": "^1.1.5",
     "typescript": "^5.8.3",
