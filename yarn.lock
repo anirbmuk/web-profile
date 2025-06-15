@@ -3017,37 +3017,7 @@
     "@vue/compiler-core" "3.5.16"
     "@vue/shared" "3.5.16"
 
-"@vue/compiler-sfc@3.5.13", "@vue/compiler-sfc@^3.5.13":
-  version "3.5.13"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.5.13.tgz#461f8bd343b5c06fac4189c4fef8af32dea82b46"
-  integrity sha512-6VdaljMpD82w6c2749Zhf5T9u5uLBWKnVue6XWxprDobftnletJ8+oel7sexFfM3qIxNmVE7LSFGTpv6obNyaQ==
-  dependencies:
-    "@babel/parser" "^7.25.3"
-    "@vue/compiler-core" "3.5.13"
-    "@vue/compiler-dom" "3.5.13"
-    "@vue/compiler-ssr" "3.5.13"
-    "@vue/shared" "3.5.13"
-    estree-walker "^2.0.2"
-    magic-string "^0.30.11"
-    postcss "^8.4.48"
-    source-map-js "^1.2.0"
-
-"@vue/compiler-sfc@3.5.14":
-  version "3.5.14"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.5.14.tgz#fc3db30a1c744139d41bb57bb451d783415fce4b"
-  integrity sha512-9T6m/9mMr81Lj58JpzsiSIjBgv2LiVoWjIVa7kuXHICUi8LiDSIotMpPRXYJsXKqyARrzjT24NAwttrMnMaCXA==
-  dependencies:
-    "@babel/parser" "^7.27.2"
-    "@vue/compiler-core" "3.5.14"
-    "@vue/compiler-dom" "3.5.14"
-    "@vue/compiler-ssr" "3.5.14"
-    "@vue/shared" "3.5.14"
-    estree-walker "^2.0.2"
-    magic-string "^0.30.17"
-    postcss "^8.5.3"
-    source-map-js "^1.2.1"
-
-"@vue/compiler-sfc@3.5.16":
+"@vue/compiler-sfc@3.5.13", "@vue/compiler-sfc@3.5.14", "@vue/compiler-sfc@3.5.16", "@vue/compiler-sfc@^3.3.0", "@vue/compiler-sfc@^3.5.13":
   version "3.5.16"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.5.16.tgz#577f7fd42a46fac8357ffed46e8fb34d32698419"
   integrity sha512-rQR6VSFNpiinDy/DVUE0vHoIDUF++6p910cgcZoaAUm3POxgNOOdS/xgoll3rNdKYTYPnnbARDCZOyZ+QSe6Pw==
@@ -7005,7 +6975,7 @@ magic-string-ast@^0.7.0:
   dependencies:
     magic-string "^0.30.17"
 
-magic-string@^0.30.11, magic-string@^0.30.17, magic-string@^0.30.3, magic-string@^0.30.8:
+magic-string@^0.30.17, magic-string@^0.30.3, magic-string@^0.30.8:
   version "0.30.17"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.17.tgz#450a449673d2460e5bbcfba9a61916a1714c7453"
   integrity sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==
@@ -8371,7 +8341,7 @@ postcss-values-parser@^6.0.2:
     is-url-superb "^4.0.0"
     quote-unquote "^1.0.0"
 
-postcss@^8.4.23, postcss@^8.4.4, postcss@^8.4.47, postcss@^8.4.48, postcss@^8.5.3:
+postcss@^8.4.23, postcss@^8.4.4, postcss@^8.4.47, postcss@^8.5.3:
   version "8.5.3"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.3.tgz#1463b6f1c7fb16fe258736cba29a2de35237eafb"
   integrity sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==
@@ -9456,7 +9426,7 @@ tailwind-config-viewer@^2.0.4:
     portfinder "^1.0.26"
     replace-in-file "^6.1.0"
 
-tailwindcss@~3.4.17:
+tailwindcss@^3.4.0, tailwindcss@~3.4.17:
   version "3.4.17"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.17.tgz#ae8406c0f96696a631c790768ff319d46d5e5a63"
   integrity sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==
