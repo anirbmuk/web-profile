@@ -119,4 +119,8 @@ export default defineNuxtConfig({
     renderJsonPayloads: false,
   },
 
+  future: {
+    compatibilityVersion: 4,
+  },
+
 });
