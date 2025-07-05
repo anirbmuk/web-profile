@@ -1,11 +1,11 @@
+import { initializeApp } from 'firebase/app';
+import type { FirebaseApp } from 'firebase/app';
+import type {
+  Firestore,
+  QueryFieldFilterConstraint,
+  QueryOrderByConstraint,
+} from 'firebase/firestore';
 import {
-  type FirebaseApp,
-  initializeApp,
-} from 'firebase/app';
-import {
-  type Firestore,
-  type QueryFieldFilterConstraint,
-  type QueryOrderByConstraint,
   collection,
   endAt,
   getDocs,
@@ -35,6 +35,11 @@ export async function fetchOfflineCollection<T>(path: string) {
     offlineData = (await import('./../offline')).default;
   }
   const [collection, locale] = path.split('_');
+
+  if (!collection || !offlineData?.[collection]) {
+    return Promise.resolve([] as T[]);
+  }
+
   return Promise.resolve(((locale ? offlineData?.[collection]?.[locale] : offlineData?.[collection]) ||
   []) as T[]);
 }
