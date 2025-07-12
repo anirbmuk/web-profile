@@ -7,32 +7,65 @@
         :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
     </UtilIntersect>
   </section>
-  <div class="mx-auto space-y-16 xl:max-w-3/4 2xl:max-w-4/5">
+  <div class="mx-auto space-y-8 xl:max-w-3/4 xl:space-y-12 2xl:max-w-4/5 2xl:space-y-16">
     <template v-if="profile">
-      <UtilIntersect @tracked="tracker('profile_section')">
-        <Profile :profile="profile" />
+      <UtilIntersect
+        :threshold="[0.1]"
+        @tracked="tracker('profile_section')">
+        <Profile
+          :profile="profile"
+          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+          :class="{
+            '!translate-y-0 !opacity-100': visibility['profile_section'] === true,
+          }" />
       </UtilIntersect>
     </template>
     <template v-if="data?.career?.length">
       <UtilIntersect
-        :threshold="[0.7]"
+        :threshold="[0.1]"
         @tracked="tracker('career_section')">
-        <LazyCareer :block="data.career" />
+        <LazyCareer
+          :block="data.career"
+          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+          :class="{
+            '!translate-y-0 !opacity-100': visibility['career_section'] === true,
+          }" />
       </UtilIntersect>
     </template>
     <template v-if="data?.techstack">
-      <UtilIntersect @tracked="tracker('techstack_section')">
-        <LazyTechstack :block="data.techstack" />
+      <UtilIntersect
+        :threshold="[0.1]"
+        @tracked="tracker('techstack_section')">
+        <LazyTechstack
+          :block="data.techstack"
+          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+          :class="{
+            '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
+          }" />
       </UtilIntersect>
     </template>
     <template v-if="data?.github?.length">
-      <UtilIntersect @tracked="tracker('github_section')">
-        <LazyGithub :block="data.github" />
+      <UtilIntersect
+        :threshold="[0.1]"
+        @tracked="tracker('github_section')">
+        <LazyGithub
+          :block="data.github"
+          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+          :class="{
+            '!translate-y-0 !opacity-100': visibility['github_section'] === true,
+          }" />
       </UtilIntersect>
     </template>
     <template v-if="data?.education?.length">
-      <UtilIntersect @tracked="tracker('education_section')">
-        <LazyEducation :block="data.education" />
+      <UtilIntersect
+        :threshold="[0.1]"
+        @tracked="tracker('education_section')">
+        <LazyEducation
+          :block="data.education"
+          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+          :class="{
+            '!translate-y-0 !opacity-100': visibility['education_section'] === true,
+          }" />
       </UtilIntersect>
     </template>
   </div>
@@ -57,6 +90,12 @@ const {
   trackImpressionCollectionEvent,
 } = useTracking();
 
+const visibility = reactive<Partial<Record<ImpressionEventParams['event_section'], boolean>>>({
+});
+
+const onEnteringComponent = (event_section: ImpressionEventParams['event_section']) =>
+  (visibility[event_section] = true);
+
 const loadData = async () => {
   loadingState.value = true;
   return await Promise.all([
@@ -79,7 +118,7 @@ const { data: profile } = useAsyncData('profile', async () => {
     return nuxt.payload.data[key];
   },
   transform(profileBlock) {
-    return omit(profileBlock, ['contact', 'documentid', 'visibility']) as ProfileBlock;
+    return omit(profileBlock!, ['contact', 'documentid', 'visibility']) as ProfileBlock;
   },
 });
 
@@ -103,14 +142,14 @@ const { data } = useLazyAsyncData('others', async () => {
   }) {
     return {
       career: career.map((each) => omit(each, ['documentid', 'visibility']) as CareerBlock),
-      techstack: omit(techstack, ['documentid', 'visibility']) as TechstackBlock,
+      techstack: omit(techstack!, ['documentid', 'visibility']) as TechstackBlock,
       github: github.map((each) => omit(each, ['documentid', 'visibility']) as GithubBlock),
       education: education.map((each) => omit(each, ['documentid', 'visibility']) as EducationBlock),
     };
   },
 });
 
-const tracker = (event_section: ImpressionEventParams['event_section']) =>
+const tracker = (event_section: ImpressionEventParams['event_section']) => {
   trackImpressionCollectionEvent({
     pageTitle: window.document.title,
     pageType: 'home',
@@ -118,6 +157,8 @@ const tracker = (event_section: ImpressionEventParams['event_section']) =>
     locale: $i18n.locale.value,
     event_section,
   });
+  onEnteringComponent(event_section);
+};
 
 onMounted(() =>
   trackPageViewEvent({
