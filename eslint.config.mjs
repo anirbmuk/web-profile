@@ -8,6 +8,7 @@ export default withNuxt(
     sonarjs.configs.recommended,
     {
       rules: {
+        'eol-last': ['error', 'always'],
         'tailwindcss/classnames-order': 'error',
         'tailwindcss/no-unnecessary-arbitrary-value': 'error',
         'tailwindcss/no-custom-classname': 'off',
