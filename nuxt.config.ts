@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
-  compatibilityDate: '2025-04-28',
+  compatibilityDate: '2025-07-07',
 
   runtimeConfig: {
     public: {
@@ -27,15 +27,16 @@ export default defineNuxtConfig({
   css: ['@/assets/styles/root.css', '@/assets/styles/main.css'],
 
   modules: [
+    '~/modules/firebase/src',
+    '@zadigetvoltaire/nuxt-gtm',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
-    '@nuxtjs/google-fonts',
-    'nuxt-svgo',
-    '@zadigetvoltaire/nuxt-gtm',
-    'nuxt-jsonld',
     '@nuxtjs/i18n',
+    'nuxt-svgo',
+    'nuxt-jsonld',
     '~/modules/sitemap/src',
-    '~/modules/firebase/src',
+    'nuxt-vitalizer',
     '@nuxt/eslint',
   ],
 
@@ -91,6 +92,10 @@ export default defineNuxtConfig({
 
   sitemap: {
     sourceUrl: '',
+  },
+
+  vitalizer: {
+    disableStylesheets: 'entry', // Disable stylesheets for entry points
   },
 
   routeRules: {
