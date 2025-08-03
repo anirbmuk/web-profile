@@ -173,10 +173,3 @@ defineOptions({
   name: 'MainComponent',
 });
 </script>
-
-<style scoped>
-.profile-image {
-  background: url('/seo.webp') no-repeat center;
-  @apply mb-2 h-[420px] rounded-sm bg-cover md:h-[600px] lg:h-[420px] mx-auto md:max-w-3/4 2xl:max-w-3/5;
-}
-</style>

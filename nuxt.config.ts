@@ -90,7 +90,8 @@ export default defineNuxtConfig({
   },
 
   vitalizer: {
-    disableStylesheets: 'entry', // Disable stylesheets for entry points
+    disablePreloadLinks: true,
+    disablePrefetchLinks: true,
   },
 
   routeRules: {
