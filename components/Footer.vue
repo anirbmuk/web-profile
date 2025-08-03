@@ -17,6 +17,7 @@
             :url="getSwitcherUrl('en')"
             :title="getTitle('en')"
             :label="getTitle('en')"
+            :alt-text="getTitle('en')"
             :size="6"
             target="_self" />
           <div class="-mt-0.5 text">
@@ -27,6 +28,7 @@
             :url="getSwitcherUrl('de')"
             :title="getTitle('de')"
             :label="getTitle('de')"
+            :alt-text="getTitle('de')"
             :size="6"
             target="_self" />
         </div>

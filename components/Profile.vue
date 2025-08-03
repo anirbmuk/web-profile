@@ -84,8 +84,10 @@ defineProps({
 const onDownloadResume = (artifacts: Artifact[] | undefined) => {
   if (artifacts) {
     const [resume] = artifacts?.filter((artifact) => artifact.category === 'resume') || [];
-    downloadFile(resume.url);
-    onLinkClick(resume.url);
+    if (resume?.url) {
+      downloadFile(resume.url);
+      onLinkClick(resume.url);
+    }
   }
 };
 

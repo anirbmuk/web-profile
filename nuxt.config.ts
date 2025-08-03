@@ -5,6 +5,8 @@ import apiPaths from './config/paths';
 const apiBasePath = '/api';
 
 const HOUR = 60 * 60;
+const DAY = 24 * HOUR;
+const YEAR = 365 * DAY;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -33,7 +35,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
     '@nuxtjs/i18n',
-    'nuxt-svgo',
     'nuxt-jsonld',
     '~/modules/sitemap/src',
     'nuxt-vitalizer',
@@ -57,12 +58,6 @@ export default defineNuxtConfig({
       },
     ],
     sitemap: '/sitemap.xml',
-  },
-
-  svgo: {
-    autoImportPath: './assets/icons',
-    defaultImport: 'component',
-    componentPrefix: 'Icon',
   },
 
   firebase: {
@@ -101,13 +96,37 @@ export default defineNuxtConfig({
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${HOUR}`,
+        'Cache-Control': `public, max-age=${DAY}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${HOUR}`,
+        'Cache-Control': `public, max-age=${DAY}`,
+      },
+      swr: true,
+    },
+    '/icons/**': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/seo.webp': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/favicon.ico': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/apple-touch-icon.png': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
       },
       swr: true,
     },
