@@ -6,17 +6,17 @@
     <LazyUiIcon
       v-for="rat in _fullRating"
       :key="rat"
-      :icon="'StarFilled'"
+      :icon="'star-filled'"
       loading="lazy" />
     <LazyUiIcon
       v-if="_hasHalf"
-      :icon="'StarHalfFilled'"
+      :icon="'star-half-filled'"
       loading="lazy" />
     <template v-if="_remaining?.length">
       <LazyUiIcon
         v-for="rem in _remaining"
         :key="rem"
-        :icon="'StarEmpty'"
+        :icon="'star-empty'"
         loading="lazy" />
     </template>
   </div>

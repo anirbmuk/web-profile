@@ -6,7 +6,7 @@
     @click="$emit('scrollToTop')">
     <div class="flex items-center text-3xl text-white">
       <LazyUiIcon
-        icon="UpArrow"
+        icon="up-arrow"
         loading="lazy"
         :size="6" />
     </div>
