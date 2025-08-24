@@ -38,7 +38,7 @@
           <span>{{ '&copy; ' + block?.copyright + ',' }}</span>
           <time
             class="ml-[3px]"
-            :date-time="block?.publishdate"
+            :datetime="block?.publishdate"
             publish-date>{{
               year
             }}</time>
