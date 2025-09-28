@@ -2,8 +2,9 @@
   <Header />
   <main class="container mx-auto my-20">
     <ClientOnly>
-      <UiBackToTop
+      <LazyUiBackToTop
         v-show="scrollState > 200"
+        hydrate-on-idle
         @scroll-to-top="scrollToTop" />
     </ClientOnly>
     <slot />
@@ -33,6 +34,9 @@ const { data: footer } = useAsyncData('footer', async () => {
     return nuxt.payload.data[key];
   },
   transform(data) {
+    if (!data) {
+      return null;
+    }
     return omit(data, ['documentid', 'visibility']) as FooterBlock;
   },
 });

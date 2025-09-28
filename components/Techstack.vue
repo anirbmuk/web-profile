@@ -18,7 +18,8 @@
                   v-if="tech.icon"
                   :icon="tech.icon"
                   loading="lazy"
-                  :size="8" />
+                  :size="8"
+                  hydrate-on-visible />
                 <div
                   class="text-md md:text"
                   translate="no">
@@ -26,7 +27,9 @@
                 </div>
               </div>
               <div>
-                <LazyUiRating :rating="tech.rating" />
+                <LazyUiRating
+                  :rating="tech.rating"
+                  hydrate-on-visible />
               </div>
             </div>
           </UiLinkOrText>
@@ -42,13 +45,16 @@
                   v-if="db.icon"
                   :icon="db.icon"
                   loading="lazy"
-                  :size="8" />
+                  :size="8"
+                  hydrate-on-visible />
                 <div class="text-md md:text">
                   {{ db.name }}
                 </div>
               </div>
               <div>
-                <LazyUiRating :rating="db.rating" />
+                <LazyUiRating
+                  :rating="db.rating"
+                  hydrate-on-visible />
               </div>
             </div>
           </UiLinkOrText>

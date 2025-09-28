@@ -23,7 +23,8 @@
                     <LazyUiIcon
                       :icon="'github'"
                       :size="7"
-                      loading="lazy"/>
+                      loading="lazy"
+                      hydrate-on-visible />
                     <div
                       class="-mt-1 text md:text-2xl"
                       translate="no">

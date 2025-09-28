@@ -7,17 +7,20 @@
       v-for="rat in _fullRating"
       :key="rat"
       :icon="'star-filled'"
-      loading="lazy" />
+      loading="lazy"
+      hydrate-on-visible />
     <LazyUiIcon
       v-if="_hasHalf"
       :icon="'star-half-filled'"
-      loading="lazy" />
+      loading="lazy"
+      hydrate-on-visible />
     <template v-if="_remaining?.length">
       <LazyUiIcon
         v-for="rem in _remaining"
         :key="rem"
         :icon="'star-empty'"
-        loading="lazy" />
+        loading="lazy"
+        hydrate-on-visible />
     </template>
   </div>
 </template>

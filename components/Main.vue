@@ -29,7 +29,8 @@
           class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
           :class="{
             '!translate-y-0 !opacity-100': visibility['career_section'] === true,
-          }" />
+          }"
+          hydrate-on-visible />
       </UtilIntersect>
     </template>
     <template v-if="data?.techstack">
@@ -41,7 +42,8 @@
           class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
           :class="{
             '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
-          }" />
+          }"
+          hydrate-on-visible />
       </UtilIntersect>
     </template>
     <template v-if="data?.github?.length">
@@ -53,7 +55,8 @@
           class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
           :class="{
             '!translate-y-0 !opacity-100': visibility['github_section'] === true,
-          }" />
+          }"
+          hydrate-on-visible />
       </UtilIntersect>
     </template>
     <template v-if="data?.education?.length">
@@ -65,7 +68,8 @@
           class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
           :class="{
             '!translate-y-0 !opacity-100': visibility['education_section'] === true,
-          }" />
+          }"
+          hydrate-on-visible />
       </UtilIntersect>
     </template>
   </div>

@@ -8,7 +8,8 @@
       <LazyUiIcon
         icon="up-arrow"
         loading="lazy"
-        :size="6" />
+        :size="6"
+        hydrate-on-visible />
     </div>
   </button>
 </template>
