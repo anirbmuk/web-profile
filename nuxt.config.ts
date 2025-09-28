@@ -6,6 +6,7 @@ const apiBasePath = '/api';
 
 const HOUR = 60 * 60;
 const DAY = 24 * HOUR;
+const WEEK = 7 * DAY;
 const YEAR = 365 * DAY;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -92,18 +93,19 @@ export default defineNuxtConfig({
   vitalizer: {
     disablePreloadLinks: true,
     disablePrefetchLinks: true,
+    disableStylesheets: true,
   },
 
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${DAY}`,
+        'Cache-Control': `public, max-age=${WEEK}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${DAY}`,
+        'Cache-Control': `public, max-age=${WEEK}`,
       },
       swr: true,
     },
@@ -131,6 +133,11 @@ export default defineNuxtConfig({
       },
       swr: true,
     },
+    '/api/**': {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    },
   },
 
   devServer: {
@@ -146,6 +153,10 @@ export default defineNuxtConfig({
 
   future: {
     compatibilityVersion: 4,
+  },
+
+  features: {
+    inlineStyles: true,
   },
 
 });
