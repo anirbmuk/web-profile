@@ -1,7 +1,8 @@
 {
   "global": {
-    "title": "Anirban Mukherjee (anirbmuk)",
-    "description": "I am Anirban Mukherjee, Staff Frontend Developer at SCAYLE, currently in Hamburg, Germany.",
+    "title": "Anirban Mukherjee (anirbmuk) in Hamburg",
+    "twitterTitle": "Anirban Mukherjee - Staff Frontend Developer in Hamburg",
+    "description": "I am Anirban Mukherjee, Staff Frontend Developer at SCAYLE, currently in Hamburg, Germany. I specialize in Nuxt, Vue and TypeScript.",
     "keywords": "anirban,mukherjee,anirbmuk,staff,frontend,developer,bio,resume,scayle,hamburg,germany",
     "accessibility": {
       "ariaLabel": {
@@ -19,6 +20,24 @@
     "de": {
       "current": "You are currently on the German site",
       "switch": "Switch to the German site"
+    }
+  },
+  "seo": {
+    "person": {
+      "alumniOf": {
+        "department": "Metallurgical and Material Engineering Department",
+        "address": {
+          "addressLocality": "Kolkata",
+          "addressCountry": "India"
+        }
+      },
+      "jobTitle": "Staff Frontend Developer",
+      "knowsLanguage": "Bengali, Hindi, English",
+      "nationality": "Indian",
+      "address": {
+        "addressLocality": "Hamburg",
+        "addressCountry": "Germany"
+      }
     }
   },
   "main": {

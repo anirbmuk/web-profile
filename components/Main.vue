@@ -93,6 +93,7 @@ const {
   trackPageViewEvent,
   trackImpressionCollectionEvent,
 } = useTracking();
+const { generatePersonSchema } = useSeo();
 
 const visibility = reactive<Partial<Record<ImpressionEventParams['event_section'], boolean>>>({
 });
@@ -172,6 +173,8 @@ onMounted(() =>
     locale: $i18n.locale.value,
   }),
 );
+
+useJsonld(() => generatePersonSchema(data.value?.career));
 
 defineOptions({
   name: 'MainComponent',
