@@ -6,7 +6,6 @@ const apiBasePath = '/api';
 
 const HOUR = 60 * 60;
 const DAY = 24 * HOUR;
-const WEEK = 7 * DAY;
 const YEAR = 365 * DAY;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -99,13 +98,13 @@ export default defineNuxtConfig({
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${WEEK}`,
+        'Cache-Control': `public, max-age=${DAY}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${WEEK}`,
+        'Cache-Control': `public, max-age=${DAY}`,
       },
       swr: true,
     },
