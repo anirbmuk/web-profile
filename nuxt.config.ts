@@ -16,6 +16,17 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-07-07',
 
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'app-version',
+          content: '2.0.0', 
+        },
+      ],
+    },
+  },
+
   runtimeConfig: {
     public: {
       appEnv: '', // Override by setting NUXT_PUBLIC_APP_ENV
