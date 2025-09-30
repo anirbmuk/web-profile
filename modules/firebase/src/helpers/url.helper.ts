@@ -1,5 +1,5 @@
 export const getSlug = function (path: string, base = '') {
-  let [, slug] = path.split(base);
+  let [, slug = ''] = path.split(base);
   if (slug.startsWith('/')) {
     slug = slug.slice(1);
   }
