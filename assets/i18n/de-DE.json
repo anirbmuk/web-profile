@@ -81,7 +81,10 @@
       }
     },
     "techstack": {
-      "title": "Technologien"
+      "title": "Technologien",
+      "jsonld": {
+        "description": "{name}-Kenntnisse mit {rating} von {bestRating} bewertet"
+      }
     },
     "github": {
       "title": "Beliebte Repositorien"

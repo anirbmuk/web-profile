@@ -163,10 +163,34 @@ export const useSeo = () => {
     };
   };
 
+  const generateTechStackSchema = ({
+    position,
+    name,
+    description,
+  }: {
+    position: number,
+    name: string,
+    description: string,
+  }): WithContext<ListItem> => {
+    return {
+      '@type': 'ListItem',
+      '@context': SCHEMA_ORG,
+      ...(position && {
+        position,
+      }),
+      item: {
+        '@type': 'Thing',
+        name,
+        description,
+      },
+    };
+  };
+
   return {
     getCanonical,
     generateAlternateLinks,
     generateListSchema,
     generatePersonSchema,
+    generateTechStackSchema,
   };
 };
