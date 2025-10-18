@@ -24,6 +24,12 @@ export default defineNuxtConfig({
           content: '2.0.1',
         },
       ],
+      link: [
+        {
+          rel: 'preconnect',
+          href: 'https://www.googletagmanager.com/',
+        },
+      ],
     },
   },
 
@@ -55,6 +61,7 @@ export default defineNuxtConfig({
   googleFonts: {
     display: 'swap',
     preconnect: true,
+    preload: true,
     useStylesheet: true,
     families: {
       'Noto Sans': [400, 600, 700],
@@ -87,13 +94,9 @@ export default defineNuxtConfig({
     strategy: 'prefix',
     detectBrowserLanguage: false,
     langDir: './../assets/i18n',
-    lazy: true,
     vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
   },
 
   sitemap: {
