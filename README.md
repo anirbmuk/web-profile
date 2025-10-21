@@ -8,6 +8,8 @@
 :heavy_check_mark: Dark mode support  
 
 ## Lighthouse report  
+[Lighthouse Report - pagespeed.web.dev](https://pagespeed.web.dev/analysis/https-anirbmuk-appspot-com-de/n4ot04ilbs?form_factor=desktop)  
+  
 ![preview](external/lighthouse.png)  
 
 ## Technical mumbo-jumbo
