@@ -9,5 +9,5 @@ export const TIMELINE_COLORS = [
 ];
 
 export const getTimelineColor = (index: number): string => {
-  return TIMELINE_COLORS[index % TIMELINE_COLORS.length];
+  return TIMELINE_COLORS[index % TIMELINE_COLORS.length] || '#931F92';
 };

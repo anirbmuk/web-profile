@@ -130,9 +130,9 @@ const {
 } = useDate();
 
 const getHeight = (start: MappedTimeline['start'], end = getCurrentTimeline()) => {
-  const [, endYear] = end.split('/', 2);
-  const [, startYear] = start.split('/', 2);
-  return heights[+endYear - +startYear || 1] || heights[Object.keys(heights).length];
+  const [, endYear = ''] = end.split('/', 2);
+  const [, startYear = ''] = start.split('/', 2);
+  return heights[+endYear - +startYear || 1] || heights[Object.keys(heights).length] || 'h-96 md:h-[26rem]';
 };
 
 const mappedTimelines = computed<MappedTimeline[]>(() =>
@@ -144,7 +144,7 @@ const mappedTimelines = computed<MappedTimeline[]>(() =>
         size: getHeight(each.start, each.end),
         alignment: index % 2 === 0 ? 'left' : 'right',
         backgroundColor: getTimelineColor(index),
-      };
+      } satisfies MappedTimeline;
     }),
 );
 
