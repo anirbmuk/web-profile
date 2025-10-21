@@ -23,12 +23,12 @@
 Local development server:
 ```
 yarn dev
-http://localhost:3000/en
+https://localhost:3000/en
 ```
 
 Local SSR run:
 ```
-yarn build && yarn start:dev
+yarn build && yarn start:env
 http://localhost:3000/en
 ```
 
