@@ -21,13 +21,23 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'app-version',
-          content: '2.0.1',
+          content: '2.0.2',
         },
       ],
       link: [
         {
           rel: 'preconnect',
           href: 'https://www.googletagmanager.com/',
+        },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
         },
       ],
     },
@@ -97,6 +107,7 @@ export default defineNuxtConfig({
     vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
+    autoDeclare: true,
   },
 
   sitemap: {
