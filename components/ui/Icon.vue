@@ -28,7 +28,7 @@
       :src="`/icons/${icon}.svg`"
       :class="iconClass"
       :aria-hidden="true"
-      :alt="altText || ''"
+      :alt="altText || icon"
       :height="heightAndWidth"
       :width="heightAndWidth"
       :loading="loading" >

@@ -2,7 +2,7 @@
   <Header />
   <main class="container mx-auto my-20">
     <ClientOnly>
-      <LazyUiBackToTop
+      <UiBackToTop
         v-show="scrollState > 200"
         hydrate-on-idle
         @scroll-to-top="scrollToTop" />
@@ -25,6 +25,13 @@ const {
   scrollState,
   scrollToTop,
 } = useScroll('scroll');
+const {
+  getCanonical,
+  getISOLocale,
+  getAlternateISOLocales,
+} = useSeo();
+
+const GLOBAL_TITLE = $i18n.t('global.title');
 
 const { data: footer } = useAsyncData('footer', async () => {
   const [footer] = await fetch<FooterBlock>('footer', true, 1);
@@ -43,22 +50,10 @@ const { data: footer } = useAsyncData('footer', async () => {
 
 useHead({
   htmlAttrs: {
-    lang: $i18n.locale.value,
+    lang: getISOLocale($i18n.locale.value),
   },
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico',
-    },
-    {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      href: '/apple-touch-icon.png',
-    },
-  ],
   titleTemplate(title) {
-    return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
+    return title ? `${GLOBAL_TITLE} | ${title}` : GLOBAL_TITLE;
   },
 });
 
@@ -67,8 +62,10 @@ useSeoMeta({
   description: $i18n.t('global.description'),
   ogDescription: $i18n.t('global.description'),
   ogImage: '/seo.webp',
-  ogLocale: $i18n.locale.value,
-  author: 'Anirban Mukherjee',
+  ogLocale: getISOLocale($i18n.locale.value),
+  ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
+  ogUrl: getCanonical(),
+  ogTitle: GLOBAL_TITLE,
   ogSiteName: 'anirbmuk',
   ogType: 'profile',
   ogImageAlt: $i18n.t('global.twitterTitle'),
@@ -77,6 +74,7 @@ useSeoMeta({
   twitterImage: '/seo.webp',
   twitterImageAlt: $i18n.t('global.twitterTitle'),
   twitterCard: 'summary_large_image',
+  author: 'Anirban Mukherjee',
   colorScheme: 'dark light',
   keywords: $i18n.t('global.keywords'),
   profileFirstName: 'Anirban',

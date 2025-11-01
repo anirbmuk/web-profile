@@ -55,6 +55,17 @@ export const useSeo = () => {
     return alternateHreflangs;
   };
 
+  const getAlternateISOLocales = (currentLocale: string): string[] => {
+    return locales
+      .filter(({ code }) => code !== currentLocale)
+      .map(({ language }) => language.replace('-', '_'));
+  };
+
+  const getISOLocale = (localeCode: string): string => {
+    const locale = locales.find(({ code }) => code === localeCode);
+    return locale ? locale.language.replace('-', '_') : 'en_US';
+  };
+
   const getIsoMonthDate = (source: CareerBlock['start'] | CareerBlock['end']): string | undefined => {
     if (!source) {
       return;
@@ -188,6 +199,8 @@ export const useSeo = () => {
 
   return {
     getCanonical,
+    getAlternateISOLocales,
+    getISOLocale,
     generateAlternateLinks,
     generateListSchema,
     generatePersonSchema,
