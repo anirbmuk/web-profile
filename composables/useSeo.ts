@@ -41,7 +41,7 @@ export const useSeo = () => {
     for (const locale of locales) {
       alternateHreflangs.push({
         rel: 'alternate',
-        hreflang: locale.code,
+        hreflang: locale.language.replace('-', '_'),
         href: page ? `${baseUrl}/${locale.code}/${page}` : `${baseUrl}/${locale.code}`,
       });
       if (locale.default) {
