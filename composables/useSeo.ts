@@ -41,7 +41,7 @@ export const useSeo = () => {
     for (const locale of locales) {
       alternateHreflangs.push({
         rel: 'alternate',
-        hreflang: locale.language.replace('-', '_'),
+        hreflang: locale.language,
         href: page ? `${baseUrl}/${locale.code}/${page}` : `${baseUrl}/${locale.code}`,
       });
       if (locale.default) {
@@ -58,12 +58,12 @@ export const useSeo = () => {
   const getAlternateISOLocales = (currentLocale: string): string[] => {
     return locales
       .filter(({ code }) => code !== currentLocale)
-      .map(({ language }) => language.replace('-', '_'));
+      .map(({ language }) => language);
   };
 
   const getISOLocale = (localeCode: string): string => {
     const locale = locales.find(({ code }) => code === localeCode);
-    return locale ? locale.language.replace('-', '_') : 'en_US';
+    return locale ? locale.language : 'en-US';
   };
 
   const getIsoMonthDate = (source: CareerBlock['start'] | CareerBlock['end']): string | undefined => {
