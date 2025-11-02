@@ -6,9 +6,9 @@
     "keywords": "anirban,mukherjee,anirbmuk,teamleiter,leitender,staff,frontend,developer,lebenslauf,scayle,hamburg,deutschland",
     "accessibility": {
       "ariaLabel": {
-        "backToTopButton": "Klicken Sie hier, um zum Anfang der Seite zu scrollen",
-        "profileImage": "Haupt Profilbild",
-        "loadingProgressBar": "Fortschrittsanzeige für das Laden der Seite"
+        "backToTopButton": "Nach oben scrollen",
+        "profileImage": "Profilbild",
+        "loadingProgressBar": "Ladefortschrittsbalken"
       }
     }
   },
@@ -25,7 +25,7 @@
   "seo": {
     "person": {
       "alumniOf": {
-        "department": "Metallurgietechnik",
+        "department": "Metallurgie und Werkstofftechnik",
         "address": {
           "addressLocality": "Kalkutta",
           "addressCountry": "Indien"
@@ -83,23 +83,23 @@
     "techstack": {
       "title": "Technologien",
       "jsonld": {
-        "description": "{name}-Kenntnisse mit {rating} von {bestRating} bewertet"
+        "description": "Bewertung der {name}-Kenntnisse: {rating} von {bestRating}"
       }
     },
     "github": {
-      "title": "Beliebte Repositorien"
+    "title": "Beliebte Repositories"
     },
     "education": {
       "title": "Ausbildung"
     }
   },
   "about": {
-    "title": "alles über mich"
+    "title": "Alles über mich"
   },
   "components": {
     "UiAccordion": {
-      "collapse": "Zusammenbruch",
-      "expand": "Expandieren"
+      "collapse": "Einklappen",
+      "expand": "Ausklappen"
     },
     "UiTimeline": {
       "present": "heute",
@@ -108,12 +108,12 @@
     }
   },
   "error": {
-    "title_not_found": "Oh, es ist ein 404!",
-    "message_not_found": "Leider ist die von Ihnen gesuchte Seite nicht verfügbar. Würden Sie die Homepage ausprobieren?",
+    "title_not_found": "Oh, das ist ein 404!",
+    "message_not_found": "Leider ist die von Ihnen gesuchte Seite nicht verfügbar. Versuchen Sie es mit der Startseite?",
     "title_others": "Oh! Hier ist etwas schief gelaufen!",
-    "message_others": "Wow! Das ist ein böser Fehler. Im Moment lässt sich das Problem am besten beheben, indem man es noch einmal versucht. Vielen Dank, dass Sie so geduldig sind!",
-    "back_button": "Weiter zur Startseite",
+    "message_others": "Uff! Da ist ein fieser Fehler aufgetreten. Am besten versuchen Sie es gleich noch einmal. Vielen Dank für Ihre Geduld!",
+    "back_button": "Zur Startseite",
     "firebase_config": "Das Firestore-Konfigurationsobjekt ist nicht initialisiert",
-    "no_data_found": "Beim Abrufen für '{path}' wurden keine Daten empfangen"
+    "no_data_found": "Beim Abrufen von '{path}' wurden keine Daten empfangen"
   }
 }
