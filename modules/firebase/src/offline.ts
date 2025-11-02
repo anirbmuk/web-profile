@@ -8,18 +8,18 @@ export default {
         links: [
           {
             text: 'Home',
+            title: 'Main Page',
             type: 'internal',
-            title: 'Home',
             url: '/',
           },
           {
-            title: 'All about me',
             text: 'About',
-            url: '/about',
+            title: 'All about me',
             type: 'internal',
+            url: '/about',
           },
         ],
-        publishdate: '2023-12-16',
+        publishdate: '2025-11-02',
         copyright: 'anirbmuk',
         visibility: 'public',
         documentid: 'PLGn0XhqLJ8qcftDuQJm',
@@ -31,8 +31,8 @@ export default {
       {
         currentjob: 'SCAYLE GmbH',
         bio: [
-          'Close to <strong>18 years</strong> of professional experience in developing enterprise software products.',
-          'Currently working as Staff Frontend Developer at <em>SCAYLE GmbH</em>’s cloud shop solutions team, leading development of multiple online retail shops across Europe. The present tech-stack includes <em>Nuxt</em>/<em>Vue</em>, <em>Angular 12</em>, <em>Tailwind</em> and <em>Node</em>.',
+          '<strong>18 years</strong> of professional experience in developing enterprise software products.',
+          'I currently work as a Staff Frontend Developer in the Cloud Shop Solutions team at <em>SCAYLE GmbH</em>, leading the development of several online shops across Europe and US. My current tech stack includes <em>Nuxt</em>/<em>Vue</em>, <em>Angular</em>, <em>Tailwind</em>, and <em>Node</em>.',
           'As a front-end lead and expert, I also work on partner enablement with external agencies and new clients working with our shop front-end solution.',
           '<strong>8+ years</strong> of experience in building interactive software using <em>Nuxt</em>/<em>Vue</em>, <em>Angular</em>, <em>Tailwind</em>, <em>Redis</em>, <em>Material design</em>, <em>Firebase</em> & <em>Firestore</em>, <em>MongoDB</em> and Chart.js.',
           'Enjoy working on personal projects, learning new technologies, blogging and posting sample POCs to my personal <strong><a rel="nofollow" target="_blank" href="https://github.com/anirbmuk" class="navlink"><span class="gradient-text">GitHub</span></a></strong> account during my free time.',
@@ -151,7 +151,7 @@ export default {
         designation: 'Staff Frontend Developer',
         provider: 'SCAYLE GmbH',
         description:
-          'Senior developer at AY\'s cloud shop solutions team, building and supporting multiple client shops across Europe. As a front-end lead and expert, I also work on partner enablement with external agencies and new clients working with our shop front-end solution. Working on Vue/Nuxt, Angular, Redis, Tailwind, Cypress.',
+          'Staff frontend developer at AY\'s cloud shop solutions team, building and supporting multiple client shops across Europe. As a front-end lead and expert, I also work on partner enablement with external agencies and new clients working with our shop front-end solution. Working on Vue/Nuxt, Angular, Redis, Tailwind, Cypress.',
         documentid: 'lwwR6wc1K3o0L7DK05Z6',
         location: 'Hamburg, Germany',
         visibility: 'public',
@@ -164,19 +164,19 @@ export default {
       technology: [
         {
           rating: 7.5,
-          position: 1,
+          position: 3,
           icon: 'angular',
           name: 'Angular',
         },
         {
           rating: 8,
-          position: 2,
+          position: 4,
           name: 'TypeScript',
           icon: 'typescript',
         },
         {
           name: 'Vue',
-          position: 7,
+          position: 2,
           icon: 'vue',
           rating: 8.5,
         },
@@ -195,20 +195,20 @@ export default {
         {
           icon: 'javascript',
           name: 'JavaScript',
-          position: 3,
+          position: 5,
           rating: 7.5,
         },
         {
           icon: 'nuxtjs',
           rating: 8.5,
           name: 'Nuxt',
-          position: 6,
+          position: 1,
         },
         {
           icon: 'nodejs',
           rating: 6,
           name: 'Node.js',
-          position: 4,
+          position: 6,
         },
         {
           icon: 'nestjs',
@@ -217,22 +217,22 @@ export default {
           name: 'Nestjs',
         },
         {
-          position: 5,
+          position: 7,
           rating: 6,
           name: 'Express',
           icon: 'expressjs',
-        },
-        {
-          name: 'Bootstrap',
-          icon: 'bootstrap',
-          rating: 7,
-          position: 10,
         },
         {
           position: 12,
           rating: 6,
           name: 'Cypress',
           icon: 'cypress',
+        },
+        {
+          rating: 5.5,
+          icon: 'redis',
+          name: 'Redis',
+          position: 10,
         },
       ],
       visibility: 'public',
@@ -255,12 +255,6 @@ export default {
           name: 'MongoDB',
           position: 3,
         },
-        {
-          rating: 5.5,
-          icon: 'redis',
-          name: 'Redis',
-          position: 4,
-        },
       ],
       documentid: 'ZxRl6ypyrBaio9aTjWHC',
     },
@@ -276,6 +270,7 @@ export default {
         type: 'link',
         documentid: 'BWKYBIPIACHbmKI9WG85',
         category: 'github',
+        image: 'https://opengraph.githubassets.com/55427adc172322036e13e9b0105a327f73ea015ccc7771f0ff3d427d0fd72f4a/anirbmuk/angular-scroll-to-top',
       },
       {
         category: 'github',
@@ -286,6 +281,7 @@ export default {
         type: 'link',
         technologies: ['angular'],
         description: 'Build a custom lookup form component',
+        image: 'https://opengraph.githubassets.com/d575e8ac54ed1c015a0ad80fbd10e137c944987299a8b3bf77977ec470cf9928/anirbmuk/CustomFormElement',
       },
       {
         technologies: ['angular'],
@@ -296,6 +292,7 @@ export default {
         description: 'Implement dynamic components with code-splitting',
         category: 'github',
         visibility: 'public',
+        image: 'https://opengraph.githubassets.com/5883ae6c81d2e9749cc393e7f1dea4c248c0ebbedf5fba898261a20f2529f343/anirbmuk/cms-components-demo',
       },
       {
         technologies: ['angular'],
@@ -306,6 +303,7 @@ export default {
         type: 'link',
         documentid: 'c1QSMt60Iq5aBbEeUsRl',
         category: 'github',
+        image: 'https://opengraph.githubassets.com/c38f90563d8c87a60f7e525edb889c622602150236777a1854ef38ddb384bd6c/anirbmuk/ng-lazy-load',
       },
       {
         type: 'link',
@@ -316,6 +314,7 @@ export default {
         technologies: ['angular', 'rxjs', 'material'],
         position: 5,
         visibility: 'public',
+        image: 'https://opengraph.githubassets.com/d5767f1a79d968c87449d1fc54edc155f9bae0230782b54fa9c1fda630fceb2a/anirbmuk/AutocompleteDemo',
       },
       {
         type: 'link',
@@ -326,6 +325,18 @@ export default {
         position: 6,
         description: 'Build a unique hover directive',
         technologies: ['angular'],
+        image: 'https://opengraph.githubassets.com/e2abff8c67b94a725750b45db78daab26ed49953eb3e8ee0fbc796fdb896d7a7/anirbmuk/ng-hover',
+      },
+      {
+        type: 'link',
+        documentid: '2dyjuuhwEBcFVNvLZXIr',
+        visibility: 'public',
+        value: 'https://github.com/anirbmuk/vue-dynamic-form',
+        category: 'github',
+        position: 7,
+        description: 'Build a dynamic, configuration-based reactive Vue form',
+        technologies: ['vue'],
+        image: 'https://opengraph.githubassets.com/2d40b9c8c9f1132b650cd77a9a9afb651530e7a5bd01999d6814135cdd88feb0/anirbmuk/vue-dynamic-form',
       },
     ],
   },
@@ -349,7 +360,7 @@ export default {
       {
         documentid: 'IRIlOVsFiHON7862OdZE',
         description:
-          'I am a <em><strong>Staff Frontend Developer</strong></em> at <strong><a rel="nofollow" href="https://www.scayle.com/" target="_blank" class="navlink"><span class="gradient-text">SCAYLE GmbH</span></a></strong>. I lead the development of multiple online retail shops across Europe and US. My IT career spans close to <em><strong>18 years</strong></em>, with almost 8 years of <em>Oracle</em> fusion stack experience and more than 8 years of front-end development experience.',
+          'I am a <span translate="no"><em><strong>Staff Frontend Developer</strong></em></span> at <strong><a rel="nofollow" href="https://www.scayle.com/" target="_blank" class="navlink"><span class="gradient-text">SCAYLE GmbH</span></a></strong>. I lead the development of multiple online retail shops across Europe and US. My IT career spans <em><strong>18 years</strong></em>, with almost 8 years of <em>Oracle</em> fusion stack experience and more than 8 years of front-end development experience.',
         type: 'text',
         visibility: 'public',
         value: 'paragraph',
@@ -362,7 +373,7 @@ export default {
         value: 'paragraph',
         type: 'text',
         description:
-          'I have been working with front-end technology solutions for more than <em><strong>6 years</strong></em> now. I have worked on <em>Angular</em> for building enterprise applications, as well some personal home projects. I am presently working on <em>Vue/Nuxt</em>, and really enjoying it so far!',
+          'I have been working with multiple front-end technology solutions, for more than <em><strong>8 years</strong></em> now. I have worked on <em>Angular</em> and <em>Vue/Nuxt</em> for building enterprise applications, as well some personal home projects. And I am a big fan of <em>TailwindCss</em> :-)',
       },
       {
         description:
@@ -376,7 +387,7 @@ export default {
       {
         visibility: 'public',
         description:
-          'When I am not caught up with work, I write technical blogs on <strong><a rel="nofollow" href="https://dev.to/anirbmuk" target="_blank" class="navlink">DEV.TO</a></strong>, learn new technologies and post interesting code samples on my public <strong><a rel="nofollow" href="https://github.com/anirbmuk" target="_blank" class="navlink">GitHub</a> </strong>profile.',
+          'When I am not caught up with work, I love to write technical blogs on <strong><a rel="nofollow" href="https://dev.to/anirbmuk" target="_blank" class="navlink">DEV.TO</a></strong>, learn new technologies and post interesting code samples on my public <strong><a rel="nofollow" href="https://github.com/anirbmuk" target="_blank" class="navlink">GitHub</a></strong> profile.',
         type: 'text',
         documentid: 'ZdQ36IIfrS8fhXawcFmo',
         position: 4,
@@ -387,7 +398,7 @@ export default {
         type: 'text',
         visibility: 'public',
         description:
-          'I would love to connect and chat with you on <strong><a rel="nofollow" href="https://www.linkedin.com/in/anirbmuk" target="_blank" class="navlink linkedin">LinkedIn</a></strong> or <strong><a rel="nofollow" href="https://twitter.com/anirbmuk" target="_blank" class="navlink twitter">Twitter</a></strong>. Or just drop me an email at <strong><a href="mailto:anirban.mjee+utm@gmail.com" class="navlink"><span class="email-text">anirban.mjee@gmail.com</span></a></strong>.',
+          'I would love to connect and chat with you on <strong><a rel="nofollow" href="https://www.linkedin.com/in/anirbmuk" target="_blank" class="navlink linkedin">LinkedIn</a></strong> or <strong><a rel="nofollow" href="https://twitter.com/anirbmuk" target="_blank" class="navlink">X</a></strong>. Or just drop me an email at <strong><a href="mailto:anirban.mjee+utm@gmail.com" class="navlink"><span class="email-text">anirban.mjee@gmail.com</span></a></strong>.',
         documentid: 'dayx0tJihKlDMrULv8er',
         position: 5,
       },
@@ -403,7 +414,7 @@ export default {
         position: 7,
         type: 'text',
         description:
-          '<strong>P.S.</strong> this project is built with <em>Vue/Tailwindcss</em> and <em>Nuxt</em>. <em>Google Firestore</em> acts as CMS and data-store. You can view the latest source code <strong><a rel="nofollow" href="https://github.com/anirbmuk/web-profile" target="_blank" class="navlink">here</a></strong>!',
+          '<strong>P.S.</strong> this project is built with <em>Vue/Tailwindcss</em> and <em>Nuxt</em>. <em>Google Firestore</em> acts as CMS and data-store. You can view the latest source code at the <strong><a rel="nofollow" href="https://github.com/anirbmuk/web-profile" target="_blank" class="navlink">GitHub Repo</a></strong>!',
         visibility: 'public',
         documentid: 'zCDOCKWH0DKBtpnsjtTR',
         value: 'paragraph',
