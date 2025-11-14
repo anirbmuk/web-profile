@@ -62,8 +62,6 @@ const {
   getAlternateISOLocales,
 } = useSeo();
 
-const GLOBAL_TITLE = $i18n.t('global.title');
-
 const title =
   props.error?.statusCode === 404
     ? $i18n.t('error.title_not_found')
@@ -83,7 +81,6 @@ useSeoMeta({
   ogLocale: getISOLocale($i18n.locale.value),
   ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
   ogUrl: getCanonical(),
-  ogTitle: GLOBAL_TITLE,
   ogSiteName: 'anirbmuk',
   ogType: 'profile',
   ogImageAlt: $i18n.t('global.twitterTitle'),

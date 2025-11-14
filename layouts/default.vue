@@ -4,7 +4,6 @@
     <ClientOnly>
       <UiBackToTop
         v-show="scrollState > 200"
-        hydrate-on-idle
         @scroll-to-top="scrollToTop" />
     </ClientOnly>
     <slot />
@@ -19,7 +18,12 @@ import type { FooterBlock } from '~/types/features/footer';
 import { omit } from 'radash';
 
 const { $i18n } = useNuxtApp();
-const { public: { googleSiteVerification } } = useRuntimeConfig();
+const {
+  public: {
+    googleSiteVerification,
+    gtm: { enabled: gtmEnabled },
+  },
+} = useRuntimeConfig();
 const { fetch } = useFirebase();
 const {
   scrollState,
@@ -55,6 +59,12 @@ useHead({
   titleTemplate(title) {
     return title ? `${GLOBAL_TITLE} | ${title}` : GLOBAL_TITLE;
   },
+  link: [
+    ...(gtmEnabled ? [{
+      rel: 'preconnect',
+      href: 'https://www.googletagmanager.com/',
+    }] : []),
+  ],
 });
 
 useSeoMeta({
@@ -65,7 +75,6 @@ useSeoMeta({
   ogLocale: getISOLocale($i18n.locale.value),
   ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
   ogUrl: getCanonical(),
-  ogTitle: GLOBAL_TITLE,
   ogSiteName: 'anirbmuk',
   ogType: 'profile',
   ogImageAlt: $i18n.t('global.twitterTitle'),
