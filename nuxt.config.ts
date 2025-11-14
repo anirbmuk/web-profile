@@ -26,10 +26,6 @@ export default defineNuxtConfig({
       ],
       link: [
         {
-          rel: 'preconnect',
-          href: 'https://www.googletagmanager.com/',
-        },
-        {
           rel: 'icon',
           type: 'image/x-icon',
           href: '/favicon.ico',
@@ -97,7 +93,8 @@ export default defineNuxtConfig({
   gtm: {
     id: '', // Override by setting NUXT_PUBLIC_GTM_ID
     debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
-    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED
+    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED,
+    defer: true, // Override by setting NUXT_PUBLIC_GTM_DEFER,
   },
 
   i18n: {
