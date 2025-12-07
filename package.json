@@ -66,6 +66,7 @@
   "resolutions": {
     "rollup": "^4.34.9",
     "@vue/compiler-sfc": "^3.5.22",
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.18",
+    "h3": "^1.15.4"
   }
 }
