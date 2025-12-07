@@ -11,42 +11,47 @@
           <template
             v-for="(repo, index) in block"
             :key="`github_${index + 1}`">
-            <UiLinkOrText
-              :href="repo?.value?.toString()"
+            <UtilIntersect
               class="max-md:snap-start"
-              @link-click="onLinkClick(repo?.value?.toString())">
-              <div
-                v-if="repo?.value"
-                class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
-                <div class="items-center space-y-2">
-                  <div class="flex items-center space-x-2">
-                    <LazyUiIcon
-                      :icon="'github'"
-                      :size="7"
-                      loading="lazy"/>
+              @tracked="
+                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+              ">
+              <UiLinkOrText
+                :href="repo?.value?.toString()"
+                @link-click="onLinkClick(repo?.value?.toString())">
+                <div
+                  v-if="repo?.value"
+                  class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
+                  <div class="items-center space-y-2">
+                    <div class="flex items-center space-x-2">
+                      <LazyUiIcon
+                        :icon="'github'"
+                        :size="7"
+                        loading="lazy"/>
+                      <div
+                        class="-mt-1 text md:text-2xl"
+                        translate="no">
+                        {{ transformRepo(repo?.value?.toString()) }}
+                      </div>
+                    </div>
                     <div
-                      class="-mt-1 text md:text-2xl"
+                      class="text-md text-gray-500 lg:hidden"
                       translate="no">
-                      {{ transformRepo(repo?.value?.toString()) }}
+                      {{ transformTechstack(repo?.technologies) }}
+                    </div>
+                    <div class="hidden space-x-2 lg:flex">
+                      <UiChip
+                        v-for="technology in repo?.technologies"
+                        :key="technology"
+                        :text="technology" />
+                    </div>
+                    <div class="text-md leading-4">
+                      {{ repo?.description }}
                     </div>
                   </div>
-                  <div
-                    class="text-md text-gray-500 lg:hidden"
-                    translate="no">
-                    {{ transformTechstack(repo?.technologies) }}
-                  </div>
-                  <div class="hidden space-x-2 lg:flex">
-                    <UiChip
-                      v-for="technology in repo?.technologies"
-                      :key="technology"
-                      :text="technology" />
-                  </div>
-                  <div class="text-md leading-4">
-                    {{ repo?.description }}
-                  </div>
                 </div>
-              </div>
-            </UiLinkOrText>
+              </UiLinkOrText>
+            </UtilIntersect>
           </template>
         </div>
       </template>
@@ -56,9 +61,13 @@
 
 <script setup lang="ts">
 import type { GithubBlock } from '~/types/features/github';
+import type { ImpressionEventParams } from '~/types/tracking';
 
 const { $i18n } = useNuxtApp();
-const { trackExternalClickEvent } = useTracking();
+const {
+  trackExternalClickEvent,
+  trackImpressionItemEvent,
+} = useTracking();
 const { generateListSchema } = useSeo();
 
 const props = defineProps({
@@ -94,6 +103,16 @@ const onLinkClick = (event_url: string | undefined) => {
     event_url,
   });
 };
+
+const tracker = (event_section: ImpressionEventParams['event_section'], item: string) =>
+  trackImpressionItemEvent({
+    pageTitle: window.document.title,
+    pageType: 'home',
+    pageUrl: window.location.href,
+    locale: $i18n.locale.value,
+    event_section,
+    item,
+  });
 
 useJsonld(() => ({
   '@context': 'https://schema.org',
