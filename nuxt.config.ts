@@ -11,7 +11,7 @@ const YEAR = 365 * DAY;
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: true,
   },
 
   compatibilityDate: '2025-07-07',
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'app-version',
-          content: '2.0.3',
+          content: '2.0.4',
         },
       ],
       link: [
@@ -62,6 +62,7 @@ export default defineNuxtConfig({
     '~/modules/sitemap/src',
     'nuxt-vitalizer',
     '@nuxt/eslint',
+    '@nuxt/hints',
   ],
 
   googleFonts: {
@@ -178,6 +179,12 @@ export default defineNuxtConfig({
 
   features: {
     inlineStyles: true,
+  },
+
+  vite: {
+    optimizeDeps: {
+      exclude: ['@nuxt/hints'],
+    },
   },
 
 });
