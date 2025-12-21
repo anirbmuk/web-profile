@@ -1,16 +1,14 @@
 <template>
   <Header />
   <main class="container mx-auto my-20">
-    <ClientOnly>
-      <UiBackToTop
-        v-show="scrollState > 200"
-        @scroll-to-top="scrollToTop" />
-    </ClientOnly>
     <slot />
   </main>
   <Footer
     v-if="footer"
     :block="footer" />
+  <UiBackToTop
+    v-show="scrollState > 200"
+    @scroll-to-top="scrollToTop" />
 </template>
 
 <script setup lang="ts">
