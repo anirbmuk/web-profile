@@ -1,73 +1,75 @@
 <template>
-  <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
-    <UtilIntersect @tracked="tracker('profile_image_section')">
-      <div
-        role="img"
-        class="profile-image"
-        :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
-    </UtilIntersect>
-  </section>
-  <div class="mx-auto space-y-8 xl:max-w-3/4 xl:space-y-12 2xl:max-w-4/5 2xl:space-y-16">
-    <template v-if="profile">
-      <UtilIntersect
-        :threshold="[0.1]"
-        @tracked="tracker('profile_section')">
-        <Profile
-          :profile="profile"
-          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
-          :class="{
-            '!translate-y-0 !opacity-100': visibility['profile_section'] === true,
-          }" />
+  <div>
+    <section class="mx-auto mt-16 md:mt-24 xl:max-w-3/4 2xl:max-w-4/5">
+      <UtilIntersect @tracked="tracker('profile_image_section')">
+        <div
+          role="img"
+          class="profile-image"
+          :aria-label="$i18n.t('global.accessibility.ariaLabel.profileImage')" />
       </UtilIntersect>
-    </template>
-    <template v-if="data?.career?.length">
-      <UtilIntersect
-        :threshold="[0.1]"
-        @tracked="tracker('career_section')">
-        <LazyCareer
-          :block="data.career"
-          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
-          :class="{
-            '!translate-y-0 !opacity-100': visibility['career_section'] === true,
-          }" />
-      </UtilIntersect>
-    </template>
-    <template v-if="data?.techstack">
-      <UtilIntersect
-        :threshold="[0.1]"
-        @tracked="tracker('techstack_section')">
-        <LazyTechstack
-          :block="data.techstack"
-          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
-          :class="{
-            '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
-          }" />
-      </UtilIntersect>
-    </template>
-    <template v-if="data?.github?.length">
-      <UtilIntersect
-        :threshold="[0.1]"
-        @tracked="tracker('github_section')">
-        <LazyGithub
-          :block="data.github"
-          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
-          :class="{
-            '!translate-y-0 !opacity-100': visibility['github_section'] === true,
-          }" />
-      </UtilIntersect>
-    </template>
-    <template v-if="data?.education?.length">
-      <UtilIntersect
-        :threshold="[0.1]"
-        @tracked="tracker('education_section')">
-        <LazyEducation
-          :block="data.education"
-          class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
-          :class="{
-            '!translate-y-0 !opacity-100': visibility['education_section'] === true,
-          }" />
-      </UtilIntersect>
-    </template>
+    </section>
+    <div class="mx-auto space-y-8 xl:max-w-3/4 xl:space-y-12 2xl:max-w-4/5 2xl:space-y-16">
+      <template v-if="profile">
+        <UtilIntersect
+          :threshold="[0.1]"
+          @tracked="tracker('profile_section')">
+          <Profile
+            :profile="profile"
+            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            :class="{
+              '!translate-y-0 !opacity-100': visibility['profile_section'] === true,
+            }" />
+        </UtilIntersect>
+      </template>
+      <template v-if="data?.career?.length">
+        <UtilIntersect
+          :threshold="[0.1]"
+          @tracked="tracker('career_section')">
+          <LazyCareer
+            :block="data.career"
+            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            :class="{
+              '!translate-y-0 !opacity-100': visibility['career_section'] === true,
+            }" />
+        </UtilIntersect>
+      </template>
+      <template v-if="data?.techstack">
+        <UtilIntersect
+          :threshold="[0.1]"
+          @tracked="tracker('techstack_section')">
+          <LazyTechstack
+            :block="data.techstack"
+            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            :class="{
+              '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
+            }" />
+        </UtilIntersect>
+      </template>
+      <template v-if="data?.github?.length">
+        <UtilIntersect
+          :threshold="[0.1]"
+          @tracked="tracker('github_section')">
+          <LazyGithub
+            :block="data.github"
+            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            :class="{
+              '!translate-y-0 !opacity-100': visibility['github_section'] === true,
+            }" />
+        </UtilIntersect>
+      </template>
+      <template v-if="data?.education?.length">
+        <UtilIntersect
+          :threshold="[0.1]"
+          @tracked="tracker('education_section')">
+          <LazyEducation
+            :block="data.education"
+            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            :class="{
+              '!translate-y-0 !opacity-100': visibility['education_section'] === true,
+            }" />
+        </UtilIntersect>
+      </template>
+    </div>
   </div>
 </template>
 
