@@ -1,0 +1,119 @@
+{
+  "global": {
+    "title": "Anirban Mukherjee in Hamburg",
+    "twitterTitle": "Anirban Mukherjee - Staff Frontend Developer in Hamburg",
+    "description": "I am Anirban Mukherjee, Staff Frontend Developer at SCAYLE, currently in Hamburg, Germany. I specialize in Nuxt, Vue and TypeScript.",
+    "keywords": "anirban,mukherjee,anirbmuk,staff,frontend,developer,bio,resume,scayle,hamburg,germany",
+    "accessibility": {
+      "ariaLabel": {
+        "backToTopButton": "Click to scroll to the top of the page",
+        "profileImage": "Main profile image",
+        "loadingProgressBar": "Progress bar for loading the page"
+      }
+    }
+  },
+  "footer": {
+    "en": {
+      "current": "You are currently on the English site",
+      "switch": "Switch to the English site"
+    },
+    "de": {
+      "current": "You are currently on the German site",
+      "switch": "Switch to the German site"
+    }
+  },
+  "seo": {
+    "person": {
+      "alumniOf": {
+        "department": "Metallurgical and Material Engineering Department",
+        "address": {
+          "addressLocality": "Kolkata",
+          "addressCountry": "India"
+        }
+      },
+      "jobTitle": "Staff Frontend Developer",
+      "knowsLanguage": "Bengali, Hindi, English",
+      "nationality": "Indian",
+      "address": {
+        "addressLocality": "Hamburg",
+        "addressCountry": "Germany"
+      }
+    }
+  },
+  "main": {
+    "title": "Staff Frontend Developer",
+    "profile": {
+      "download_resume": "Download Resume"
+    },
+    "career": {
+      "title": "Career Path",
+      "timeline": {
+        "months": {
+          "long": {
+            "jan": "January",
+            "feb": "February",
+            "mar": "March",
+            "apr": "April",
+            "may": "May",
+            "jun": "June",
+            "jul": "July",
+            "aug": "August",
+            "sep": "September",
+            "oct": "October",
+            "nov": "November",
+            "dec": "December"
+          },
+          "short": {
+            "jan": "Jan",
+            "feb": "Feb",
+            "mar": "Mar",
+            "apr": "Apr",
+            "may": "May",
+            "jun": "Jun",
+            "jul": "Jul",
+            "aug": "Aug",
+            "sep": "Sep",
+            "oct": "Oct",
+            "nov": "Nov",
+            "dec": "Dec"
+          }
+        }
+      }
+    },
+    "techstack": {
+      "title": "Technologies",
+      "jsonld": {
+        "description": "{name} knowledge rated {rating} out of {bestRating}"
+      }
+    },
+    "github": {
+      "title": "Popular Repositories"
+    },
+    "education": {
+      "title": "Education"
+    }
+  },
+  "about": {
+    "title": "All About Me"
+  },
+  "components": {
+    "UiAccordion": {
+      "collapse": "Collapse",
+      "expand": "Expand"
+    },
+    "UiTimeline": {
+      "present": "today",
+      "month": "0 months | {count} month | {count} months",
+      "year": "0 years | {count} year | {count} years"
+    }
+  },
+  "error": {
+    "title_not_found": "Oh, it's a 404!",
+    "message_not_found": "Sorry, the page you are looking for isn't available. Would you try the home page?",
+    "title_others": "Oh! Something went wrong here!",
+    "message_others": "Whoa! That's a nasty bug :-( Right now, the best way to fix this is to try once again. Thank you for being so patient!",
+    "back_button": "Back to Home",
+    "firebase_config": "Firestore configuration object is not initialized",
+    "no_data_found": "No data received while fetching for path '{path}'"
+  }
+}

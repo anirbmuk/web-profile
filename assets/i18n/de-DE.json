@@ -1,14 +1,14 @@
 {
   "global": {
     "title": "Anirban Mukherjee in Hamburg",
-    "twitterTitle": "Anirban Mukherjee - Leitender Frontend-Entwickler in Hamburg",
-    "description": "Ich bin Anirban Mukherjee, Leitender Frontend-Entwickler bei SCAYLE, derzeit in Hamburg, Deutschland. Ich bin auf Nuxt, Vue und TypeScript spezialisiert.",
-    "keywords": "anirban,mukherjee,anirbmuk,teamleiter,leitender,staff,frontend,developer,lebenslauf,scayle,hamburg,deutschland",
+    "twitterTitle": "Anirban Mukherjee - leitender Frontend-Entwickler in Hamburg",
+    "description": "Ich bin Anirban Mukherjee, leitender Frontend-Entwickler bei SCAYLE, derzeit in Hamburg, Deutschland. Ich bin auf Nuxt, Vue und TypeScript spezialisiert.",
+    "keywords": "anirban,mukherjee,anirbmuk,teamleiter,leitender,staff,frontend,developer,entwickler,lebenslauf,scayle,hamburg,deutschland",
     "accessibility": {
       "ariaLabel": {
         "backToTopButton": "Nach oben scrollen",
         "profileImage": "Profilbild",
-        "loadingProgressBar": "Ladefortschrittsbalken"
+        "loadingProgressBar": "Lade Fortschrittsbalken"
       }
     }
   },
@@ -87,7 +87,7 @@
       }
     },
     "github": {
-    "title": "Beliebte Repositories"
+      "title": "Beliebt auf GitHub"
     },
     "education": {
       "title": "Ausbildung"
@@ -110,8 +110,8 @@
   "error": {
     "title_not_found": "Oh, das ist ein 404!",
     "message_not_found": "Leider ist die von Ihnen gesuchte Seite nicht verfügbar. Versuchen Sie es mit der Startseite?",
-    "title_others": "Oh! Hier ist etwas schief gelaufen!",
-    "message_others": "Uff! Da ist ein fieser Fehler aufgetreten. Am besten versuchen Sie es gleich noch einmal. Vielen Dank für Ihre Geduld!",
+    "title_others": "Oh! Hier ist etwas schiefgelaufen!",
+    "message_others": "Whoa! Das ist ein übler Fehler :-( Im Moment ist der beste Weg, dies zu beheben, der erneute Versuch zu machen. Vielen Dank, dass du so geduldet hast!",
     "back_button": "Zur Startseite",
     "firebase_config": "Das Firestore-Konfigurationsobjekt ist nicht initialisiert",
     "no_data_found": "Beim Abrufen von '{path}' wurden keine Daten empfangen"
