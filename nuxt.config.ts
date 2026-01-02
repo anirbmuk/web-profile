@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'app-version',
-          content: '2.0.5',
+          content: '2.0.6',
         },
       ],
       link: [
