@@ -14,7 +14,13 @@ export type FirebaseConfig = {
   databaseURL?: string;
 };
 
-export type ModuleOptions = FirebaseConfig & {
+export type RedisConfig = {
+  host?: string;
+  port?: number;
+  prefix?: string;
+};
+
+export type ModuleOptions = FirebaseConfig & RedisConfig & {
   apiBasePath: string;
   apiPaths: string[];
 };

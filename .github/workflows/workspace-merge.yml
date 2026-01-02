@@ -87,6 +87,9 @@ jobs:
           NUXT_PUBLIC_OFFLINE_MODE: ${{ secrets.NUXT_PUBLIC_OFFLINE_MODE }}
           NUXT_PUBLIC_API_BASE_PATH: ${{ secrets.NUXT_PUBLIC_API_BASE_PATH }}
           NUXT_SITEMAP_SOURCE_URL: ${{ secrets.NUXT_SITEMAP_SOURCE_URL }}
+          NUXT_REDIS_HOST: ${{ secrets.NUXT_REDIS_HOST }}
+          NUXT_REDIS_PORT: ${{ secrets.NUXT_REDIS_PORT }}
+          NUXT_REDIS_PREFIX: ${{ secrets.NUXT_REDIS_PREFIX }}
 
       - id: 'auth'
         uses: google-github-actions/auth@v2

@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'app-version',
-          content: '2.0.6',
+          content: '2.1.0', // Update this value to match the version in package.json
         },
       ],
       link: [
@@ -46,6 +46,11 @@ export default defineNuxtConfig({
       googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
       apiBasePath, // Override by setting NUXT_PUBLIC_API_BASE_PATH
+    },
+    redis: {
+      host: '', // Override by setting NUXT_REDIS_HOST
+      port: 0, // Override by setting NUXT_REDIS_PORT
+      prefix: '', // Override by setting NUXT_REDIS_PREFIX
     },
   },
 
@@ -79,7 +84,7 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        disallow: ['/api/*', '/_nuxt/*'],
+        disallow: ['/api/*', '/_nuxt/*', '/__nuxt_hydration'],
       },
     ],
     sitemap: '/sitemap.xml',
