@@ -47,12 +47,13 @@ export default defineEventHandler(async (event) => {
     port,
     prefix,
   });
-  const key = `${slug}_${limit ?? -1}`;
+  const key = `${slug}:${limit ?? 'all'}`;
 
   const cached = await redis.getCache(key);
   if (cached) {
     return JSON.parse(cached);
   }
+
   const data = await firebase.fetch(slug, limit);
   await redis.setCache(key, data);
 

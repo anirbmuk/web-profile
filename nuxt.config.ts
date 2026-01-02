@@ -5,14 +5,39 @@ import apiPaths from './config/paths';
 const apiBasePath = '/api';
 
 const HOUR = 60 * 60;
+const DAY = 24 * HOUR;
+const YEAR = 365 * DAY;
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
-    enabled: false,
+    enabled: true,
   },
 
-  compatibilityDate: '2025-04-28',
+  compatibilityDate: '2025-07-07',
+
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'app-version',
+          content: '2.1.0', // Update this value to match the version in package.json
+        },
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+      ],
+    },
+  },
 
   runtimeConfig: {
     public: {
@@ -32,21 +57,23 @@ export default defineNuxtConfig({
   css: ['@/assets/styles/root.css', '@/assets/styles/main.css'],
 
   modules: [
+    '~/modules/firebase/src',
+    '@zadigetvoltaire/nuxt-gtm',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
-    '@nuxtjs/google-fonts',
-    'nuxt-svgo',
-    '@zadigetvoltaire/nuxt-gtm',
-    'nuxt-jsonld',
     '@nuxtjs/i18n',
+    'nuxt-jsonld',
     '~/modules/sitemap/src',
-    '~/modules/firebase/src',
+    'nuxt-vitalizer',
     '@nuxt/eslint',
+    '@nuxt/hints',
   ],
 
   googleFonts: {
     display: 'swap',
     preconnect: true,
+    preload: true,
     useStylesheet: true,
     families: {
       'Noto Sans': [400, 600, 700],
@@ -57,16 +84,10 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        disallow: ['/api/*', '/_nuxt/*'],
+        disallow: ['/api/*', '/_nuxt/*', '/__nuxt_hydration'],
       },
     ],
     sitemap: '/sitemap.xml',
-  },
-
-  svgo: {
-    autoImportPath: './assets/icons',
-    defaultImport: 'component',
-    componentPrefix: 'Icon',
   },
 
   firebase: {
@@ -78,38 +99,71 @@ export default defineNuxtConfig({
   gtm: {
     id: '', // Override by setting NUXT_PUBLIC_GTM_ID
     debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
-    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED
+    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED,
+    defer: true, // Override by setting NUXT_PUBLIC_GTM_DEFER,
   },
 
   i18n: {
     strategy: 'prefix',
     detectBrowserLanguage: false,
     langDir: './../assets/i18n',
-    lazy: true,
     vueI18n: './../vue-i18n.config.ts',
     locales,
     defaultLocale: 'en',
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
+    autoDeclare: true,
   },
 
   sitemap: {
     sourceUrl: '',
   },
 
+  vitalizer: {
+    disablePreloadLinks: true,
+    disablePrefetchLinks: true,
+    disableStylesheets: true,
+  },
+
   routeRules: {
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${HOUR}`,
+        'Cache-Control': `public, max-age=${DAY}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${HOUR}`,
+        'Cache-Control': `public, max-age=${DAY}`,
       },
       swr: true,
+    },
+    '/icons/**': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/seo.webp': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/favicon.ico': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/apple-touch-icon.png': {
+      headers: {
+        'Cache-Control': `public, max-age=${YEAR}`,
+      },
+      swr: true,
+    },
+    '/api/**': {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
     },
   },
 
@@ -122,6 +176,20 @@ export default defineNuxtConfig({
 
   experimental: {
     renderJsonPayloads: false,
+  },
+
+  future: {
+    compatibilityVersion: 4,
+  },
+
+  features: {
+    inlineStyles: true,
+  },
+
+  vite: {
+    optimizeDeps: {
+      exclude: ['@nuxt/hints'],
+    },
   },
 
 });

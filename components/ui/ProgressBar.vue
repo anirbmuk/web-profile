@@ -17,17 +17,21 @@ let progressBar: NodeJS.Timeout | undefined;
 
 watch(
   loadingState,
-  (loading) => {
+  (loading, _, onCleanup) => {
     if (loading) {
       progressBar = setInterval(() => {
         if (width.value < 100) {
           width.value++;
         }
-      }, 50);
+      }, 25);
     } else {
-      clearInterval(progressBar);
       width.value = 0;
     }
+    onCleanup(() => {
+      if (progressBar) {
+        clearInterval(progressBar);
+      }
+    });
   },
   {
     immediate: true,

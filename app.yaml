@@ -28,18 +28,6 @@ env_variables:
   NUXT_REDIS_PREFIX: $NUXT_REDIS_PREFIX
 
 handlers:
-  - url: /favicon.ico
-    static_files: public/favicon.ico
-    upload: public/favicon.ico
-    expiration: '365d'
-  - url: /apple-touch-icon.png
-    static_files: public/apple-touch-icon.png
-    upload: public/apple-touch-icon.png
-    expiration: '365d'
-  - url: /seo.webp
-    static_files: public/seo.webp
-    upload: public/seo.webp
-    expiration: '365d'
   - url: /.*
     script: auto
     secure: always

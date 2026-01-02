@@ -8,6 +8,11 @@
         <div class="py-2">
           <slot name="heading" />
         </div>
+        <div class="py-2">
+          <slot
+            name="actions"
+            :state="accordionState" />
+        </div>
         <div
           :class="{ 'rotate-180': accordionState }"
           class="-mt-0.5 duration-300 ease-in-out"

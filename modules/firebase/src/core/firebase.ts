@@ -1,7 +1,5 @@
-import {
-  type FirebaseApp,
-  initializeApp,
-} from 'firebase/app';
+import { initializeApp } from 'firebase/app';
+import type { FirebaseApp } from 'firebase/app';
 import type { FirebaseConfig } from './../types';
 import { fetchCollection } from './firebase.core';
 

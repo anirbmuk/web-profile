@@ -25,7 +25,7 @@ jobs:
 
       - name: Install node_modules
         if: steps.cache-node-modules-pre.outputs.cache-hit != 'true'
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
   build:
     needs: [install]
@@ -61,6 +61,9 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
       - uses: actions/download-artifact@v4
         with:
           name: dist-compiled

@@ -2,7 +2,7 @@
   <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
-      class="mx-auto whitespace-break-spaces text-justify text-md md:text xl:max-w-1/2">
+      class="mx-auto whitespace-break-spaces text-pretty text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
@@ -16,6 +16,7 @@
 <script setup lang="ts">
 import type { AboutmeBlock } from '~/types/features/about';
 import type { ClickEventParams } from '~/types/tracking';
+import { pick } from 'radash';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
@@ -40,6 +41,9 @@ const loadData = async () => {
 const { data } = useAsyncData('about', loadData, {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
+  },
+  transform(data) {
+    return data.map((each) => pick(each, ['documentid', 'description']));
   },
 });
 const aboutme = computed(() => data.value);

@@ -12,6 +12,9 @@
     "type": "github",
     "url": "https://github.com/anirbmuk/web-profile.git"
   },
+  "engines": {
+    "node": ">=22.13.1"
+  },
   "license": "MIT",
   "scripts": {
     "analyze": "npx nuxi analyze",
@@ -27,37 +30,48 @@
     "lint:fix": "eslint . --fix",
     "setenv:gae": "gcloud config set project anirbmuk",
     "deploy:gae": "gcloud app deploy --quiet",
-    "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean"
+    "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean",
+    "crowdin:sync": "crowdin download sources --identity .env.crowdin && crowdin download --identity .env.crowdin",
+    "crowdin:upload": "crowdin upload sources --identity .env.crowdin"
   },
   "lint-staged": {
     "**/*.{js,ts,vue}": "eslint"
   },
+  "dependencies": {
+    "firebase": "^12.2.1",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
   "devDependencies": {
+    "@crowdin/cli": "3.18.0",
     "@nuxt/eslint": "^1.3.0",
-    "@nuxt/kit": "^3.17.4",
+    "@nuxt/hints": "^1.0.0-alpha.4",
+    "@nuxt/kit": "^3.19.3",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/i18n": "^9.5.3",
-    "@nuxtjs/robots": "^5.2.10",
+    "@nuxtjs/i18n": "^10.1.1",
+    "@nuxtjs/robots": "^5.5.6",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@types/node": "^22.14.0",
     "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "eslint-plugin-sonarjs": "^3.0.2",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
-    "nuxt": "^3.17.4",
-    "nuxt-jsonld": "^2.1.0",
-    "nuxt-svgo": "^4.0.18",
+    "nuxt": "^3.19.3",
+    "nuxt-jsonld": "^2.2.1",
+    "nuxt-vitalizer": "^2.0.0",
     "radash": "^12.1.0",
-    "redis": "^5.5.6",
+    "redis": "^5.10.0",
     "rimraf": "^6.0.1",
     "schema-dts": "^1.1.5",
     "typescript": "^5.8.3",
-    "vue": "^3.5.14",
-    "vue-router": "^4.5.1"
+    "vite": "^7.1.10"
   },
-  "dependencies": {
-    "firebase": "^11.6.1"
+  "resolutions": {
+    "rollup": "^4.34.9",
+    "@vue/compiler-sfc": "^3.5.22",
+    "tailwindcss": "^3.4.18",
+    "h3": "^1.15.4"
   }
 }

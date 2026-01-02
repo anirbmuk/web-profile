@@ -26,8 +26,8 @@ export const useDate = () => {
   };
 
   const sortFn = (start: TimelinePeriod, end: TimelinePeriod = getCurrentTimeline()) => {
-    const [endMonth, endYear] = end.split('/', 2);
-    const [startMonth, startYear] = start.split('/', 2);
+    const [endMonth = '', endYear = ''] = end.split('/', 2);
+    const [startMonth = '', startYear = ''] = start.split('/', 2);
     return +endYear - +startYear || +endMonth - +startMonth;
   };
 

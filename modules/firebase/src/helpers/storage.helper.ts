@@ -16,7 +16,7 @@ export const decompress = async (data: string) => {
   try {
     const buffer = Buffer.from(data, 'base64');
     return (await asyncUnzip(buffer)).toString();
-  } catch (e) {
+  } catch {
     return data;
   }
 };

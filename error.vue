@@ -10,9 +10,9 @@
   </header>
   <main class="container mx-auto my-20">
     <section class="text-center">
-      <h1 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
+      <h2 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
         !{{ error?.statusCode }}!
-      </h1>
+      </h2>
       <div
         v-if="error?.message"
         class="m-2 text-red">
@@ -56,6 +56,11 @@ const localePath = useLocalePath();
 const { $i18n } = useNuxtApp();
 const { public: { googleSiteVerification } } = useRuntimeConfig();
 const { trackInternalClickEvent } = useTracking();
+const {
+  getCanonical,
+  getISOLocale,
+  getAlternateISOLocales,
+} = useSeo();
 
 const title =
   props.error?.statusCode === 404
@@ -63,22 +68,34 @@ const title =
     : $i18n.t('error.title_others');
 
 useHead({
+  htmlAttrs: {
+    lang: getISOLocale($i18n.locale.value),
+  },
   title,
 });
 useSeoMeta({
-  robots: 'noindex,follow',
-  description: `${title} - ${props.error?.message || ''}`,
-  ogDescription: `${title} - ${props.error?.message || ''}`,
+  robots: props.error?.statusCode ? 'noindex,follow' : 'noindex,nofollow',
+  description: $i18n.t('global.description'),
+  ogDescription: $i18n.t('global.description'),
   ogImage: '/seo.webp',
-  colorScheme: 'dark light',
-  ogLocale: $i18n.locale.value,
-  author: 'Anirban Mukherjee',
+  ogLocale: getISOLocale($i18n.locale.value),
+  ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
+  ogUrl: getCanonical(),
   ogSiteName: 'anirbmuk',
-  ogType: 'website',
+  ogType: 'profile',
+  ogImageAlt: $i18n.t('global.twitterTitle'),
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: $i18n.t('global.keywords'),
+  twitterImage: '/seo.webp',
+  twitterImageAlt: $i18n.t('global.twitterTitle'),
   twitterCard: 'summary_large_image',
+  author: 'Anirban Mukherjee',
+  colorScheme: 'dark light',
+  keywords: $i18n.t('global.keywords'),
+  profileFirstName: 'Anirban',
+  profileLastName: 'Mukherjee',
+  profileUsername: 'anirbmuk',
+  profileGender: 'Male',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
     googleSiteVerification,

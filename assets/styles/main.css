@@ -196,3 +196,8 @@ li[fehover] {
     @apply origin-left scale-x-100;
   }
 }
+
+.profile-image {
+  background: url('/seo.webp') no-repeat center;
+  @apply mb-2 h-[420px] rounded bg-cover md:h-[600px] lg:h-[420px] mx-auto md:max-w-3/4 2xl:max-w-3/5 overflow-hidden;
+}

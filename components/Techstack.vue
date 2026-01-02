@@ -62,6 +62,7 @@
 import type { TechstackBlock } from '~/types/components/techstack';
 
 const { $i18n } = useNuxtApp();
+const { generateTechStackSchema } = useSeo();
 
 const props = defineProps({
   block: {
@@ -76,6 +77,46 @@ const technologies = computed(
 const databases = computed(
   () => props.block?.database?.slice()?.sort((d1, d2) => d1.position - d2.position) || [],
 );
+
+const count = computed(() => technologies.value.length + databases.value.length);
+
+if (count.value) {
+  const technologyList = technologies.value.map(({
+    name,
+    rating,
+  }) => ({
+    name,
+    description: $i18n.t('main.techstack.jsonld.description', {
+      name,
+      rating,
+      bestRating: 10,
+    }),
+  }));
+  const databaseList = databases.value.map(({
+    name,
+    rating,
+  }) => ({
+    name,
+    description: $i18n.t('main.techstack.jsonld.description', {
+      name,
+      rating,
+      bestRating: 10,
+    }),
+  }));
+  useJsonld(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    numberOfItems: count.value,
+    itemListElement: [...technologyList, ...databaseList].map(({
+      name,
+      description,
+    }, position) => generateTechStackSchema({
+      name,
+      description,
+      position: position + 1,
+    })),
+  }));
+}
 
 defineOptions({
   name: 'TechstackComponent',

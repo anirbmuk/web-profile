@@ -2,7 +2,7 @@
   <footer class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
     <nav class="p-4 text-md">
       <div class="grid grid-cols-12">
-        <div class="col-span-6 flex space-x-3 md:col-span-5 lg:space-x-6">
+        <div class="col-span-6 flex items-center space-x-3 md:col-span-5 lg:space-x-6">
           <template
             v-for="link in block?.links"
             :key="link.text">
@@ -17,6 +17,7 @@
             :url="getSwitcherUrl('en')"
             :title="getTitle('en')"
             :label="getTitle('en')"
+            :alt-text="getTitle('en')"
             :size="6"
             target="_self" />
           <div class="-mt-0.5 text">
@@ -27,16 +28,19 @@
             :url="getSwitcherUrl('de')"
             :title="getTitle('de')"
             :label="getTitle('de')"
+            :alt-text="getTitle('de')"
             :size="6"
             target="_self" />
         </div>
         <div
           translate="no"
-          class="hidden justify-end md:col-span-5 md:flex">
-          <span>{{ '&copy; ' + block?.copyright + ',' }}</span>
+          class="hidden items-center justify-end md:col-span-5 md:flex">
+          <span v-if="block?.copyright">
+            {{ '&copy; ' + block.copyright + ',' }}
+          </span>
           <time
             class="ml-[3px]"
-            :date-time="block?.publishdate"
+            :datetime="block?.publishdate"
             publish-date>{{
               year
             }}</time>

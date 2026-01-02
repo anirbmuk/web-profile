@@ -54,7 +54,9 @@
               :position="blog.position"
               loading="lazy"
               @icon-click="onLinkClick(blog.url)">
-              <span class="text-md md:text">{{ blog.description }}</span>
+              <span class="text-md md:text">
+                {{ blog.description }}
+              </span>
             </UiIcon>
           </div>
         </div>
@@ -82,8 +84,10 @@ defineProps({
 const onDownloadResume = (artifacts: Artifact[] | undefined) => {
   if (artifacts) {
     const [resume] = artifacts?.filter((artifact) => artifact.category === 'resume') || [];
-    downloadFile(resume.url);
-    onLinkClick(resume.url);
+    if (resume?.url) {
+      downloadFile(resume.url);
+      onLinkClick(resume.url);
+    }
   }
 };
 

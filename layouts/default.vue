@@ -1,28 +1,39 @@
 <template>
   <Header />
   <main class="container mx-auto my-20">
-    <ClientOnly>
-      <UiBackToTop
-        v-show="scrollState > 200"
-        @scroll-to-top="scrollToTop" />
-    </ClientOnly>
     <slot />
   </main>
   <Footer
     v-if="footer"
     :block="footer" />
+  <UiBackToTop
+    v-show="scrollState > 200"
+    @scroll-to-top="scrollToTop" />
 </template>
 
 <script setup lang="ts">
 import type { FooterBlock } from '~/types/features/footer';
+import { omit } from 'radash';
 
 const { $i18n } = useNuxtApp();
-const { public: { googleSiteVerification } } = useRuntimeConfig();
+const {
+  public: {
+    googleSiteVerification,
+    gtm: { enabled: gtmEnabled },
+  },
+} = useRuntimeConfig();
 const { fetch } = useFirebase();
 const {
   scrollState,
   scrollToTop,
 } = useScroll('scroll');
+const {
+  getCanonical,
+  getISOLocale,
+  getAlternateISOLocales,
+} = useSeo();
+
+const GLOBAL_TITLE = $i18n.t('global.title');
 
 const { data: footer } = useAsyncData('footer', async () => {
   const [footer] = await fetch<FooterBlock>('footer', true, 1);
@@ -31,27 +42,27 @@ const { data: footer } = useAsyncData('footer', async () => {
   getCachedData(key, nuxt) {
     return nuxt.payload.data[key];
   },
+  transform(data) {
+    if (!data) {
+      return null;
+    }
+    return omit(data, ['documentid', 'visibility']) as FooterBlock;
+  },
 });
 
 useHead({
   htmlAttrs: {
-    lang: $i18n.locale.value,
+    lang: getISOLocale($i18n.locale.value),
+  },
+  titleTemplate(title) {
+    return title ? `${GLOBAL_TITLE} | ${title}` : GLOBAL_TITLE;
   },
   link: [
-    {
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico',
-    },
-    {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      href: '/apple-touch-icon.png',
-    },
+    ...(gtmEnabled ? [{
+      rel: 'preconnect',
+      href: 'https://www.googletagmanager.com/',
+    }] : []),
   ],
-  titleTemplate(title) {
-    return title ? `${$i18n.t('global.title')} | ${title}` : $i18n.t('global.title');
-  },
 });
 
 useSeoMeta({
@@ -59,15 +70,24 @@ useSeoMeta({
   description: $i18n.t('global.description'),
   ogDescription: $i18n.t('global.description'),
   ogImage: '/seo.webp',
-  colorScheme: 'dark light',
-  ogLocale: $i18n.locale.value,
-  author: 'Anirban Mukherjee',
+  ogLocale: getISOLocale($i18n.locale.value),
+  ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
+  ogUrl: getCanonical(),
   ogSiteName: 'anirbmuk',
-  ogType: 'website',
+  ogType: 'profile',
+  ogImageAlt: $i18n.t('global.twitterTitle'),
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  keywords: $i18n.t('global.keywords'),
+  twitterImage: '/seo.webp',
+  twitterImageAlt: $i18n.t('global.twitterTitle'),
   twitterCard: 'summary_large_image',
+  author: 'Anirban Mukherjee',
+  colorScheme: 'dark light',
+  keywords: $i18n.t('global.keywords'),
+  profileFirstName: 'Anirban',
+  profileLastName: 'Mukherjee',
+  profileUsername: 'anirbmuk',
+  profileGender: 'Male',
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
     googleSiteVerification,
