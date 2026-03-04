@@ -1,3 +1,5 @@
+import type { LocaleObject } from '@nuxtjs/i18n';
+
 export default [
   {
     code: 'en',
@@ -15,4 +17,4 @@ export default [
     name: 'Deutsch',
     default: false,
   },
-];
+] satisfies LocaleObject[];

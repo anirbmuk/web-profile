@@ -14,14 +14,14 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  compatibilityDate: '2025-07-07',
+  compatibilityDate: '2026-03-04',
 
   app: {
     head: {
       meta: [
         {
           name: 'app-version',
-          content: '2.0.6',
+          content: '2.1.0',
         },
       ],
       link: [
@@ -46,6 +46,11 @@ export default defineNuxtConfig({
       googleSiteVerification: '', // Override by setting NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
       offlineMode: '', // Override by setting NUXT_PUBLIC_OFFLINE_MODE
       apiBasePath, // Override by setting NUXT_PUBLIC_API_BASE_PATH
+      scripts: {
+        googleTagManager: {
+          id: '', // Override by setting NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID
+        },
+      },
     },
   },
 
@@ -53,7 +58,6 @@ export default defineNuxtConfig({
 
   modules: [
     '~/modules/firebase/src',
-    '@zadigetvoltaire/nuxt-gtm',
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
@@ -63,6 +67,7 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     '@nuxt/eslint',
     '@nuxt/hints',
+    '@nuxt/scripts',
   ],
 
   googleFonts: {
@@ -89,13 +94,6 @@ export default defineNuxtConfig({
     ...datasource,
     apiBasePath, // Override by setting NUXT_FIREBASE_API_BASE_PATH
     apiPaths, // Override by setting NUXT_FIREBASE_API_PATHS
-  },
-
-  gtm: {
-    id: '', // Override by setting NUXT_PUBLIC_GTM_ID
-    debug: false, // Override by setting NUXT_PUBLIC_GTM_DEBUG
-    enabled: true, // Override by setting NUXT_PUBLIC_GTM_ENABLED,
-    defer: true, // Override by setting NUXT_PUBLIC_GTM_DEFER,
   },
 
   i18n: {
@@ -171,10 +169,11 @@ export default defineNuxtConfig({
 
   experimental: {
     renderJsonPayloads: false,
-  },
-
-  future: {
-    compatibilityVersion: 4,
+    defaults: {
+      nuxtLink: {
+        prefetch: false,
+      },
+    },
   },
 
   features: {

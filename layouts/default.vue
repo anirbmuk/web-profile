@@ -6,9 +6,11 @@
   <Footer
     v-if="footer"
     :block="footer" />
-  <UiBackToTop
-    v-show="scrollState > 200"
-    @scroll-to-top="scrollToTop" />
+  <ClientOnly>
+    <UiBackToTop
+      v-show="scrollState > 200"
+      @scroll-to-top="scrollToTop" />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -16,12 +18,7 @@ import type { FooterBlock } from '~/types/features/footer';
 import { omit } from 'radash';
 
 const { $i18n } = useNuxtApp();
-const {
-  public: {
-    googleSiteVerification,
-    gtm: { enabled: gtmEnabled },
-  },
-} = useRuntimeConfig();
+const { public: { googleSiteVerification } } = useRuntimeConfig();
 const { fetch } = useFirebase();
 const {
   scrollState,
@@ -57,12 +54,6 @@ useHead({
   titleTemplate(title) {
     return title ? `${GLOBAL_TITLE} | ${title}` : GLOBAL_TITLE;
   },
-  link: [
-    ...(gtmEnabled ? [{
-      rel: 'preconnect',
-      href: 'https://www.googletagmanager.com/',
-    }] : []),
-  ],
 });
 
 useSeoMeta({
