@@ -66,7 +66,7 @@ defineProps({
   },
 });
 
-const year = new Date().getFullYear();
+const year = `2024 - ${new Date().getFullYear()}`;
 
 const onLinkClick = (event_url: string | undefined) => {
   trackInternalClickEvent({
