@@ -7,9 +7,7 @@
 :heavy_check_mark: Google analytics  
 :heavy_check_mark: Dark mode support  
 
-## Lighthouse report  
-[Lighthouse Report - pagespeed.web.dev](https://pagespeed.web.dev/analysis/https-anirbmuk-appspot-com-de/n4ot04ilbs?form_factor=desktop)  
-  
+## Lighthouse report    
 ![preview](external/lighthouse.png)  
 
 ## Technical mumbo-jumbo
@@ -42,4 +40,4 @@ https://anirbmuk.appspot.com/en
 
 ---
 ## Copyright
-(C) anirbmuk, 2025  
+(C) anirbmuk, 2024 - 2026  
