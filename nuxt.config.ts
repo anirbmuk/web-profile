@@ -117,6 +117,12 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    '/': {
+      redirect: {
+        to: '/en',
+        statusCode: 301, 
+      }, 
+    },
     '/en/**': {
       headers: {
         'Cache-Control': `public, max-age=${DAY}`,
