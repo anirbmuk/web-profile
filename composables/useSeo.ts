@@ -2,6 +2,8 @@ import locales from '~/config/locales';
 import type { AlternateHreflang } from '~/types/seo';
 import type {
   ListItem,
+  Organization,
+  OrganizationRole,
   Person,
   WithContext,
 } from 'schema-dts';
@@ -9,29 +11,67 @@ import type { CareerBlock } from '~/types/features/career';
 
 const SCHEMA_ORG = 'https://schema.org';
 
+const TRACKING_PARAM_PATTERNS: readonly RegExp[] = [
+  /^utm_/i,
+  /^mc_/i,
+  /^fbclid$/i,
+  /^gclid$/i,
+  /^dclid$/i,
+  /^gbraid$/i,
+  /^wbraid$/i,
+  /^msclkid$/i,
+  /^yclid$/i,
+  /^_hsenc$/i,
+  /^_hsmi$/i,
+  /^hsctatracking$/i,
+  /^igshid$/i,
+  /^srsltid$/i,
+  /^mkt_tok$/i,
+  /^trk$/i,
+  /^trkcampaign$/i,
+  /^linkid$/i,
+  /^si$/i,
+  /^ref$/i,
+  /^ref_src$/i,
+  /^ref_url$/i,
+  /^vero_id$/i,
+  /^vero_conv$/i,
+  /^spm$/i,
+  /^sc_[a-z]+$/i,
+];
+
+const isTrackingParam = (key: string): boolean =>
+  TRACKING_PARAM_PATTERNS.some((pattern) => pattern.test(key));
+
+export const stripTrackingParams = (path: string | undefined): string => {
+  if (!path) {
+    return '';
+  }
+  const [noHash = ''] = path.split('#');
+  const [base = '', search = ''] = noHash.split('?');
+  if (!search) {
+    return base;
+  }
+  const params = new URLSearchParams(search);
+  for (const key of [...params.keys()]) {
+    if (isTrackingParam(key)) {
+      params.delete(key);
+    }
+  }
+  const cleaned = params.toString();
+  return cleaned ? `${base}?${cleaned}` : base;
+};
+
+const stripTrailingSlash = (path: string): string =>
+  path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+
 export const useSeo = () => {
   const { $i18n } = useNuxtApp();
   const { fullPath } = useRoute();
   const { public: { baseUrl } } = useRuntimeConfig();
 
-  const stripUrlParams = (path: string | undefined): string => {
-    if (!path) {
-      return '';
-    }
-    const [root = ''] = path.split('?');
-    return root;
-  };
-
-  const stripDefaultLocale = (path: string): string => {
-    let sanitizedBase = path;
-    if (sanitizedBase.endsWith('/')) {
-      sanitizedBase = sanitizedBase.slice(0, -1);
-    }
-    return sanitizedBase;
-  };
-
   const getCanonical = (path = fullPath): string =>
-    stripDefaultLocale(stripUrlParams(`${baseUrl}${path}`));
+    stripTrailingSlash(stripTrackingParams(`${baseUrl}${path}`));
 
   const getArrayFromTranslation = (source = ''): string[] =>
     source.split(',').map((each) => each.trim());
@@ -41,7 +81,7 @@ export const useSeo = () => {
     for (const locale of locales) {
       alternateHreflangs.push({
         rel: 'alternate',
-        hreflang: locale.language,
+        hreflang: locale.code,
         href: page ? `${baseUrl}/${locale.code}/${page}` : `${baseUrl}/${locale.code}`,
       });
       if (locale.default) {
@@ -58,12 +98,12 @@ export const useSeo = () => {
   const getAlternateISOLocales = (currentLocale: string): string[] => {
     return locales
       .filter(({ code }) => code !== currentLocale)
-      .map(({ language }) => language);
+      .map(({ code }) => code);
   };
 
   const getISOLocale = (localeCode: string): string => {
     const locale = locales.find(({ code }) => code === localeCode);
-    return locale ? locale.language : 'en-US';
+    return locale ? locale.code : 'en';
   };
 
   const getIsoMonthDate = (source: CareerBlock['start'] | CareerBlock['end']): string | undefined => {
@@ -74,61 +114,88 @@ export const useSeo = () => {
     return `${year}-${month.padStart(2, '0')}`;
   };
 
-  const generatePersonSchema = (careers: CareerBlock[] = []): WithContext<Person> => ({
+  const authorSchema = computed<WithContext<Person>>(() => ({
     '@context': SCHEMA_ORG,
     '@type': 'Person',
     name: 'Anirban Mukherjee',
     alternateName: 'anirbmuk',
-    gender: 'https://schema.org/Male',
-    jobTitle: $i18n.t('seo.person.jobTitle'),
-    email: 'anirban.mjee@gmail.com',
-    knowsLanguage: getArrayFromTranslation($i18n.t('seo.person.knowsLanguage')),
-    nationality: $i18n.t('seo.person.nationality'),
-    memberOf: careers.map((career) => {
-      return {
-        '@type': 'ProgramMembership',
-        programName: career.designation,
-        startDate: getIsoMonthDate(career.start),
-        endDate: getIsoMonthDate(career.end),
-        description: career.description,
-        hostingOrganization: {
-          '@type': 'Organization',
-          name: career.provider,
-        },
-      };
-    }),
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: $i18n.t('seo.person.address.addressLocality'),
-      addressCountry: $i18n.t('seo.person.address.addressCountry'),
-    },
     url: `${baseUrl}/${$i18n.locale.value}`,
-    sameAs: [
-      'https://www.linkedin.com/in/anirbmuk',
-      'https://x.com/anirbmuk',
-      'https://stackoverflow.com/users/9652773/anirbmuk',
-    ],
-    knowsAbout: [
-      'Vue',
-      'Nuxt',
-      'Angular',
-      'TypeScript',
-      'JavaScript',
-    ],
-    alumniOf: [
-      {
-        '@type': 'CollegeOrUniversity',
-        name: 'Jadavpur University',
-        alternateName: 'JU',
-        department: $i18n.t('seo.person.alumniOf.department'),
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: $i18n.t('seo.person.alumniOf.address.addressLocality'),
-          addressCountry: $i18n.t('seo.person.alumniOf.address.addressCountry'),
-        },
+  }));
+
+  const getCurrentOrganisation = (careers: CareerBlock[] = []): CareerBlock | undefined => careers.find((career) => !career.end);
+  const getPastOrganisations = (careers: CareerBlock[] = []): CareerBlock[] => careers.filter((career) => career.end) ?? [];
+
+  const generatePersonSchema = (careers: CareerBlock[] = []): WithContext<Person> => {
+    const currentOrganisation = getCurrentOrganisation(careers);
+    const pastOrganisations = getPastOrganisations(careers);
+    return {
+      '@context': SCHEMA_ORG,
+      '@type': 'Person',
+      name: 'Anirban Mukherjee',
+      alternateName: 'anirbmuk',
+      gender: 'https://schema.org/Male',
+      jobTitle: $i18n.t('seo.person.jobTitle'),
+      email: 'anirban.mjee@gmail.com',
+      knowsLanguage: getArrayFromTranslation($i18n.t('seo.person.knowsLanguage')),
+      nationality: $i18n.t('seo.person.nationality'),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: $i18n.t('seo.person.address.addressLocality'),
+        addressCountry: $i18n.t('seo.person.address.addressCountry'),
       },
-    ],
-  });
+      url: `${baseUrl}/${$i18n.locale.value}`,
+      sameAs: [
+        'https://www.linkedin.com/in/anirbmuk',
+        'https://x.com/anirbmuk',
+        'https://stackoverflow.com/users/9652773/anirbmuk',
+      ],
+      knowsAbout: [
+        'Vue',
+        'Nuxt',
+        'Angular',
+        'TypeScript',
+        'JavaScript',
+      ],
+      ...(currentOrganisation ? {
+        worksFor: {
+          '@type': 'OrganizationRole',
+          roleName: $i18n.t('seo.person.jobTitle'),
+          startDate: getIsoMonthDate(currentOrganisation.start),
+          description: currentOrganisation.description,
+          worksFor: {
+            '@type': 'Organization',
+            name: currentOrganisation.provider,
+          },
+        } satisfies OrganizationRole<Organization, 'worksFor'>,
+      } : {
+      }),
+      alumniOf: [
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'Jadavpur University',
+          alternateName: 'JU',
+          department: $i18n.t('seo.person.alumniOf.department'),
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: $i18n.t('seo.person.alumniOf.address.addressLocality'),
+            addressCountry: $i18n.t('seo.person.alumniOf.address.addressCountry'),
+          },
+        },
+        ...pastOrganisations.map((career): OrganizationRole<Organization, 'alumniOf'> => ({
+          '@type': 'OrganizationRole',
+          name: career.provider,
+          roleName: career.designation,
+          startDate: getIsoMonthDate(career.start),
+          endDate: getIsoMonthDate(career.end),
+          description: career.description,
+          alumniOf: {
+            '@type': 'Organization',
+            name: career.provider,
+          },
+        })),
+      ],
+    };
+  };
 
   const generateListSchema = ({
     position,
@@ -164,12 +231,7 @@ export const useSeo = () => {
         ...(additional && {
           programmingLanguage: additional.join(', '),
         }),
-        author: {
-          '@type': 'Person',
-          name: 'Anirban Mukherjee',
-          alternateName: 'anirbmuk',
-          url: `${baseUrl}/${$i18n.locale.value}`,
-        },
+        author: authorSchema.value,
       },
     };
   };
@@ -205,5 +267,6 @@ export const useSeo = () => {
     generateListSchema,
     generatePersonSchema,
     generateTechStackSchema,
+    authorSchema,
   };
 };
