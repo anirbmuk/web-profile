@@ -37,7 +37,7 @@ onMounted(() => {
   observer = new IntersectionObserver(intersectionCallback, intersectionOptions);
   const target = content.value;
   if (target && observer) {
-    observer.observe(target);
+    observer.observe(target as unknown as Element);
   }
 });
 
