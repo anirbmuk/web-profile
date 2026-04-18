@@ -7,7 +7,15 @@ import type {
 } from './../types/tracking';
 
 export const useTracking = () => {
-  const { proxy } = useScriptGoogleTagManager();
+
+  const {
+    proxy,
+    onError,
+  } = useScriptGoogleTagManager();
+
+  onError((error) => {
+    console.error('Error loading Google Tag Manager script:', error);
+  });
 
   const getClientTimestamp = () => {
     const date = new Date();
