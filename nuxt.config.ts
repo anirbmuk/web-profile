@@ -84,7 +84,7 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        disallow: ['/api/*'],
+        disallow: ['/api', '/api/*'],
       },
     ],
     sitemap: '/sitemap.xml',
