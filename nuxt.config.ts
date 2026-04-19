@@ -84,7 +84,7 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        disallow: ['/api/*', '/_nuxt/*'],
+        disallow: ['/api/*'],
       },
     ],
     sitemap: '/sitemap.xml',
@@ -120,8 +120,8 @@ export default defineNuxtConfig({
     '/': {
       redirect: {
         to: '/en',
-        statusCode: 301, 
-      }, 
+        statusCode: 301,
+      },
     },
     '/en/**': {
       headers: {
