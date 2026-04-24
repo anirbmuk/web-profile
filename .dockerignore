@@ -1,0 +1,52 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Node / build artifacts (re-generated inside the builder stage)
+node_modules
+.nuxt
+.output
+.cache
+.data
+.temp
+.tmp
+dist
+
+# Local env + secrets — Cloud Run injects these at runtime, never bake them in
+.env
+.env.*
+!.env-template
+!.env-crowdin-template
+
+# Dev TLS certs (only used by `nuxt dev`)
+localhost.pem
+localhost.crt
+*.pem
+*.crt
+*.key
+
+# Editor / OS cruft
+.vscode
+.idea
+.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# CI / docs / deploy configs not needed inside the image
+.github
+Dockerfile
+.dockerignore
+DEPLOYMENT.md
+README.md
+app.yaml
+
+# Test/coverage (if they appear later)
+coverage
+.nyc_output

@@ -31,6 +31,8 @@
     "setenv:gae": "gcloud config set project anirbmuk",
     "deploy:gae": "gcloud app deploy --quiet",
     "deploy": "yarn clean && yarn build && yarn setenv:gae && yarn deploy:gae && yarn clean",
+    "docker:build": "docker build -t web-profile:local .",
+    "docker:run": "docker run --rm -p 8080:8080 --env-file .env web-profile:local",
     "crowdin:sync": "crowdin download sources --identity .env.crowdin && crowdin download --identity .env.crowdin",
     "crowdin:upload": "crowdin upload sources --identity .env.crowdin"
   },
@@ -39,6 +41,7 @@
   },
   "dependencies": {
     "firebase": "^12.2.1",
+    "redis": "^5.12.1",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
   },

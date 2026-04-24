@@ -1,4 +1,5 @@
 import { FirebaseController } from './../core/firebase';
+import { RedisController } from './../core/redis';
 import { getSlug } from './../helpers/url.helper';
 import type { SupportedQueryParams } from './../types';
 
@@ -13,6 +14,11 @@ export default defineEventHandler(async (event) => {
       appId,
       measurementId,
       apiBasePath,
+    },
+    redis: {
+      host,
+      port,
+      prefix,
     },
   } = useRuntimeConfig();
   const path = getSlug(event.path, apiBasePath);
@@ -36,6 +42,20 @@ export default defineEventHandler(async (event) => {
     appId,
     measurementId,
   });
+  const redis = RedisController.getInstance({
+    host,
+    port,
+    prefix,
+  });
+  const key = `${slug}:${limit ?? 'all'}`;
 
-  return await firebase.fetch(slug, limit);
+  const cached = await redis.getCache(key);
+  if (cached) {
+    return JSON.parse(cached);
+  }
+
+  const data = await firebase.fetch(slug, limit);
+  await redis.setCache(key, data);
+
+  return data;
 });

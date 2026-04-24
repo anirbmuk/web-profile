@@ -1,3 +1,20 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# DEPRECATED — App Engine deployment has been replaced by Cloud Run.
+#
+# This file is kept for historical reference and as a canonical list of the
+# environment variables the app expects at runtime. The live deployment is
+# defined by:
+#   - Dockerfile                        (container image)
+#   - .github/workflows/deploy.yml      (build + deploy pipeline)
+#   - DEPLOYMENT.md                     (one-time GCP infra setup)
+#
+# To re-enable App Engine deploys instead of Cloud Run, remove the DEPRECATED
+# banner and run `yarn deploy` (uses the `deploy:gae` script in package.json).
+# Note that App Engine Standard cannot reach a private-IP Memorystore instance
+# without a Serverless VPC connector; Cloud Run is the supported path going
+# forward.
+# ─────────────────────────────────────────────────────────────────────────────
+
 runtime: nodejs22
 
 default_expiration: '2d'
@@ -24,6 +41,9 @@ env_variables:
   NUXT_PUBLIC_OFFLINE_MODE: $NUXT_PUBLIC_OFFLINE_MODE
   NUXT_PUBLIC_API_BASE_PATH: $NUXT_PUBLIC_API_BASE_PATH
   NUXT_SITEMAP_SOURCE_URL: $NUXT_SITEMAP_SOURCE_URL
+  NUXT_REDIS_HOST: $NUXT_REDIS_HOST
+  NUXT_REDIS_PORT: $NUXT_REDIS_PORT
+  NUXT_REDIS_PREFIX: $NUXT_REDIS_PREFIX
 
 handlers:
   - url: /.*

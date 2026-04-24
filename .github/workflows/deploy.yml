@@ -1,0 +1,131 @@
+name: Deploy to Cloud Run
+
+# Builds the Nuxt Docker image, pushes it to Artifact Registry, and deploys it
+# to Cloud Run. The Cloud Run service is attached to a Serverless VPC connector
+# so it can reach the private-IP Memorystore (Redis) instance.
+#
+# Required one-time GCP setup is documented in DEPLOYMENT.md.
+#
+# Required GitHub secrets:
+#   GCP_WORKLOAD_IDENTITY_PROVIDER   e.g. projects/123456789/locations/global/workloadIdentityPools/github/providers/github
+#   GCP_DEPLOY_SERVICE_ACCOUNT       e.g. github-deployer@<project>.iam.gserviceaccount.com
+#
+# Required GitHub variables (Settings -> Secrets and variables -> Actions -> Variables):
+#   GCP_PROJECT_ID                   e.g. anirbmuk
+#   GCP_REGION                       e.g. us-central1
+#   AR_REPOSITORY                    Artifact Registry repo name, e.g. web-profile
+#   CLOUD_RUN_SERVICE                Cloud Run service name, e.g. web-profile
+#   GCP_VPC_CONNECTOR                e.g. web-profile-connector   (must be in GCP_REGION)
+#   NUXT_REDIS_HOST                  private IP of the Memorystore instance
+#   NUXT_REDIS_PORT                  usually 6379
+#   NUXT_REDIS_PREFIX                cache key prefix, e.g. webprofile
+#   NUXT_PUBLIC_APP_ENV, NUXT_PUBLIC_BASE_URL, DEFAULT_DOMAIN,
+#   NUXT_PUBLIC_API_BASE_PATH, NUXT_PUBLIC_OFFLINE_MODE,
+#   NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION, NUXT_PUBLIC_GTM_ID,
+#   NUXT_PUBLIC_GTM_DEBUG, NUXT_PUBLIC_GTM_ENABLED,
+#   NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID, NUXT_SITEMAP_SOURCE_URL
+#
+# Firebase config is pulled from Secret Manager at deploy time — see the
+# `--set-secrets` flag below and DEPLOYMENT.md for how to create those secrets.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-cloudrun-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.14.0'
+          cache: 'yarn'
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  deploy:
+    name: Build & deploy
+    needs: lint
+    runs-on: ubuntu-latest
+
+    # Required for Workload Identity Federation (no long-lived SA keys).
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_DEPLOY_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure docker to use gcloud creds
+        run: |
+          gcloud auth configure-docker "${{ vars.GCP_REGION }}-docker.pkg.dev" --quiet
+
+      - name: Compute image reference
+        id: img
+        run: |
+          IMG="${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.AR_REPOSITORY }}/${{ vars.CLOUD_RUN_SERVICE }}"
+          echo "image=${IMG}:${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "image_latest=${IMG}:latest" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build & push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.img.outputs.image }}
+            ${{ steps.img.outputs.image_latest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy "${{ vars.CLOUD_RUN_SERVICE }}" \
+            --image="${{ steps.img.outputs.image }}" \
+            --project="${{ vars.GCP_PROJECT_ID }}" \
+            --region="${{ vars.GCP_REGION }}" \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=8080 \
+            --cpu=1 \
+            --memory=512Mi \
+            --min-instances=0 \
+            --max-instances=2 \
+            --timeout=60 \
+            --vpc-connector="${{ vars.GCP_VPC_CONNECTOR }}" \
+            --vpc-egress=private-ranges-only \
+            --set-env-vars="^##^NUXT_PUBLIC_APP_ENV=${{ vars.NUXT_PUBLIC_APP_ENV }}##DEFAULT_DOMAIN=${{ vars.DEFAULT_DOMAIN }}##NUXT_PUBLIC_BASE_URL=${{ vars.NUXT_PUBLIC_BASE_URL }}##NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION=${{ vars.NUXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}##NUXT_PUBLIC_GTM_ID=${{ vars.NUXT_PUBLIC_GTM_ID }}##NUXT_PUBLIC_GTM_DEBUG=${{ vars.NUXT_PUBLIC_GTM_DEBUG }}##NUXT_PUBLIC_GTM_ENABLED=${{ vars.NUXT_PUBLIC_GTM_ENABLED }}##NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID=${{ vars.NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID }}##NUXT_PUBLIC_OFFLINE_MODE=${{ vars.NUXT_PUBLIC_OFFLINE_MODE }}##NUXT_PUBLIC_API_BASE_PATH=${{ vars.NUXT_PUBLIC_API_BASE_PATH }}##NUXT_SITEMAP_SOURCE_URL=${{ vars.NUXT_SITEMAP_SOURCE_URL }}##NUXT_REDIS_HOST=${{ vars.NUXT_REDIS_HOST }}##NUXT_REDIS_PORT=${{ vars.NUXT_REDIS_PORT }}##NUXT_REDIS_PREFIX=${{ vars.NUXT_REDIS_PREFIX }}" \
+            --set-secrets="NUXT_FIREBASE_API_KEY=NUXT_FIREBASE_API_KEY:latest,NUXT_FIREBASE_AUTH_DOMAIN=NUXT_FIREBASE_AUTH_DOMAIN:latest,NUXT_FIREBASE_PROJECT_ID=NUXT_FIREBASE_PROJECT_ID:latest,NUXT_FIREBASE_STORAGE_BUCKET=NUXT_FIREBASE_STORAGE_BUCKET:latest,NUXT_FIREBASE_MESSAGING_SENDER_ID=NUXT_FIREBASE_MESSAGING_SENDER_ID:latest,NUXT_FIREBASE_APP_ID=NUXT_FIREBASE_APP_ID:latest,NUXT_FIREBASE_MEASUREMENT_ID=NUXT_FIREBASE_MEASUREMENT_ID:latest" \
+            --quiet
+
+      - name: Show service URL
+        run: |
+          gcloud run services describe "${{ vars.CLOUD_RUN_SERVICE }}" \
+            --project="${{ vars.GCP_PROJECT_ID }}" \
+            --region="${{ vars.GCP_REGION }}" \
+            --format='value(status.url)'
