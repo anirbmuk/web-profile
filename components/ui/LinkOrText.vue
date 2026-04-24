@@ -1,7 +1,7 @@
 <template>
   <template v-if="Boolean(href)">
     <a
-      rel="nofollow"
+      rel="noopener"
       target="_blank"
       :href="href"
       @click="$emit('linkClick', href)">

@@ -14,7 +14,7 @@
     target="_blank"
     :href="link?.url"
     :title="link?.title"
-    rel="nofollow"
+    rel="noopener"
     class="duration-200 ease-linear md:border-black-light lg:hover:border-b"
     @click="$emit('linkClick', 'external')">
     {{ link?.text }}

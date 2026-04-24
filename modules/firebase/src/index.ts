@@ -22,7 +22,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'firebase',
     configkey: 'firebase',
     compatibility: {
-      nuxt: '^3.8.2',
+      nuxt: '>=3.8.2',
     },
   },
   defaults: {

@@ -6,9 +6,11 @@
   <Footer
     v-if="footer"
     :block="footer" />
-  <UiBackToTop
-    v-show="scrollState > 200"
-    @scroll-to-top="scrollToTop" />
+  <ClientOnly>
+    <UiBackToTop
+      v-show="scrollState > 200"
+      @scroll-to-top="scrollToTop" />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -19,7 +21,7 @@ const { $i18n } = useNuxtApp();
 const {
   public: {
     googleSiteVerification,
-    gtm: { enabled: gtmEnabled },
+    baseUrl,
   },
 } = useRuntimeConfig();
 const { fetch } = useFirebase();
@@ -31,6 +33,7 @@ const {
   getCanonical,
   getISOLocale,
   getAlternateISOLocales,
+  authorSchema,
 } = useSeo();
 
 const GLOBAL_TITLE = $i18n.t('global.title');
@@ -58,32 +61,41 @@ useHead({
     return title ? `${GLOBAL_TITLE} | ${title}` : GLOBAL_TITLE;
   },
   link: [
-    ...(gtmEnabled ? [{
-      rel: 'preconnect',
-      href: 'https://www.googletagmanager.com/',
-    }] : []),
+    {
+      rel: 'preload',
+      as: 'image',
+      type: 'image/webp',
+      fetchpriority: 'high',
+      href: `${baseUrl}/seo.webp`,
+    },
   ],
 });
 
+const description = $i18n.t('global.description');
+
 useSeoMeta({
   robots: 'index,follow',
-  description: $i18n.t('global.description'),
-  ogDescription: $i18n.t('global.description'),
-  ogImage: '/seo.webp',
-  ogLocale: getISOLocale($i18n.locale.value),
+  description,
+  ogTitle: () => GLOBAL_TITLE + ' | ' + $i18n.t('main.title'),
+  ogDescription: description,
+  ogImage: `${baseUrl}/seo.webp`,
+  ogLocale: $i18n.locale.value,
   ogLocaleAlternate: getAlternateISOLocales($i18n.locale.value),
   ogUrl: getCanonical(),
   ogSiteName: 'anirbmuk',
   ogType: 'profile',
+  // @ts-expect-errorType '"image/webp"' is not assignable to type 'ResolvableValue<"image/gif" | "image/jpeg" | "image/png" | undefined>'
+  ogImageType: 'image/webp',
   ogImageAlt: $i18n.t('global.twitterTitle'),
+  twitterTitle: () => GLOBAL_TITLE + ' | ' + $i18n.t('main.title'),
+  twitterDescription: $i18n.t('global.description'),
   twitterSite: 'anirbmuk',
   twitterCreator: '@anirbmuk',
-  twitterImage: '/seo.webp',
+  twitterImage: `${baseUrl}/seo.webp`,
   twitterImageAlt: $i18n.t('global.twitterTitle'),
   twitterCard: 'summary_large_image',
   author: 'Anirban Mukherjee',
   colorScheme: 'dark light',
-  keywords: $i18n.t('global.keywords'),
   profileFirstName: 'Anirban',
   profileLastName: 'Mukherjee',
   profileUsername: 'anirbmuk',
@@ -93,6 +105,16 @@ useSeoMeta({
     googleSiteVerification,
   }),
 });
+
+useJsonld(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: baseUrl,
+  name: 'anirbmuk',
+  inLanguage: ['en', 'de'],
+  image: `${baseUrl}/seo.webp`,
+  author: authorSchema.value,
+}));
 
 defineOptions({
   name: 'DefaultLayout',

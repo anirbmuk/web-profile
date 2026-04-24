@@ -6,7 +6,7 @@
         :href="url"
         :aria-label="label || icon"
         :title="title"
-        rel="nofollow"
+        rel="noopener"
         @click="$emit('iconClick', url)">
         <img
           :src="`/icons/${icon}.svg`"

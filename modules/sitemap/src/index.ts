@@ -23,7 +23,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'sitemap',
     configkey: 'sitemap',
     compatibility: {
-      nuxt: '^3.8.2',
+      nuxt: '>=3.8.2',
     },
   },
   defaults: {

@@ -7,7 +7,15 @@ import type {
 } from './../types/tracking';
 
 export const useTracking = () => {
-  const gtm = useGtm();
+
+  const {
+    proxy,
+    onError,
+  } = useScriptGoogleTagManager();
+
+  onError((error) => {
+    console.error('Error loading Google Tag Manager script:', error);
+  });
 
   const getClientTimestamp = () => {
     const date = new Date();
@@ -24,7 +32,7 @@ export const useTracking = () => {
     event,
     action,
   }: BaseEvent, metadata: T) => Promise.resolve(
-    gtm?.trackEvent({
+    proxy.dataLayer.push({
       event,
       action,
       category: metadata.pageType,
