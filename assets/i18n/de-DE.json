@@ -9,6 +9,9 @@
         "backToTopButton": "Nach oben scrollen",
         "profileImage": "Profilbild",
         "loadingProgressBar": "Lade Fortschrittsbalken"
+      },
+      "hint": {
+        "newTab": "Öffnet sich in einem neuen Tab"
       }
     }
   },

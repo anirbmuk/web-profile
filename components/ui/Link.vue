@@ -18,6 +18,9 @@
     class="duration-200 ease-linear md:border-black-light lg:hover:border-b"
     @click="$emit('linkClick', 'external')">
     {{ link?.text }}
+    <span class="sr-only">
+      ({{ $i18n.t('global.accessibility.hint.newTab') }})
+    </span>
   </a>
 </template>
 
@@ -36,6 +39,7 @@ defineEmits<{
 }>();
 
 const localePath = useLocalePath();
+const { $i18n } = useNuxtApp();
 
 defineOptions({
   name: 'LinkComponent',

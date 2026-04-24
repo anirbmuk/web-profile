@@ -68,6 +68,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/hints',
     '@nuxt/scripts',
+    'nuxt-svgo',
   ],
 
   googleFonts: {
@@ -190,6 +191,11 @@ export default defineNuxtConfig({
     optimizeDeps: {
       exclude: ['@nuxt/hints'],
     },
+  },
+
+  svgo: {
+    autoImportPath: './public/icons',
+    componentPrefix: 'UiIcon',
   },
 
 });

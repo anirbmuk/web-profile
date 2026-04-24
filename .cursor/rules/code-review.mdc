@@ -1,0 +1,25 @@
+---
+description: Use this rule only for code reviews, against the "main" branch on Github
+globs:
+alwaysApply: false
+---
+
+- Compare current branch against `main`.
+- If currently on `main`, ask for the right branch and then switch to it.
+- Ask questions on the purpose of the pull request.
+- Do not install new packages or update existing packages without asking. Explain the benefits of such installation/updates to the developer/reviewer.
+
+- Check for possible memory leaks, with watchers, setTimeout or setInterval.
+- Discourage use of console statements.
+- Check for more efficient use of regular expressions, if applicable.
+- Check if some code can be moved into a helper or util for future use. Ensure DRY.
+- Check for infinite loops for recursive functions.
+- Check if standard tailwind classes can be used, instead of hard-coded pixel values.
+- Check for template errors due to missing imports.
+- Suggest stronger protection for cookies.
+- Do not import any component, method or type which are auto imported.
+- Check for missing implementation of dark mode tailwind classes.
+- Suggest jsDoc for complex util or helper functions.
+
+- Create a `.md` file with the branch name to document all the review observations in the **docs** folder, before applying any change.
+

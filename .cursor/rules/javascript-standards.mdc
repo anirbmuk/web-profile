@@ -1,0 +1,171 @@
+---
+description: Modern JavaScript and TypeScript best practices
+globs: ["**/*.ts", "**/*.js", "**/*.vue"]
+alwaysApply: true
+---
+
+# JavaScript Standards
+
+## Code Style and Formatting
+
+### Naming Conventions
+- Use **camelCase** for variables, functions, and object properties
+- Use **PascalCase** for classes, constructors, and components
+- Use **SCREAMING_SNAKE_CASE** for constants and configuration values
+- Use **kebab-case** for file names and CSS classes
+- Use descriptive names that clearly indicate purpose and intent
+- Avoid abbreviations unless they are widely understood (e.g., `id`, `url`, `api`)
+
+### Variable Declarations
+- **Prefer `const`** over `let` and `var` for immutable values
+- Use `let` only when reassignment is necessary
+- **Never use `var`** - use `const` or `let` instead
+- Declare variables at the smallest possible scope
+- Use destructuring for object and array assignments when appropriate
+- Group related variable declarations together
+
+### Function Declarations
+- **Prefer function expressions** over function declarations for consistency
+- Use **arrow functions** for short, simple functions
+- Use **regular functions** for methods and when `this` binding is needed
+- Use **async/await** over Promises and callbacks when possible
+- Implement proper error handling with try-catch blocks
+- Use default parameters instead of conditional assignments
+
+### Object and Array Handling
+- Use **object spread syntax** (`...`) for object copying and merging
+- Use **array methods** (`map`, `filter`, `reduce`, `find`) over loops when appropriate
+- Prefer **array destructuring** for multiple value extraction
+- Use **optional chaining** (`?.`) for safe property access
+- Use **nullish coalescing** (`??`) for default value assignment
+- Avoid mutating original objects and arrays
+
+## Modern JavaScript Features
+
+### ES6+ Features
+- Use **template literals** instead of string concatenation
+- Use **arrow functions** for concise function syntax
+- Use **destructuring** for object and array assignments
+- Use **spread/rest operators** for flexible parameter handling
+- Use **modules** (`import`/`export`) over CommonJS (`require`/`module.exports`)
+- Use **const/let** over `var` for block scoping
+
+### Async Programming
+- **Prefer `async/await`** over Promise chains for better readability
+- Use **Promise.all()** for parallel async operations
+- Use **Promise.allSettled()`** when you need all results regardless of failures
+- Implement proper error handling for async operations
+- Use **try-catch** blocks with async/await
+- Consider using **Promise.race()** for timeout scenarios
+
+### TypeScript Integration
+- Use **explicit type annotations** for function parameters and return types
+- Use **interfaces** for object shapes and API contracts
+- Use **type aliases** for complex union types
+- Use **generics** for reusable type-safe functions
+- Use **utility types** (`Partial`, `Pick`, `Omit`) when appropriate
+- Avoid `any` type - use `unknown` or specific types instead
+
+## Error Handling
+
+### Error Management
+- **Always handle errors** explicitly - never ignore them
+- Use **specific error types** instead of generic Error objects
+- Implement **proper error logging** for debugging and monitoring
+- Use **try-catch blocks** for synchronous error handling
+- Use **catch blocks** with async/await for asynchronous error handling
+- Provide **meaningful error messages** for users and developers
+
+### Error Boundaries
+- Implement **error boundaries** for component error handling
+- Use **fallback UI** for error states
+- Log errors to monitoring services in production
+- Implement **retry mechanisms** for transient errors
+- Use **graceful degradation** for non-critical failures
+
+## Performance Considerations
+
+### Memory Management
+- **Avoid memory leaks** by properly cleaning up event listeners and timers
+- Use **weak references** (`WeakMap`, `WeakSet`) when appropriate
+- Implement **proper cleanup** in component unmounting
+- Avoid **circular references** in object relationships
+- Use **lazy loading** for heavy modules and components
+
+### Optimization Techniques
+- Use **memoization** for expensive calculations
+- Implement **debouncing** and **throttling** for frequent events
+- Use **requestAnimationFrame** for smooth animations
+- Avoid **unnecessary re-renders** and computations
+- Use **efficient data structures** for different use cases
+
+## Code Organization
+
+### File Structure
+- **One component per file** for better maintainability
+- Use **barrel exports** sparingly - prefer explicit imports
+- Group **related functionality** in the same directory
+- Use **consistent file naming** conventions
+- Separate **business logic** from presentation logic
+
+### Import/Export Patterns
+- Use **named exports** over default exports for better tree-shaking
+- Group imports logically: external libraries, internal modules, relative imports
+- Use **absolute imports** when possible for cleaner paths
+- Avoid **circular dependencies** between modules
+- Use **dynamic imports** for code splitting when appropriate
+
+### Documentation
+- Write **JSDoc comments** for public APIs and complex functions
+- Include **parameter descriptions** and **return value documentation**
+- Document **side effects** and **external dependencies**
+- Use **clear, descriptive comments** for complex business logic
+- Keep comments **up-to-date** with code changes
+
+## Testing Standards
+
+### Test Structure
+- Write **unit tests** for individual functions and components
+- Write **integration tests** for component interactions
+- Write **end-to-end tests** for critical user flows
+- Use **descriptive test names** that explain the expected behavior
+- Follow **AAA pattern**: Arrange, Act, Assert
+
+### Test Best Practices
+- **Mock external dependencies** to isolate units under test
+- Use **test data factories** for consistent test data
+- Write **tests first** (TDD) when appropriate
+- Aim for **high test coverage** on critical functionality
+- Keep tests **simple and focused** on single behaviors
+
+## Security Considerations
+
+### Data Handling
+- **Validate all inputs** before processing
+- **Sanitize user data** to prevent XSS attacks
+- Use **HTTPS** for all external communications
+- Implement **proper authentication** and authorization
+- **Never expose sensitive data** in client-side code
+
+### Best Practices
+- Use **environment variables** for configuration
+- Implement **rate limiting** for API calls
+- Use **secure coding practices** throughout
+- Regular **security audits** and dependency updates
+- Follow **OWASP guidelines** for web security
+
+## Import Guidelines
+- **Always prefer importing from `@scayle/storefront-nuxt`** over `@scayle/storefront-core` or `@scayle/storefront-api`
+- Use `@scayle/storefront-nuxt` as the primary import source for all storefront functionality
+- Avoid direct imports from internal dependencies when possible
+- Import JavaScript utilities directly from their source files
+- Use explicit imports to improve tree-shaking and bundle optimization
+
+## Best Practices
+- **Write self-documenting code** with clear variable and function names
+- **Keep functions small** and focused on single responsibilities
+- **Use consistent code style** throughout the project
+- **Regular code reviews** to maintain quality standards
+- **Refactor regularly** to improve code quality and maintainability
+- **Follow the principle of least surprise** - code should behave as expected
+- Follow **OWASP guidelines** for web security

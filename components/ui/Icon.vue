@@ -8,9 +8,19 @@
         :title="title"
         rel="noopener"
         @click="$emit('iconClick', url)">
+        <span
+          v-if="usesMaskFromPageColor"
+          :class="[
+            iconSizeClass,
+            iconClass,
+            'inline-block shrink-0 bg-current text-black-dark dark:text-white',
+          ]"
+          :style="maskMarkStyle"
+          aria-hidden="true" />
         <img
+          v-else
           :src="`/icons/${icon}.svg`"
-          :class="iconClass"
+          :class="[iconSizeClass, iconClass]"
           :aria-hidden="true"
           :alt="altText || icon"
           :height="heightAndWidth"
@@ -24,9 +34,19 @@
     v-else
     :title="title"
     @click="$emit('iconClick', undefined)">
+    <span
+      v-if="usesMaskFromPageColor"
+      :class="[
+        iconSizeClass,
+        iconClass,
+        'inline-block shrink-0 bg-current text-black-dark dark:text-white',
+      ]"
+      :style="maskMarkStyle"
+      aria-hidden="true" />
     <img
+      v-else
       :src="`/icons/${icon}.svg`"
-      :class="iconClass"
+      :class="[iconSizeClass, iconClass]"
       :aria-hidden="true"
       :alt="altText || icon"
       :height="heightAndWidth"
@@ -77,6 +97,9 @@ const displayClasses: Record<'start' | 'middle' | 'end', string> = {
   end: 'flex justify-end',
 };
 
+/** Monochrome marks: SVG in <img> cannot follow page theme; paint via mask + currentColor. */
+const iconsPaintedWithPageColor = new Set(['x', 'expressjs']);
+
 const props = defineProps({
   url: {
     type: String,
@@ -123,6 +146,10 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
+  iconClass: {
+    type: String,
+    default: '',
+  },
 });
 
 defineEmits<{
@@ -131,7 +158,27 @@ defineEmits<{
 
 const componentType = computed(() => (props.url ? 'link' : 'text'));
 
-const iconClass = computed(() => sizeMappers[props.size]);
+const usesMaskFromPageColor = computed(() => iconsPaintedWithPageColor.has(props.icon));
+
+const maskMarkStyle = computed(() => {
+  if (!usesMaskFromPageColor.value) {
+    return {
+    };
+  }
+  const url = `url('/icons/${props.icon}.svg')`;
+  return {
+    maskImage: url,
+    maskSize: 'contain',
+    maskRepeat: 'no-repeat',
+    maskPosition: 'center',
+    WebkitMaskImage: url,
+    WebkitMaskSize: 'contain',
+    WebkitMaskRepeat: 'no-repeat',
+    WebkitMaskPosition: 'center',
+  };
+});
+
+const iconSizeClass = computed(() => sizeMappers[props.size]);
 const heightAndWidth = computed(() => imageHeightAndWidthMappers[props.size] || '64');
 const displayClass = computed(() =>
   props.position ? displayClasses[props.position] : '',

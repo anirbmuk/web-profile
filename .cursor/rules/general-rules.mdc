@@ -1,0 +1,61 @@
+---
+description: General rules to apply for the Manchester United shop Nuxt3 project
+globs:
+alwaysApply: true
+---
+
+- Always use TypeScript.
+- Use standard Tailwind classes. Use pixel values only when necessary.
+- Avoid using other styling syntaxes like css, sass or scss.
+- Create new components in `components` folder.
+- Create new composables in `composables` folder.
+- Create new helper or util files in `utils` folder.
+- Create constants in `constants` folder.
+
+- Avoid direct imports from internal dependencies when possible
+- Import base component utilities directly from their source files
+- Use explicit imports instead of barrel imports (`index.ts` files that re-export everything) to improve tree-shaking and bundle optimization
+- Optimize bundle size by avoiding unnecessary imports
+- Monitor performance impact of composable usage
+- Use explicit type imports when importing only types
+- Use `import type` for type-only imports
+- Use proper type imports for better tree-shaking
+- Consider using type-only imports for better performance
+- Group imports logically (external, internal, relative)
+- Use consistent import ordering
+- Avoid circular dependencies
+- Use absolute imports when possible
+- Consider using path aliases for cleaner imports
+
+- Any new NUXT_ environment variable should be documented in the `.env.example` file.
+
+- Enforce a consistent naming convention. For example, use PascalCase for component files and camelCase for composables.
+- Ensure that multiple watchers are not set up while calling composables. Discuss potential alternate solution with the developer.
+
+- Ensure `null` and `undefined` options are handled for Vue component props, and encourage to provide default values when missing.
+- Suggest missing aria attributes and roles for accessibility.
+- No API key should be exposed to the `nuxt.config.ts` public-runtime config.
+
+# Components and Composables
+- Use descriptive names that clearly indicate the component's purpose, following the patterns of other base components
+- Design base components to be highly reusable and configurable
+- Use props for customization rather than hardcoded values
+- Provide sensible defaults while allowing full customization
+- Implement proper TypeScript interfaces for all props
+- Use slots for flexible content insertion when appropriate
+- Use props appropriately and avoid excessive prop drilling
+- Every component should have the `<template>`, `<script>` and `<style scoped>` section in that order. The `style` section should be present only if non-empty.
+- The `script` section should use the following format: `<script setup lang="ts">`
+- **Favour `ref()` over `reactive()`** for component state
+- Use `ref()` for primitive values and simple objects
+- Use `reactive()` only for complex objects that need deep reactivity
+- Prefer `computed()` for derived state over methods when possible
+- Use `watch()` and `watchEffect()` for side effects
+- Implement proper cleanup in `onUnmounted()` when needed
+- Use `nextTick()` when DOM updates are required
+- Implement proper event emission for user interactions
+- Provide comprehensive prop validation and documentation
+
+# Coding style
+- IF blocks should have their parantheses blocks, no return in the same line
+- Do not add semi-colon at the end of a statement

@@ -138,10 +138,6 @@ abbr {
   footer > * {
     background-color: #121212 !important;
   }
-
-  [ratingcontainer] {
-    @apply hidden;
-  }
 }
 
 @keyframes fade-in {

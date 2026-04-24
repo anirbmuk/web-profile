@@ -1,23 +1,25 @@
 <template>
   <div
-    class="flex space-x-1"
-    :title="title"
-    ratingcontainer>
-    <LazyUiIcon
-      v-for="rat in _fullRating"
-      :key="rat"
-      :icon="'star-filled'"
-      loading="lazy" />
-    <LazyUiIcon
+    class="flex space-x-1 text-black-dark dark:text-white"
+    :title="title">
+    <LazyUiIconStarFilled
+      v-for="(_, index) in _fullRating"
+      :key="`full-${index}`"
+      :filled="true"
+      :font-controlled="false"
+      class="!size-5 md:!size-6" />
+    <LazyUiIconStarHalfFilled
       v-if="_hasHalf"
-      :icon="'star-half-filled'"
-      loading="lazy" />
+      :filled="true"
+      :font-controlled="false"
+      class="!size-5 md:!size-6" />
     <template v-if="_remaining?.length">
-      <LazyUiIcon
-        v-for="rem in _remaining"
-        :key="rem"
-        :icon="'star-empty'"
-        loading="lazy" />
+      <LazyUiIconStarEmpty
+        v-for="(_, index) in _remaining"
+        :key="`empty-${index}`"
+        :filled="true"
+        :font-controlled="false"
+        class="!size-5 md:!size-6" />
     </template>
   </div>
 </template>
