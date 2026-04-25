@@ -9,7 +9,8 @@
         "backToTopButton": "Nach oben scrollen",
         "profileImage": "Profilbild",
         "loadingProgressBar": "Lade Fortschrittsbalken",
-        "rating": "{rating} von {maxRating}"
+        "rating": "{rating} von {maxRating}",
+        "technologies": "Technologien"
       },
       "hint": {
         "newTab": "Öffnet sich in einem neuen Tab"

@@ -40,10 +40,14 @@
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
                     <div class="hidden space-x-2 lg:flex">
-                      <UiChip
-                        v-for="technology in repo?.technologies"
-                        :key="technology"
-                        :text="technology" />
+                      <ul
+                        class="m-0 flex list-none flex-wrap items-center gap-1 p-0"
+                        :aria-label="$i18n.t('global.accessibility.ariaLabel.technologies')">
+                        <UiChip
+                          v-for="technology in repo?.technologies"
+                          :key="technology"
+                          :text="technology" />
+                      </ul>
                     </div>
                     <div class="text-md leading-4">
                       {{ repo?.description }}
