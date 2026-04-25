@@ -1,9 +1,9 @@
 <template>
   <UiAccordion :state-key="'techstack'">
     <template #heading>
-      <h3 class="md:heading gradient-text">
+      <h2 class="md:heading gradient-text text-xl md:text-3xl lg:text-4xl">
         {{ $i18n.t('main.techstack.title') }}
-      </h3>
+      </h2>
     </template>
     <template #content>
       <ul class="grid grid-cols-2 gap-0 md:grid-cols-3 md:gap-2 2xl:grid-cols-4 3xl:grid-cols-5">

@@ -2,9 +2,9 @@
   <section>
     <UiAccordion :state-key="'github'">
       <template #heading>
-        <h3 class="md:heading gradient-text">
+        <h2 class="md:heading gradient-text text-xl md:text-3xl lg:text-4xl">
           {{ $i18n.t('main.github.title') }}
-        </h3>
+        </h2>
       </template>
       <template #content>
         <div class="grid snap-x snap-mandatory gap-2 max-md:auto-cols-[87.5%] max-md:grid-flow-col max-md:overflow-y-hidden max-md:overscroll-contain md:snap-none md:grid-cols-2 md:gap-3 2xl:grid-cols-3 3xl:grid-cols-4">
@@ -12,16 +12,16 @@
             v-for="(repo, index) in block"
             :key="`github_${index + 1}`">
             <UtilIntersect
+              v-if="repo?.value"
               class="max-md:snap-start"
               @tracked="
-                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+                tracker('github_section', String(repo.value))
               ">
               <UiLinkOrText
-                :href="repo?.value?.toString()"
-                @link-click="onLinkClick(repo?.value?.toString())">
-                <div
-                  v-if="repo?.value"
-                  class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
+                :href="String(repo.value)"
+                class="max-lg:-outline-offset-1"
+                @link-click="onLinkClick(String(repo.value))">
+                <div class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out md:m-0.5 lg:h-36 lg:hover:scale-105 lg:hover:bg-gray-50 dark:bg-transparent dark:lg:hover:bg-transparent">
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
                       <LazyUiIcon
@@ -31,7 +31,7 @@
                       <div
                         class="-mt-1 text md:text-2xl"
                         translate="no">
-                        {{ transformRepo(repo?.value?.toString()) }}
+                        {{ transformRepo(String(repo.value)) }}
                       </div>
                     </div>
                     <div
@@ -40,10 +40,14 @@
                       {{ transformTechstack(repo?.technologies) }}
                     </div>
                     <div class="hidden space-x-2 lg:flex">
-                      <UiChip
-                        v-for="technology in repo?.technologies"
-                        :key="technology"
-                        :text="technology" />
+                      <ul
+                        class="m-0 flex list-none flex-wrap items-center gap-1 p-0"
+                        :aria-label="$i18n.t('global.accessibility.ariaLabel.technologies')">
+                        <UiChip
+                          v-for="technology in repo?.technologies"
+                          :key="technology"
+                          :text="technology" />
+                      </ul>
                     </div>
                     <div class="text-md leading-4">
                       {{ repo?.description }}

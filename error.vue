@@ -11,7 +11,9 @@
   <main class="container mx-auto my-20">
     <section class="text-center">
       <h2 class="py-4 text-16xl font-bold text-black-dark md:text-massive">
-        !{{ error?.statusCode }}!
+        <span aria-hidden="true">!</span>
+        {{ error?.statusCode }}
+        <span aria-hidden="true">!</span>
       </h2>
       <div
         v-if="error?.message"

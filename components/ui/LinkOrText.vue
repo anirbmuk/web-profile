@@ -5,7 +5,11 @@
       target="_blank"
       :href="href"
       @click="$emit('linkClick', href)">
-      <slot /></a>
+      <slot />
+      <span class="sr-only">
+        ({{ $i18n.t('global.accessibility.hint.newTab') }})
+      </span>
+    </a>
   </template>
   <template v-else>
     <slot />
@@ -22,6 +26,9 @@ defineProps({
 defineEmits<{
   linkClick: [href: string | undefined]
 }>();
+
+const { $i18n } = useNuxtApp();
+
 defineOptions({
   name: 'LinkOrTextComponent',
 });

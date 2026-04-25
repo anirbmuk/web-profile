@@ -3,6 +3,10 @@
     v-show="width"
     :key="width"
     role="progressbar"
+    :aria-busy="width > 0 && width < 100"
+    :aria-valuemin="0"
+    :aria-valuemax="100"
+    :aria-valuenow="width"
     :aria-label="$i18n.t('global.accessibility.ariaLabel.loadingProgressBar')"
     class="h-0.5 bg-gray-500 dark:bg-white"
     :style="{ width: `${width}%` }" />

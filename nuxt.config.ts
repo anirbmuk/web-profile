@@ -51,6 +51,7 @@ export default defineNuxtConfig({
           id: '', // Override by setting NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID
         },
       },
+      projectStartYear: '2024', // Override by setting NUXT_PUBLIC_PROJECT_START_YEAR
     },
   },
 
@@ -68,6 +69,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/hints',
     '@nuxt/scripts',
+    'nuxt-svgo',
   ],
 
   googleFonts: {
@@ -190,6 +192,11 @@ export default defineNuxtConfig({
     optimizeDeps: {
       exclude: ['@nuxt/hints'],
     },
+  },
+
+  svgo: {
+    autoImportPath: './public/icons',
+    componentPrefix: 'UiIcon',
   },
 
 });

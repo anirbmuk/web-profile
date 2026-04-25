@@ -34,7 +34,7 @@
             </div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
+              class="text-sm !leading-4 text-gray-900 max-lg:sr-only md:mt-2 md:w-[32em]">
               {{ timeline.description }}
             </div>
           </div>
@@ -51,6 +51,7 @@
         ]"
         :style="{ backgroundColor: timeline.backgroundColor }"
         :title="timeline.provider"
+        :aria-hidden="true"
         @mouseenter="onMouseEnter(timeline)"
         @mouseleave="onMouseLeave(timeline)" />
       <div
@@ -83,7 +84,7 @@
             </div>
             <div
               v-if="timeline.description"
-              class="hidden text-sm !leading-4 text-gray-900 md:mt-2 md:w-[32em] lg:block">
+              class="text-sm !leading-4 text-gray-900 max-lg:sr-only md:mt-2 md:w-[32em]">
               {{ timeline.description }}
             </div>
           </div>

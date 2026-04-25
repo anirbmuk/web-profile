@@ -2,17 +2,28 @@
   <template v-if="componentType === 'link'">
     <div :class="displayClass">
       <a
+        v-bind="$attrs"
         :target="target"
         :href="url"
         :aria-label="label || icon"
         :title="title"
         rel="noopener"
         @click="$emit('iconClick', url)">
+        <span
+          v-if="usesMaskFromPageColor"
+          :class="[
+            iconSizeClass,
+            iconClass,
+            'inline-block shrink-0 bg-current text-black-dark dark:text-white',
+          ]"
+          :style="maskMarkStyle"
+          aria-hidden="true" />
         <img
+          v-else
           :src="`/icons/${icon}.svg`"
-          :class="iconClass"
+          :class="[iconSizeClass, iconClass]"
           :aria-hidden="true"
-          :alt="altText || icon"
+          :alt="capitalize(altText || icon)"
           :height="heightAndWidth"
           :width="heightAndWidth"
           :loading="loading" >
@@ -22,13 +33,26 @@
   </template>
   <div
     v-else
+    v-bind="$attrs"
     :title="title"
+    role="img"
+    :aria-label="capitalize(title || label || icon)"
     @click="$emit('iconClick', undefined)">
+    <span
+      v-if="usesMaskFromPageColor"
+      :class="[
+        iconSizeClass,
+        iconClass,
+        'inline-block shrink-0 bg-current text-black-dark dark:text-white',
+      ]"
+      :style="maskMarkStyle"
+      aria-hidden="true" />
     <img
+      v-else
       :src="`/icons/${icon}.svg`"
-      :class="iconClass"
+      :class="[iconSizeClass, iconClass]"
       :aria-hidden="true"
-      :alt="altText || icon"
+      :alt="capitalize(altText || icon)"
       :height="heightAndWidth"
       :width="heightAndWidth"
       :loading="loading" >
@@ -40,6 +64,7 @@ import type {
   IconLoadingType,
   IconPosition,
 } from '~/types/components/icon';
+import { capitalize } from 'radash';
 
 const sizeMappers: Record<number, string> = {
   2: 'size-1 md:size-2',
@@ -76,6 +101,9 @@ const displayClasses: Record<'start' | 'middle' | 'end', string> = {
   middle: 'flex justify-center',
   end: 'flex justify-end',
 };
+
+/** Monochrome marks: SVG in <img> cannot follow page theme; paint via mask + currentColor. */
+const iconsPaintedWithPageColor = new Set(['x', 'expressjs']);
 
 const props = defineProps({
   url: {
@@ -123,6 +151,10 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
+  iconClass: {
+    type: String,
+    default: '',
+  },
 });
 
 defineEmits<{
@@ -131,7 +163,27 @@ defineEmits<{
 
 const componentType = computed(() => (props.url ? 'link' : 'text'));
 
-const iconClass = computed(() => sizeMappers[props.size]);
+const usesMaskFromPageColor = computed(() => iconsPaintedWithPageColor.has(props.icon));
+
+const maskMarkStyle = computed(() => {
+  if (!usesMaskFromPageColor.value) {
+    return {
+    };
+  }
+  const url = `url('/icons/${props.icon}.svg')`;
+  return {
+    maskImage: url,
+    maskSize: 'contain',
+    maskRepeat: 'no-repeat',
+    maskPosition: 'center',
+    WebkitMaskImage: url,
+    WebkitMaskSize: 'contain',
+    WebkitMaskRepeat: 'no-repeat',
+    WebkitMaskPosition: 'center',
+  };
+});
+
+const iconSizeClass = computed(() => sizeMappers[props.size]);
 const heightAndWidth = computed(() => imageHeightAndWidthMappers[props.size] || '64');
 const displayClass = computed(() =>
   props.position ? displayClasses[props.position] : '',
@@ -139,5 +191,6 @@ const displayClass = computed(() =>
 
 defineOptions({
   name: 'IconComponent',
+  inheritAttrs: false,
 });
 </script>

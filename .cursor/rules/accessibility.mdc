@@ -1,0 +1,42 @@
+---
+description: WCAG compliance and accessibility best practices
+globs: ["**/*.vue", "**/components/**/*"]
+alwaysApply: true
+---
+
+# Accessibility Guidelines
+
+## ARIA and Semantic HTML
+- Use semantic HTML elements (`<button>`, `<nav>`, `<main>`, `<section>`) over generic `<div>` elements
+- Implement proper ARIA attributes (`aria-label`, `aria-describedby`, `aria-expanded`, etc.)
+- Use `role` attributes when semantic HTML is not sufficient
+- Ensure proper heading hierarchy (h1 → h2 → h3) for screen readers
+- Use `alt` attributes for all images with descriptive text
+
+## Keyboard Navigation
+- Ensure all interactive elements are keyboard accessible
+- Implement proper tab order and focus management
+- Use `tabindex` appropriately (avoid positive values unless necessary)
+- Provide visible focus indicators for keyboard users
+- Implement keyboard shortcuts for common actions when appropriate
+
+## Color and Contrast
+- Maintain sufficient color contrast ratios (minimum 4.5:1 for normal text, 3:1 for large text)
+- Don't rely solely on color to convey information
+- Use the predefined color palette from `tailwind.config.ts`
+- Test with color blindness simulators when possible
+- Provide alternative indicators for color-coded information
+
+## Screen Reader Support
+- Use `aria-live` regions for dynamic content updates
+- Implement proper form labels and error associations
+- Provide skip links for main content navigation
+- Use `aria-hidden` for decorative elements that don't add meaning
+- Test with actual screen readers when possible
+
+## Form Accessibility
+- Associate labels with form controls using `for` and `id` attributes
+- Provide clear error messages and associate them with form fields
+- Use `aria-required` and `aria-invalid` for form validation
+- Implement proper focus management for form interactions
+- Ensure form controls are properly grouped and labeled

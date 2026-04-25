@@ -1,23 +1,30 @@
 <template>
   <div
-    class="flex space-x-1"
+    class="flex space-x-1 text-black-dark dark:text-white"
     :title="title"
-    ratingcontainer>
-    <LazyUiIcon
-      v-for="rat in _fullRating"
-      :key="rat"
-      :icon="'star-filled'"
-      loading="lazy" />
-    <LazyUiIcon
+    role="img"
+    :aria-label="ariaLabel">
+    <LazyUiIconStarFilled
+      v-for="(_, index) in _fullRating"
+      :key="`full-${index}`"
+      :filled="true"
+      :font-controlled="false"
+      class="!size-5 md:!size-6"
+      aria-hidden="true" />
+    <LazyUiIconStarHalfFilled
       v-if="_hasHalf"
-      :icon="'star-half-filled'"
-      loading="lazy" />
+      :filled="true"
+      :font-controlled="false"
+      class="!size-5 md:!size-6"
+      aria-hidden="true" />
     <template v-if="_remaining?.length">
-      <LazyUiIcon
-        v-for="rem in _remaining"
-        :key="rem"
-        :icon="'star-empty'"
-        loading="lazy" />
+      <LazyUiIconStarEmpty
+        v-for="(_, index) in _remaining"
+        :key="`empty-${index}`"
+        :filled="true"
+        :font-controlled="false"
+        class="!size-5 md:!size-6"
+        aria-hidden="true" />
     </template>
   </div>
 </template>
@@ -49,6 +56,13 @@ const _remaining = computed(() => transform(_maxRating - Math.ceil(rating.value)
 
 const title = computed(
   () => `${new Intl.NumberFormat($i18n.locale.value).format(rating.value)}/${_maxRating}`,
+);
+
+const ariaLabel = computed(
+  () => $i18n.t('global.accessibility.ariaLabel.rating', {
+    rating: new Intl.NumberFormat($i18n.locale.value).format(rating.value),
+    maxRating: _maxRating,
+  }),
 );
 
 defineOptions({

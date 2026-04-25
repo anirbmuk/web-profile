@@ -8,7 +8,15 @@
       "ariaLabel": {
         "backToTopButton": "Nach oben scrollen",
         "profileImage": "Profilbild",
-        "loadingProgressBar": "Lade Fortschrittsbalken"
+        "loadingProgressBar": "Lade Fortschrittsbalken",
+        "rating": "{rating} von {maxRating}",
+        "technologies": "Technologien",
+        "accordion-panel-techstack": "Details: Technologien",
+        "accordion-panel-github": "Details: Beliebt auf GitHub",
+        "accordion-panel-education": "Details: Ausbildung"
+      },
+      "hint": {
+        "newTab": "Öffnet sich in einem neuen Tab"
       }
     }
   },
