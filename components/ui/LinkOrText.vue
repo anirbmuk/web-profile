@@ -1,6 +1,7 @@
 <template>
   <template v-if="Boolean(href)">
     <a
+      class="relative"
       rel="noopener"
       target="_blank"
       :href="href"
