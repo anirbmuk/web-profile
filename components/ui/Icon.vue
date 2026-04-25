@@ -22,7 +22,7 @@
           :src="`/icons/${icon}.svg`"
           :class="[iconSizeClass, iconClass]"
           :aria-hidden="true"
-          :alt="altText || icon"
+          :alt="capitalize(altText || icon)"
           :height="heightAndWidth"
           :width="heightAndWidth"
           :loading="loading" >
@@ -33,6 +33,8 @@
   <div
     v-else
     :title="title"
+    role="img"
+    :aria-label="capitalize(title || label || icon)"
     @click="$emit('iconClick', undefined)">
     <span
       v-if="usesMaskFromPageColor"
@@ -48,7 +50,7 @@
       :src="`/icons/${icon}.svg`"
       :class="[iconSizeClass, iconClass]"
       :aria-hidden="true"
-      :alt="altText || icon"
+      :alt="capitalize(altText || icon)"
       :height="heightAndWidth"
       :width="heightAndWidth"
       :loading="loading" >
@@ -60,6 +62,7 @@ import type {
   IconLoadingType,
   IconPosition,
 } from '~/types/components/icon';
+import { capitalize } from 'radash';
 
 const sizeMappers: Record<number, string> = {
   2: 'size-1 md:size-2',

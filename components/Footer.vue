@@ -19,7 +19,8 @@
             :label="getTitle('en')"
             :alt-text="getTitle('en')"
             :size="6"
-            target="_self" />
+            target="_self"
+            :aria-current="isCurrentlyOnLocale('en') ? true : undefined" />
           <div class="-mt-0.5 text">
             |
           </div>
@@ -30,7 +31,8 @@
             :label="getTitle('de')"
             :alt-text="getTitle('de')"
             :size="6"
-            target="_self" />
+            target="_self"
+            :aria-current="isCurrentlyOnLocale('de') ? true : undefined" />
         </div>
         <div
           translate="no"

@@ -51,6 +51,7 @@
         ]"
         :style="{ backgroundColor: timeline.backgroundColor }"
         :title="timeline.provider"
+        :aria-hidden="true"
         @mouseenter="onMouseEnter(timeline)"
         @mouseleave="onMouseLeave(timeline)" />
       <div

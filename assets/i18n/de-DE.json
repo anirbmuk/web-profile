@@ -8,7 +8,8 @@
       "ariaLabel": {
         "backToTopButton": "Nach oben scrollen",
         "profileImage": "Profilbild",
-        "loadingProgressBar": "Lade Fortschrittsbalken"
+        "loadingProgressBar": "Lade Fortschrittsbalken",
+        "rating": "{rating} von {maxRating}"
       },
       "hint": {
         "newTab": "Öffnet sich in einem neuen Tab"

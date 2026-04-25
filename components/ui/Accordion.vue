@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="cursor-pointer pb-0.5 md:pb-1"
-      @click="accordionState = !accordionState">
+    <div class="pb-0.5 md:pb-1">
       <div class="flex items-center justify-between">
         <div class="py-2">
           <slot name="heading" />
@@ -19,17 +17,19 @@
           :title="accordionState ? $i18n.t('components.UiAccordion.collapse'): $i18n.t('components.UiAccordion.expand')"
           :aria-expanded="accordionState"
           :aria-controls="panelId"
-          @click.stop="accordionState = !accordionState">
+          @click="accordionState = !accordionState">
           <LazyUiIconCollapse
+            :class="{ 'rotate-180': accordionState }"
             class="!size-6 dark:text-white"
-            :font-controlled="false" />
+            :font-controlled="false"
+            aria-hidden="true" />
         </button>
       </div>
     </div>
     <div
       :id="panelId"
       role="region"
-      :aria-hidden="!accordionState">
+      :hidden="!accordionState">
       <UtilFadeInTransition>
         <div
           v-if="accordionState"

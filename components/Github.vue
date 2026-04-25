@@ -2,9 +2,9 @@
   <section>
     <UiAccordion :state-key="'github'">
       <template #heading>
-        <h3 class="md:heading gradient-text">
+        <h2 class="md:heading gradient-text text-xl md:text-3xl lg:text-4xl">
           {{ $i18n.t('main.github.title') }}
-        </h3>
+        </h2>
       </template>
       <template #content>
         <div class="grid snap-x snap-mandatory gap-2 max-md:auto-cols-[87.5%] max-md:grid-flow-col max-md:overflow-y-hidden max-md:overscroll-contain md:snap-none md:grid-cols-2 md:gap-3 2xl:grid-cols-3 3xl:grid-cols-4">
