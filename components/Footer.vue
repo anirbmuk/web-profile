@@ -20,7 +20,7 @@
             :title="getTitle('en')"
             :label="getTitle('en')"
             :alt-text="getTitle('en')"
-            :size="6"
+            :size="7"
             target="_self"
             :aria-current="isCurrentlyOnLocale('en') ? true : undefined" />
           <div class="-mt-0.5 text">
@@ -32,7 +32,7 @@
             :title="getTitle('de')"
             :label="getTitle('de')"
             :alt-text="getTitle('de')"
-            :size="6"
+            :size="7"
             target="_self"
             :aria-current="isCurrentlyOnLocale('de') ? true : undefined" />
         </div>

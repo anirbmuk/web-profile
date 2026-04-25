@@ -1,5 +1,5 @@
 <template>
-  <template v-if="componentType === 'link'">
+  <div v-if="componentType === 'link'">
     <div :class="displayClass">
       <a
         :target="target"
@@ -29,7 +29,7 @@
       </a>
     </div>
     <slot :class="displayClass" />
-  </template>
+  </div>
   <div
     v-else
     :title="title"
