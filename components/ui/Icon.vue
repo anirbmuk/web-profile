@@ -1,7 +1,8 @@
 <template>
-  <div v-if="componentType === 'link'">
+  <template v-if="componentType === 'link'">
     <div :class="displayClass">
       <a
+        v-bind="$attrs"
         :target="target"
         :href="url"
         :aria-label="label || icon"
@@ -29,9 +30,10 @@
       </a>
     </div>
     <slot :class="displayClass" />
-  </div>
+  </template>
   <div
     v-else
+    v-bind="$attrs"
     :title="title"
     role="img"
     :aria-label="capitalize(title || label || icon)"
@@ -189,5 +191,6 @@ const displayClass = computed(() =>
 
 defineOptions({
   name: 'IconComponent',
+  inheritAttrs: false,
 });
 </script>
