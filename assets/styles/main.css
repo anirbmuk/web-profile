@@ -121,6 +121,20 @@ abbr {
 }
 
 @media (prefers-color-scheme: dark) {
+  .gradient-text,
+  .email-text {
+    @apply text-white;
+    background-image: none;
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .linkedin,
+  .twitter {
+    @apply text-white;
+  }
+
   .text-black-dark,
   .text-gray-500,
   .text-gray-600,
