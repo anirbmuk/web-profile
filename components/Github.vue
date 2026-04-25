@@ -12,16 +12,16 @@
             v-for="(repo, index) in block"
             :key="`github_${index + 1}`">
             <UtilIntersect
+              v-if="repo?.value"
               class="max-md:snap-start"
               @tracked="
-                tracker('github_section', repo?.value ? `${repo.value.toString()}` : '')
+                tracker('github_section', String(repo.value))
               ">
               <UiLinkOrText
-                :href="repo?.value?.toString()"
-                @link-click="onLinkClick(repo?.value?.toString())">
-                <div
-                  v-if="repo?.value"
-                  class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out hover:scale-105 hover:bg-gray-50 max-lg:pointer-events-none md:m-0.5 lg:h-36 dark:bg-transparent dark:hover:bg-transparent">
+                :href="String(repo.value)"
+                class="max-lg:-outline-offset-1"
+                @link-click="onLinkClick(String(repo.value))">
+                <div class="mb-2.5 flex h-32 items-center rounded border border-gray-300 p-4 duration-300 ease-in-out md:m-0.5 lg:h-36 lg:hover:scale-105 lg:hover:bg-gray-50 dark:bg-transparent dark:lg:hover:bg-transparent">
                   <div class="items-center space-y-2">
                     <div class="flex items-center space-x-2">
                       <LazyUiIcon
@@ -31,7 +31,7 @@
                       <div
                         class="-mt-1 text md:text-2xl"
                         translate="no">
-                        {{ transformRepo(repo?.value?.toString()) }}
+                        {{ transformRepo(String(repo.value)) }}
                       </div>
                     </div>
                     <div
