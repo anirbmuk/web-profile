@@ -44,8 +44,7 @@
           </span>
           <time
             class="ml-[3px]"
-            :datetime="block?.publishdate"
-            publish-date>{{
+            :datetime="block?.publishdate">{{
               year
             }}</time>
         </div>
@@ -59,7 +58,12 @@ import type { FooterBlock } from '~/types/features/footer';
 
 const { $i18n } = useNuxtApp();
 const localePath = useLocalePath();
-const { public: { baseUrl } } = useRuntimeConfig();
+const {
+  public: {
+    baseUrl,
+    projectStartYear,
+  },
+} = useRuntimeConfig();
 const route = useRoute();
 const { trackInternalClickEvent } = useTracking();
 
@@ -70,7 +74,7 @@ defineProps({
   },
 });
 
-const year = `2024 - ${new Date().getFullYear()}`;
+const year = `${projectStartYear} - ${new Date().getFullYear()}`;
 
 const onLinkClick = (event_url: string | undefined) => {
   trackInternalClickEvent({

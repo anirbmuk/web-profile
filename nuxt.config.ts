@@ -51,6 +51,7 @@ export default defineNuxtConfig({
           id: '', // Override by setting NUXT_PUBLIC_SCRIPTS_GOOGLE_TAG_MANAGER_ID
         },
       },
+      projectStartYear: '2024', // Override by setting NUXT_PUBLIC_PROJECT_START_YEAR
     },
   },
 
