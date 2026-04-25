@@ -12,11 +12,16 @@ export const useScroll = (key = 'scroll') => {
 
   useEventListener('scroll', callback);
 
+  const prefersReducedMotion = () =>
+    typeof window !== 'undefined'
+    && typeof window.matchMedia === 'function'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const scrollToTop = () => {
     window.scrollTo({
       left: 0,
       top: 0,
-      behavior: 'smooth',
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
     });
     trackInternalClickEvent({
       pageTitle: window.document.title,

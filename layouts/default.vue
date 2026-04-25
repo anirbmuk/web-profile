@@ -1,6 +1,8 @@
 <template>
   <Header />
-  <main class="container mx-auto my-20">
+  <main
+    id="main"
+    class="container mx-auto my-20">
     <slot />
   </main>
   <Footer

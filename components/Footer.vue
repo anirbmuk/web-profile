@@ -1,5 +1,7 @@
 <template>
-  <footer class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
+  <footer
+    id="footer"
+    class="fixed bottom-0 z-50 w-full border-t border-gray-100 bg-gray-50">
     <nav class="p-4 text-md">
       <div class="grid grid-cols-12">
         <div class="col-span-6 flex items-center space-x-3 md:col-span-5 lg:space-x-6">
