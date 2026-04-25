@@ -29,6 +29,7 @@
     <div
       :id="panelId"
       role="region"
+      :aria-label="$i18n.t(`global.accessibility.ariaLabel.${panelId}`)"
       :hidden="!accordionState">
       <UtilFadeInTransition>
         <div

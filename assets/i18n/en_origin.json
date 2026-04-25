@@ -10,7 +10,10 @@
         "profileImage": "Main profile image",
         "loadingProgressBar": "Progress bar for loading the page",
         "rating": "{rating} out of {maxRating}",
-        "technologies": "Technologies"
+        "technologies": "Technologies",
+        "accordion-panel-techstack": "Details: Technologies",
+        "accordion-panel-github": "Details: Popular Repositories",
+        "accordion-panel-education": "Details: Education"
       },
       "hint": {
         "newTab": "Opens in a new tab"
