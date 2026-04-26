@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 const PROCESS_NAME = 'Clear nitro cache';
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  requireBasicAuth(event);
   console.time(PROCESS_NAME);
   try {
     const storage = useStorage();
