@@ -15,7 +15,7 @@
           @tracked="tracker('profile_section')">
           <Profile
             :profile="profile"
-            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            class="content-transition"
             :class="{
               '!translate-y-0 !opacity-100': visibility['profile_section'] === true,
             }" />
@@ -27,7 +27,7 @@
           @tracked="tracker('career_section')">
           <LazyCareer
             :block="data.career"
-            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            class="content-transition"
             :class="{
               '!translate-y-0 !opacity-100': visibility['career_section'] === true,
             }" />
@@ -39,7 +39,7 @@
           @tracked="tracker('techstack_section')">
           <LazyTechstack
             :block="data.techstack"
-            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            class="content-transition"
             :class="{
               '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
             }" />
@@ -51,7 +51,7 @@
           @tracked="tracker('github_section')">
           <LazyGithub
             :block="data.github"
-            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            class="content-transition"
             :class="{
               '!translate-y-0 !opacity-100': visibility['github_section'] === true,
             }" />
@@ -63,7 +63,7 @@
           @tracked="tracker('education_section')">
           <LazyEducation
             :block="data.education"
-            class="translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000"
+            class="content-transition"
             :class="{
               '!translate-y-0 !opacity-100': visibility['education_section'] === true,
             }" />
