@@ -1,10 +1,12 @@
 import withNuxt from './.nuxt/eslint.config.mjs';
 import tailwind from 'eslint-plugin-tailwindcss';
 import sonarjs from 'eslint-plugin-sonarjs';
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 
 export default withNuxt(
   [
     ...tailwind.configs['flat/recommended'],
+    ...pluginVueA11y.configs['flat/recommended'],
     sonarjs.configs.recommended,
     {
       rules: {
@@ -77,6 +79,25 @@ export default withNuxt(
         'vue/define-emits-declaration': ['error', 'type-literal'],
         'vue/custom-event-name-casing': ['error', 'camelCase'],
         'vue/slot-name-casing': ['error', 'kebab-case'],
+        'vuejs-accessibility/mouse-events-have-key-events': 'off',
+        'vuejs-accessibility/no-static-element-interactions': 'off',
+        'vuejs-accessibility/anchor-has-content': 'off',
+        'vuejs-accessibility/aria-props': 'off',
+        'vuejs-accessibility/aria-role': 'error',
+        'vuejs-accessibility/aria-unsupported-elements': 'off',
+        'vuejs-accessibility/click-events-have-key-events': 'off',
+        'vuejs-accessibility/form-control-has-label': 'warn',
+        'vuejs-accessibility/heading-has-content': 'off',
+        'vuejs-accessibility/iframe-has-title': 'off',
+        'vuejs-accessibility/interactive-supports-focus': 'error',
+        'vuejs-accessibility/label-has-for': 'off',
+        'vuejs-accessibility/media-has-caption': 'off',
+        'vuejs-accessibility/no-access-key': 'off',
+        'vuejs-accessibility/no-autofocus': 'off',
+        'vuejs-accessibility/no-distracting-elements': 'off',
+        'vuejs-accessibility/no-redundant-roles': 'error',
+        'vuejs-accessibility/role-has-required-aria-props': 'error',
+        'vuejs-accessibility/tabindex-no-positive': 'warn',
       },
     },
   ],
