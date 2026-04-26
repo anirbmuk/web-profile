@@ -14,14 +14,14 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  compatibilityDate: '2026-04-25',
+  compatibilityDate: '2026-04-26',
 
   app: {
     head: {
       meta: [
         {
           name: 'app-version',
-          content: '2.2.0',
+          content: '2.3.0',
         },
       ],
       link: [
@@ -129,13 +129,13 @@ export default defineNuxtConfig({
     },
     '/en/**': {
       headers: {
-        'Cache-Control': `public, max-age=${DAY}`,
+        'Cache-Control': `public, s-maxage=0, max-age=${DAY}, stale-while-revalidate=${DAY}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, max-age=${DAY}`,
+        'Cache-Control': `public, s-maxage=0, max-age=${DAY}, stale-while-revalidate=${DAY}`,
       },
       swr: true,
     },
@@ -153,13 +153,13 @@ export default defineNuxtConfig({
     },
     '/favicon.ico': {
       headers: {
-        'Cache-Control': `public, max-age=${YEAR}`,
+        'Cache-Control': `public, max-age=${YEAR}, immutable`,
       },
       swr: true,
     },
     '/apple-touch-icon.png': {
       headers: {
-        'Cache-Control': `public, max-age=${YEAR}`,
+        'Cache-Control': `public, max-age=${YEAR}, immutable`,
       },
       swr: true,
     },
