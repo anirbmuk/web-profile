@@ -40,6 +40,8 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    apiUsername: '', // Override by setting NUXT_API_USERNAME
+    apiPassword: '', // Override by setting NUXT_API_PASSWORD
     public: {
       appEnv: '', // Override by setting NUXT_PUBLIC_APP_ENV
       baseUrl: '', // Override by setting NUXT_PUBLIC_BASE_URL
