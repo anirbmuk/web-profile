@@ -36,8 +36,7 @@
     v-bind="$attrs"
     :title="title"
     role="img"
-    :aria-label="capitalize(title || label || icon)"
-    @click="$emit('iconClick', undefined)">
+    :aria-label="capitalize(title || label || icon)">
     <span
       v-if="usesMaskFromPageColor"
       :class="[

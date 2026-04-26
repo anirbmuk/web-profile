@@ -2,12 +2,12 @@
   <div class="my-24 md:my-32">
     <article
       v-if="aboutme"
+      ref="aboutContent"
       class="mx-auto whitespace-break-spaces text-pretty text-md md:text xl:max-w-1/2">
       <p
         v-for="content in aboutme"
         :key="content.documentid"
         class="p-4 md:py-5"
-        @click="onLinkClick($event)"
         v-html="content.description || ''" />
     </article>
   </div>
@@ -27,7 +27,7 @@ const {
   trackExternalClickEvent,
 } = useTracking();
 
-const trackableTagNames = ['A', 'SPAN'];
+const aboutContent = ref<HTMLElement | null>(null);
 
 const loadData = async () => {
   loadingState.value = true;
@@ -49,30 +49,28 @@ const { data } = useAsyncData('about', loadData, {
 const aboutme = computed(() => data.value);
 
 const onLinkClick = (event: Event) => {
-  const tagName = (event?.target as HTMLElement)?.tagName;
-  const trackable = trackableTagNames.includes(tagName);
+  const clickedElement = event.target instanceof Element
+    ? event.target
+    : null;
+  const linkElement = clickedElement?.closest<HTMLAnchorElement>('a[href]');
 
-  if (trackable) {
-    let url: string;
+  if (linkElement) {
     const metadata: ClickEventParams = {
       pageTitle: window.document.title,
       pageType: 'about',
       pageUrl: window.location.href,
       locale: $i18n.locale.value,
       event_section: 'aboutme_section',
-      event_url: undefined,
+      event_url: linkElement.href,
     };
-    if (tagName === 'A') {
-      url = (event?.target as HTMLAnchorElement)?.href;
-      metadata.event_url = url;
-    } else if (tagName === 'SPAN') {
-      url = ((event?.target as HTMLSpanElement)?.parentElement as HTMLAnchorElement)
-        ?.href;
-      metadata.event_url = url;
-    }
     trackExternalClickEvent(metadata);
   }
 };
+
+watch(aboutContent, (element, previousElement) => {
+  previousElement?.removeEventListener('click', onLinkClick);
+  element?.addEventListener('click', onLinkClick);
+});
 
 onMounted(() =>
   trackPageViewEvent({
@@ -82,6 +80,10 @@ onMounted(() =>
     locale: $i18n.locale.value,
   }),
 );
+
+onUnmounted(() => {
+  aboutContent.value?.removeEventListener('click', onLinkClick);
+});
 
 defineOptions({
   name: 'AboutComponent',
