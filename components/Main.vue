@@ -17,7 +17,8 @@
             :profile="profile"
             class="content-transition"
             :class="{
-              '!translate-y-0 !opacity-100': visibility['profile_section'] === true,
+              'translate-y-1/3 opacity-[0.01]': isMounted && !visibility['profile_section'],
+              'translate-y-0 opacity-100': !isMounted || visibility['profile_section'] === true,
             }" />
         </UtilIntersect>
       </template>
@@ -29,7 +30,8 @@
             :block="data.career"
             class="content-transition"
             :class="{
-              '!translate-y-0 !opacity-100': visibility['career_section'] === true,
+              'translate-y-1/3 opacity-[0.01]': isMounted && !visibility['career_section'],
+              'translate-y-0 opacity-100': !isMounted || visibility['career_section'] === true,
             }" />
         </UtilIntersect>
       </template>
@@ -41,7 +43,8 @@
             :block="data.techstack"
             class="content-transition"
             :class="{
-              '!translate-y-0 !opacity-100': visibility['techstack_section'] === true,
+              'translate-y-1/3 opacity-[0.01]': isMounted && !visibility['techstack_section'],
+              'translate-y-0 opacity-100': !isMounted || visibility['techstack_section'] === true,
             }" />
         </UtilIntersect>
       </template>
@@ -53,7 +56,8 @@
             :block="data.github"
             class="content-transition"
             :class="{
-              '!translate-y-0 !opacity-100': visibility['github_section'] === true,
+              'translate-y-1/3 opacity-[0.01]': isMounted && !visibility['github_section'],
+              'translate-y-0 opacity-100': !isMounted || visibility['github_section'] === true,
             }" />
         </UtilIntersect>
       </template>
@@ -65,7 +69,8 @@
             :block="data.education"
             class="content-transition"
             :class="{
-              '!translate-y-0 !opacity-100': visibility['education_section'] === true,
+              'translate-y-1/3 opacity-[0.01]': isMounted && !visibility['education_section'],
+              'translate-y-0 opacity-100': !isMounted || visibility['education_section'] === true,
             }" />
         </UtilIntersect>
       </template>
@@ -83,6 +88,7 @@ import type { EducationBlock } from '~/types/features/education';
 import type { ImpressionEventParams } from '~/types/tracking';
 
 import { omit } from 'radash';
+import { useMounted } from '@vueuse/core';
 
 const { $i18n } = useNuxtApp();
 const { fetch } = useFirebase();
@@ -92,6 +98,8 @@ const {
   trackImpressionCollectionEvent,
 } = useTracking();
 const { generatePersonSchema } = useSeo();
+
+const isMounted = useMounted();
 
 const visibility = reactive<Partial<Record<ImpressionEventParams['event_section'], boolean>>>({
 });
@@ -163,14 +171,14 @@ const tracker = (event_section: ImpressionEventParams['event_section']) => {
   onEnteringComponent(event_section);
 };
 
-onMounted(() =>
+onMounted(() => {
   trackPageViewEvent({
     pageTitle: window.document.title,
     pageType: 'home',
     pageUrl: window.location.href,
     locale: $i18n.locale.value,
-  }),
-);
+  });
+});
 
 useJsonld(() => generatePersonSchema(data.value?.career));
 

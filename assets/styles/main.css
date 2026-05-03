@@ -213,7 +213,7 @@ li[fehover] {
 }
 
 .content-transition {
-  @apply translate-y-1/3 opacity-[0.01] transition-all delay-100 duration-1000;
+  @apply transition-all delay-100 duration-1000;
 }
 
 @media (prefers-reduced-motion: reduce) {
