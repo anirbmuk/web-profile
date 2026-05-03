@@ -129,13 +129,13 @@ export default defineNuxtConfig({
     },
     '/en/**': {
       headers: {
-        'Cache-Control': `public, s-maxage=0, max-age=${DAY}, stale-while-revalidate=${DAY}`,
+        'Cache-Control': `public, s-maxage=${HOUR}, max-age=${DAY}, stale-while-revalidate=${DAY}`,
       },
       swr: true,
     },
     '/de/**': {
       headers: {
-        'Cache-Control': `public, s-maxage=0, max-age=${DAY}, stale-while-revalidate=${DAY}`,
+        'Cache-Control': `public, s-maxage=${HOUR}, max-age=${DAY}, stale-while-revalidate=${DAY}`,
       },
       swr: true,
     },
@@ -179,6 +179,7 @@ export default defineNuxtConfig({
 
   experimental: {
     renderJsonPayloads: false,
+    payloadExtraction: false,
     defaults: {
       nuxtLink: {
         prefetch: false,
