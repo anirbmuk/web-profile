@@ -100,3 +100,10 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           yarn deploy:gae
+
+      - name: Clear Nitro cache
+        run: |
+          curl --fail -s -o /dev/null -w "%{http_code}" \
+            -X POST \
+            -u "${{ secrets.NUXT_API_USERNAME }}:${{ secrets.NUXT_API_PASSWORD }}" \
+            "${{ secrets.NUXT_PUBLIC_BASE_URL }}/api/clear-cache"

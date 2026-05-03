@@ -14,9 +14,10 @@ export default defineEventHandler(async (event) => {
   } catch (e) {
     return {
       success: false,
-      message: (e as Error).message || 'Nitro cache cleared',
+      message: (e as Error).message || 'Failed to clear nitro cache',
     };
   } finally {
     console.timeEnd(PROCESS_NAME);
+    console.log('clear-cache.post.ts executed');
   }
 });
