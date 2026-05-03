@@ -229,7 +229,7 @@ export const useSeo = () => {
           image,
         }),
         ...(additional && {
-          programmingLanguage: additional.join(', '),
+          keywords: additional.join(', '),
         }),
         author: authorSchema.value,
       },
