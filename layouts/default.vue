@@ -22,6 +22,7 @@ import { omit } from 'radash';
 const { $i18n } = useNuxtApp();
 const {
   public: {
+    bingSiteVerification,
     googleSiteVerification,
     baseUrl,
   },
@@ -105,6 +106,9 @@ useSeoMeta({
   themeColor: '#f5f5f5',
   ...(googleSiteVerification && {
     googleSiteVerification,
+  }),
+  ...(bingSiteVerification && {
+    'msvalidate.01': bingSiteVerification,
   }),
 });
 
